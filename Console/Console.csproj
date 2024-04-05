@@ -10,6 +10,9 @@
     <ItemGroup>
       <ProjectReference Include="..\DiffCalculator\DiffCalculator.csproj" />
       <ProjectReference Include="..\FileLoader\FileLoader.csproj" />
+      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\FileManager\FileManager.csproj" />
+      <ProjectReference Include="..\WebScraping\WebScraping.csproj" />
     </ItemGroup>
 
 </Project>
