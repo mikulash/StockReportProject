@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{42B9170A-6FDF-40EE-987A-22E76DCEAE01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{04C0C976-D872-496E-B8C8-2556C2F7D0A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{BD4DA9E1-4A7F-44ED-B013-8DF553ADD532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraping", "WebScraping\WebScraping.csproj", "{2D27F961-6FD1-4079-A005-EBFE792EC9A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42B9170A-6FDF-40EE-987A-22E76DCEAE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B9170A-6FDF-40EE-987A-22E76DCEAE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B9170A-6FDF-40EE-987A-22E76DCEAE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B9170A-6FDF-40EE-987A-22E76DCEAE01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{42B9170A-6FDF-40EE-987A-22E76DCEAE01} = {04C0C976-D872-496E-B8C8-2556C2F7D0A2}
+		{2D27F961-6FD1-4079-A005-EBFE792EC9A5} = {BD4DA9E1-4A7F-44ED-B013-8DF553ADD532}
+	EndGlobalSection
+EndGlobal
