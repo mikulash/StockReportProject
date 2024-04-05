@@ -5,9 +5,11 @@ public class FileManager
     // Returns true on successful stream write to specified file
     public async Task<(bool success, string msg)> SaveStreamToFile(Stream stream, string filePath)
     {
-        if (!ValidateFilePath(filePath))
+        if (!FilePathExists(filePath))
+        {
             return (false, $"Invalid file path {filePath}");
-        
+        }
+
         try
         {
             await using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -21,14 +23,19 @@ public class FileManager
         }
     }
 
+    private static bool FilePathExists(string filePath)
+    {
+        var path = Path.GetDirectoryName(filePath);
+        if (path != String.Empty && !Directory.Exists(path))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public string GetStockCsvFileNameForDate(DateTime dateTime)
     {
         return $"stock-{dateTime:yyyy-MM-dd}.csv";
-    }
-
-    // Returns true when path exists
-    private bool ValidateFilePath(string filePath)
-    {
-        return Path.GetDirectoryName(filePath) != null;
     }
 }

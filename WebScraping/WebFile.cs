@@ -2,9 +2,9 @@
 
 namespace WebScraping;
 
-public class WebFile(string webFileUrl)
+public class WebFile
 {
-    public async Task<(bool success, string msg)> DownloadAndSaveTo(string filePath)
+    public async Task<(bool success, string msg)> DownloadAndSaveTo(string webFileUrl, string filePath)
     {
         try
         {

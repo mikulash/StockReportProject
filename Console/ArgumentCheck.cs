@@ -2,7 +2,7 @@ using Common;
 
 namespace Console;
 
-public class ArgumentCheck()
+public class ArgumentCheck
 {
     public ArgumentCheckModel Setup(string[] args)
     {
@@ -40,7 +40,7 @@ public class ArgumentCheck()
 
 public class ArgumentCheckModel
 {
-    public Frequency DownloadFrequency;
-    public string FilePathName;
-    public string WebFilePath;
+    public Frequency DownloadFrequency { get; set; }
+    public string FilePathName { get; set; }
+    public string WebFilePath { get; set; }
 }
