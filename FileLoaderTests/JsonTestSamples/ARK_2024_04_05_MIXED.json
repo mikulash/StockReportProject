@@ -1,0 +1,392 @@
+﻿[
+  {
+    "cusip": "19260Q107",
+    "shares": "2,836,942",
+    "market value ($)": "$708,129,092.62",
+    "weight (%)": "9.86%",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "COINBASE GLOBAL INC -CLASS A",
+    "ticker": "COIN",
+  },
+  {
+    "company": "TESLA INC",
+    "ticker": "TSLA",
+    "cusip": "88160R101",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "shares": "4,012,072",
+    "market value ($)": "$686,505,639.92",
+    "weight (%)": "9.56%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "shares": "8,904,946",
+    "market value ($)": "$536,433,947.04",
+    "weight (%)": "7.47%",
+    "company": "ROKU INC",
+    "ticker": "ROKU",
+    "cusip": "77543R102"
+  },
+  {
+    "cusip": 852234103,
+    "shares": "6,314,569",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "BLOCK INC",
+    "ticker": "SQ",
+    "market value ($)": "$471,887,741.37",
+    "weight (%)": "6.57%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "UIPATH INC - CLASS A",
+    "shares": "19,529,844",
+    "market value ($)": "$416,962,169.40",
+    "weight (%)": "5.80%",
+    "ticker": "PATH",
+    "cusip": "90364P105"
+  },
+  {
+    "fund": "ARKK",
+    "company": "CRISPR THERAPEUTICS AG",
+    "ticker": "CRSP",
+    "cusip": "H17182108",
+    "shares": "5,726,672",
+    "market value ($)": "$372,577,280.32",
+    "date": "04/05/2024",
+    "weight (%)": "5.19%"
+  },
+  {
+    "company": "ZOOM VIDEO COMMUNICATIONS-A",
+    "ticker": "ZM",
+    "cusip": "98980L101",
+    "shares": "5,003,612",
+    "market value ($)": "$316,628,567.36",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "weight (%)": "4.41%"
+  },
+  {
+    "cusip": 770700102,
+    "shares": "16,576,294",
+    "market value ($)": "$305,832,624.30",
+    "weight (%)": "4.26%",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "ROBINHOOD MARKETS INC - A",
+    "ticker": "HOOD"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "ROBLOX CORP -CLASS A",
+    "ticker": "RBLX",
+    "cusip": 771049103,
+    "shares": "8,239,142",
+    "market value ($)": "$303,200,425.60",
+    "weight (%)": "4.22%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "UNITY SOFTWARE INC",
+    "ticker": "U",
+    "cusip": "91332U101",
+    "shares": "9,420,129",
+    "market value ($)": "$238,517,666.28",
+    "weight (%)": "3.32%"
+  },
+  {
+    "date": "04/05/2024",
+    "ticker": "DKNG UW",
+    "cusip": "26142V105",
+    "shares": "4,650,998",
+    "fund": "ARKK",
+    "company": "DRAFTKINGS INC-CL A",
+    "market value ($)": "$211,015,779.26",
+    "weight (%)": "2.94%"
+  },
+  {
+    "cusip": "82509L107",
+    "shares": "2,784,520",
+    "market value ($)": "$208,309,941.20",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "SHOPIFY INC - CLASS A",
+    "ticker": "SHOP",
+    "weight (%)": "2.90%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "PALANTIR TECHNOLOGIES INC-A",
+    "ticker": "PLTR",
+    "cusip": "69608A108",
+    "shares": "8,919,143",
+    "market value ($)": "$200,502,334.64",
+    "weight (%)": "2.79%"
+  },
+  {
+    "cusip": "45826J105",
+    "shares": "7,608,603",
+    "market value ($)": "$189,986,816.91",
+    "weight (%)": "2.64%",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "INTELLIA THERAPEUTICS INC",
+    "ticker": "NTLA"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "PAGERDUTY INC",
+    "ticker": "PD",
+    "cusip": "69553P100",
+    "shares": "7,268,050",
+    "market value ($)": "$160,623,905.00",
+    "weight (%)": "2.24%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "BEAM THERAPEUTICS INC",
+    "ticker": "BEAM",
+    "cusip": "07373V105",
+    "shares": "5,554,467",
+    "market value ($)": "$161,246,177.01",
+    "weight (%)": "2.24%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "10X GENOMICS INC-CLASS A",
+    "ticker": "TXG",
+    "cusip": "88025U109",
+    "shares": "4,401,911",
+    "market value ($)": "$157,324,299.14",
+    "weight (%)": "2.19%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "TELADOC HEALTH INC",
+    "ticker": "TDOC",
+    "cusip": "87918A105",
+    "shares": "9,634,770",
+    "market value ($)": "$137,295,472.50",
+    "weight (%)": "1.91%"
+  },
+  {
+    "fund": "ARKK",
+    "company": "CERUS CORP",
+    "ticker": "CERS",
+    "cusip": 157085101,
+    "date": "04/05/2024",
+    "shares": "11,804,203",
+    "market value ($)": "$22,309,943.67",
+    "weight (%)": "0.31%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "NATERA INC",
+    "ticker": "NTRA",
+    "cusip": 632307104,
+    "shares": "186,527",
+    "market value ($)": "$17,227,633.72",
+    "weight (%)": "0.24%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "PRIME MEDICINE INC",
+    "ticker": "PRME",
+    "cusip": "74168J101",
+    "shares": "2,582,676",
+    "market value ($)": "$14,953,694.04",
+    "weight (%)": "0.21%"
+  },
+  {
+    "company": "GOLDMAN FS TRSY OBLIG INST 468",
+    "ticker": "",
+    "cusip": "X9USDGSFT",
+    "shares": "2,311,731",
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "market value ($)": "$2,311,731.42",
+    "weight (%)": "0.03%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "2U INC",
+    "ticker": "TWOU",
+    "cusip": "90214J101",
+    "shares": "5,752,383",
+    "market value ($)": "$2,070,857.88",
+    "weight (%)": "0.03%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "TWILIO INC - A",
+    "ticker": "TWLO",
+    "cusip": "90138F102",
+    "shares": "11,960",
+    "market value ($)": "$719,154.80",
+    "weight (%)": "0.01%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "META PLATFORMS INC-CLASS A",
+    "ticker": "META",
+    "cusip": "30303M102",
+    "shares": "260,322",
+    "market value ($)": "$133,003,716.24",
+    "weight (%)": "1.85%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "GINKGO BIOWORKS HOLDINGS INC",
+    "ticker": "DNA",
+    "cusip": "37611X100",
+    "shares": "121,772,149",
+    "market value ($)": "$130,296,199.43",
+    "weight (%)": "1.81%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "RECURSION PHARMACEUTICALS-A",
+    "ticker": "RXRX",
+    "cusip": "75629V104",
+    "shares": "14,694,904",
+    "market value ($)": "$128,286,511.92",
+    "weight (%)": "1.79%"
+  },
+  {
+    "fund": "ARKK",
+    "company": "TRADE DESK INC/THE -CLASS A",
+    "ticker": "TTD",
+    "cusip": "88339J105",
+    "shares": "1,504,926",
+    "market value ($)": "$127,256,542.56",
+    "date": "04/05/2024",
+    "weight (%)": "1.77%"
+  },
+  {
+    "fund": "ARKK",
+    "company": "TWIST BIOSCIENCE CORP",
+    "ticker": "TWST",
+    "cusip": "90184D100",
+    "shares": "3,801,818",
+    "market value ($)": "$121,582,139.64",
+    "date": "04/05/2024",
+    "weight (%)": "1.69%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "EXACT SCIENCES CORP",
+    "ticker": "EXAS",
+    "cusip": "30063P105",
+    "shares": "1,621,453",
+    "market value ($)": "$113,761,142.48",
+    "weight (%)": "1.58%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "PINTEREST INC- CLASS A",
+    "ticker": "PINS",
+    "cusip": "72352L106",
+    "shares": "2,917,549",
+    "market value ($)": "$101,151,423.83",
+    "weight (%)": "1.41%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "TERADYNE INC",
+    "ticker": "TER",
+    "cusip": 880770102,
+    "shares": "882,629",
+    "market value ($)": "$93,514,542.55",
+    "weight (%)": "1.30%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "VERACYTE INC",
+    "ticker": "VCYT",
+    "cusip": "92337F107",
+    "shares": "4,084,270",
+    "market value ($)": "$82,379,725.90",
+    "weight (%)": "1.15%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "MODERNA INC",
+    "ticker": "MRNA",
+    "cusip": "60770K107",
+    "shares": "734,224",
+    "market value ($)": "$75,089,088.48",
+    "weight (%)": "1.05%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "ARCHER AVIATION INC-A",
+    "ticker": "ACHR",
+    "cusip": "03945R102",
+    "shares": "17,105,165",
+    "market value ($)": "$73,552,209.50",
+    "weight (%)": "1.02%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "SOFI TECHNOLOGIES INC",
+    "ticker": "SOFI",
+    "cusip": "83406F102",
+    "shares": "9,750,652",
+    "market value ($)": "$71,277,266.12",
+    "weight (%)": "0.99%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "PACIFIC BIOSCIENCES OF CALIF",
+    "ticker": "PACB",
+    "cusip": "69404D108",
+    "shares": "19,507,536",
+    "market value ($)": "$64,960,094.88",
+    "weight (%)": "0.90%"
+  },
+  {
+    "date": "04/05/2024",
+    "fund": "ARKK",
+    "company": "VERVE THERAPEUTICS INC",
+    "ticker": "VERV",
+    "cusip": "92539P101",
+    "shares": "2,882,255",
+    "market value ($)": "$25,017,973.40",
+    "weight (%)": "0.35%"
+  },
+  {
+    "date": "Investors should carefully consider the investment objectives and risks as well as charges and expenses of an ARK ETF before investing. This and other information are contained in the ARK ETF's prospectuses, which may be obtained on ark-funds.com. The prospectus should be read carefully before investing. An investment in an ARK ETF is subject to risks and you can lose money on your investment in an ARK ETF. There can be no assurance that the ARK ETFs will achieve their investment objectives. The ARK ETFs' portfolios are more volatile than broad market averages. The ARK ETFs also have specific risks, which are described in the ARK ETFs' prospectuses, Shares of the ARK ETFs may be bought or sold throughout the day at their market price on the exchange on which they are listed. The market price of an ARK ETF's shares may be at, above or below the ARK ETF's net asset value (\"NAV\") and will fluctuate with changes in the NAV as well as supply and demand in the market for the shares. The market price of ARK ETF shares may differ significantly from their NAV during periods of market volatility. Shares of the ARK ETFs may only be redeemed directly with the ARK ETFs at NAV by Authorized Participants, in very large creation units. There can be no guarantee that an active trading market for ARK ETF shares will develop or be maintained, or that their listing will continue or remain unchanged. Buying or selling ARK ETF shares on an exchange may require the payment of brokerage commissions and frequent trading may incur brokerage costs that detract significantly from investment returns. Not FDIC Insured – No Bank Guarantee – May Lose Value. All statements made regarding companies, securities or other financial information are strictly beliefs and points of view held by ARK Investment Management LLC and/or ARK ETF Trust and are not endorsements by ARK of any company or security or recommendations by ARK to buy, sell or hold any security. Holdings are subject to change without notice. Foreside Fund Services, LLC, distributor. © 2024. ARK ETF Trust. No part of this material may be reproduced in any form, or referred to in any other publication, without written permission.",
+    "fund": "",
+    "company": "",
+    "ticker": "",
+    "cusip": "",
+    "shares": "",
+    "market value ($)": "",
+    "weight (%)": ""
+  }
+]
