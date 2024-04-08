@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLoader", "FileLoader\Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLoaderTests", "FileLoaderTests\FileLoaderTests.csproj", "{01341151-B542-4209-9BF3-822BF1D7A7DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffCalculator", "DiffCalculator\DiffCalculator.csproj", "{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{01341151-B542-4209-9BF3-822BF1D7A7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01341151-B542-4209-9BF3-822BF1D7A7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01341151-B542-4209-9BF3-822BF1D7A7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{42B9170A-6FDF-40EE-987A-22E76DCEAE01} = {04C0C976-D872-496E-B8C8-2556C2F7D0A2}
