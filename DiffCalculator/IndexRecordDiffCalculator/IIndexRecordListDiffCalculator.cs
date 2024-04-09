@@ -5,5 +5,5 @@ namespace DiffCalculator.IndexRecordDiffCalculator;
 
 public interface IIndexRecordListDiffCalculator
 {
-    List<IndexRecordDiffDto> GetIndexRecordListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB);
+     RecordDiffs GetIndexRecordListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB);
 }

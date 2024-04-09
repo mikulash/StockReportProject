@@ -10,4 +10,5 @@ public class IndexRecordDiffDto
     public long? SharesDiff { get; set; }
     public double? MarketValueDiff { get; set; }
     public double? WeightDiff { get; set; }
+    public bool IsNew { get; set; }
 }
