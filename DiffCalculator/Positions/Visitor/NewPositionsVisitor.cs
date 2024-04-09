@@ -2,7 +2,7 @@ using DiffCalculator.Model;
 
 namespace DiffCalculator.Positions.Visitor;
 
-public class NewPositionVisitor: IVisitor
+public class NewPositionsVisitor: IVisitor
 {
     public List<IndexRecordDiffDto> Visit(RecordDiffs recordDiffs)
     {
@@ -12,7 +12,7 @@ public class NewPositionVisitor: IVisitor
             return result;
         } 
         foreach (var recordDiff in recordDiffs.DiffRecords)
-        { 
+        {
             if (recordDiff.IsNew)
             {
                 result.Add(recordDiff);

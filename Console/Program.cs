@@ -3,6 +3,8 @@
 using FileLoader.FileParserStrategy;
 using FileLoader.Reader;
 using DiffCalculator.IndexRecordDiffCalculator;
+using DiffCalculator.Model;
+using DiffCalculator.Positions.Visitor;
 
 // TODO: write the actual paths
 var fileReaderA = new FileReader("/path/to/fileA.csv");
@@ -14,7 +16,13 @@ var recordListB = parser.ParseFileToList(fileReaderB);
 
 var diffCalc = new IndexRecordListDiffCalculator(recordListA, recordListB);
 var recordDiffs = diffCalc.GetIndexRecordListDiff();
-
-foreach (var item in recordDiffs.DiffRecords) {
-    Console.WriteLine(item.Company + " " + item.SharesDiff);
+var newPositionsVisitor = new NewPositionsVisitor();
+var positions = new Positions
+{
+    NewPositions = recordDiffs.Accept(newPositionsVisitor),
+    IncreasedPositions = new List<IndexRecordDiffDto>(),
+    DecreasedPositions = new List<IndexRecordDiffDto>()
+};
+foreach (var item in positions.NewPositions) {
+    Console.WriteLine(item.Company + " " + item.IsNew);
 }
