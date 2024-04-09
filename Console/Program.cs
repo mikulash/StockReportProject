@@ -12,9 +12,9 @@ var parser = new ParserMiddleware();
 var recordListA = parser.ParseFileToList(fileReaderA);
 var recordListB = parser.ParseFileToList(fileReaderB);
 
-var diffCalc = new IndexRecordListDiffCalculator();
-var diffList = diffCalc.GetIndexRecordListDiff(recordListA, recordListB);
+var diffCalc = new IndexRecordListDiffCalculator(recordListA, recordListB);
+var recordDiffs = diffCalc.GetIndexRecordListDiff();
 
-foreach (var item in diffList) {
+foreach (var item in recordDiffs.DiffRecords) {
     Console.WriteLine(item.Company + " " + item.SharesDiff);
 }
