@@ -5,9 +5,13 @@ namespace DiffCalculator.IndexRecordDiffCalculator;
 
 public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
 {
-    public IndexRecordListDiffCalculator()
+    private readonly List<IndexRecordDto> _indexRecordListA;
+    private readonly List<IndexRecordDto> _indexRecordListB;
+    
+    public IndexRecordListDiffCalculator(List<IndexRecordDto> indexRecordListA, List<IndexRecordDto> indexRecordListB)
     {
-        
+        _indexRecordListA = indexRecordListA;
+        _indexRecordListB = indexRecordListB;
     }
 
     private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
@@ -42,12 +46,12 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
         };
     }
     
-    public RecordDiffs GetIndexRecordListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB)
+    public RecordDiffs GetIndexRecordListDiff()
     {
         var diffList = new List<IndexRecordDiffDto>();
-        foreach (var recordA in listA)
+        foreach (var recordA in _indexRecordListA)
         {
-            var recordB = listB.Find(record => record.CUSIP == recordA.CUSIP);
+            var recordB = _indexRecordListB.Find(record => record.CUSIP == recordA.CUSIP);
             if (recordB is not null)
             {
                 diffList.Add(GetIndexRecordDiff(recordA, recordB));
@@ -58,6 +62,6 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             }
         }
             
-        return new RecordDiffs() { DiffRecords = diffList};
+        return new RecordDiffs() { DiffRecords = diffList };
     }
 }
