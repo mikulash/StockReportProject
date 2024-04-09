@@ -1,6 +1,6 @@
 namespace DiffCalculator.Model;
 
-public class RecordDiffDto
+public class IndexRecordDiffDto
 {
     public string? CUSIP { get; set; }
     public string? Fund { get; set; }

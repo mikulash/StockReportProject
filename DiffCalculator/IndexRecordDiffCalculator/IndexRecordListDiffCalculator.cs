@@ -1,18 +1,18 @@
 using DiffCalculator.Model;
 using FileLoader.Model;
 
-namespace DiffCalculator.FileDiffCalculator;
+namespace DiffCalculator.IndexRecordDiffCalculator;
 
-public class FileDiffCalculator : IFileDiffCalculator
+public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
 {
-    public FileDiffCalculator()
+    public IndexRecordListDiffCalculator()
     {
         
     }
 
-    private RecordDiffDto GetRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
+    private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
     {
-        return new RecordDiffDto()
+        return new IndexRecordDiffDto()
         {
             CUSIP = recordA.CUSIP,
             Company = recordA.Company,
@@ -25,15 +25,15 @@ public class FileDiffCalculator : IFileDiffCalculator
         };
     }
     
-    public List<RecordDiffDto> GetListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB)
+    public List<IndexRecordDiffDto> GetIndexRecordListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB)
     {
-        var diffList = new List<RecordDiffDto>();
+        var diffList = new List<IndexRecordDiffDto>();
         foreach (var recordA in listA)
         {
             var recordB = listB.Find(record => record.CUSIP == recordA.CUSIP);
             if (recordB is not null)
             {
-                var diff = GetRecordDiff(recordA, recordB);
+                var diff = GetIndexRecordDiff(recordA, recordB);
                 diffList.Add(diff);
             }
         }
