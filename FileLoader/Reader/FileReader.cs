@@ -1,6 +1,6 @@
 ﻿namespace FileLoader.Reader;
 
-public class FileReader : IReader, IDisposable
+public class FileReader : DisposableBaseReader
 {
     private const int ReaderNotOpenIndicator = -1;
     
@@ -11,13 +11,7 @@ public class FileReader : IReader, IDisposable
     }
 
     public string PathToFile { get; private set; }
-    public TextReader Reader { get; init; }
+    public override TextReader Reader { get; init; }
 
-    public bool Validate() => Reader.Peek() != ReaderNotOpenIndicator;
-
-    public void Dispose()
-    {
-        Reader.Close();
-        Reader.Dispose();
-    }
+    public override bool Validate() => Reader.Peek() != ReaderNotOpenIndicator;
 }
