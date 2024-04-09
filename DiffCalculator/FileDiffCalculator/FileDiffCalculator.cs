@@ -10,16 +10,31 @@ public class FileDiffCalculator : IFileDiffCalculator
         
     }
 
-    // TODO: implementation
-    public IndexRecordDto FindRecordByCusip(List<IndexRecordDto> recordList, string CUSIP)
+    private IndexRecordDto? FindRecordByCusip(List<IndexRecordDto> recordList, string CUSIP)
     {
-        return new IndexRecordDto();
+        foreach (var record in recordList)
+        {
+            if (record.CUSIP == CUSIP)
+            {
+                return record;
+            }
+        }
+        return null;
     }
     
-    // TODO: implementation
-    public RecordDiffDto GetRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
+    private RecordDiffDto GetRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
     {
-        return new RecordDiffDto();
+        return new RecordDiffDto()
+        {
+            CUSIP = recordA.CUSIP,
+            Company = recordA.Company,
+            Fund = recordA.Fund,
+            Ticker = recordA.Ticker,
+            DayDiff = recordB.Date?.DayNumber - recordA.Date?.DayNumber,
+            SharesDiff = recordB.Shares - recordA.Shares,
+            MarketValueDiff = recordB.MarketValue - recordA.MarketValue,
+            WeightDiff = recordB.Weight - recordA.Weight
+        };
     }
     
     public List<RecordDiffDto> GetListDiff(List<IndexRecordDto> listA, List<IndexRecordDto> listB)

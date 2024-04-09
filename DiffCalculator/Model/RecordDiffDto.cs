@@ -6,7 +6,7 @@ public class RecordDiffDto
     public string? Fund { get; set; }
     public string? Company { get; set; }
     public string? Ticker { get; set; }
-    public TimeSpan? DateDiff { get; set; }
+    public int? DayDiff { get; set; }
     public long? SharesDiff { get; set; }
     public double? MarketValueDiff { get; set; }
     public double? WeightDiff { get; set; }
