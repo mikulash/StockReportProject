@@ -2,24 +2,9 @@ using DiffCalculator.Model;
 
 namespace DiffCalculator.Positions.Visitor;
 
-public class NewPositionsVisitor: IVisitor
+public class NewPositionsVisitor: AbstractPositionVisitor
 {
-    public List<IndexRecordDiffDto> Visit(RecordDiffs recordDiffs)
-    {
-        List<IndexRecordDiffDto> result = new List<IndexRecordDiffDto>();
-        if (recordDiffs.DiffRecords == null)
-        {
-            return result;
-        } 
-        foreach (var recordDiff in recordDiffs.DiffRecords)
-        {
-            if (recordDiff.IsNew)
-            {
-                result.Add(recordDiff);
-            }
-        }
-
-        return result;
-    }
-  
+    public override void Visit(RecordDiffs recordDiffs) 
+        => State.AddRange(recordDiffs.DiffRecords?.Where(recordDiff => recordDiff.IsNew) 
+                          ?? new List<IndexRecordDiffDto>());
 }

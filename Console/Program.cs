@@ -16,13 +16,6 @@ var recordListB = parser.ParseFileToList(fileReaderB);
 
 var diffCalc = new IndexRecordListDiffCalculator(recordListA, recordListB);
 var recordDiffs = diffCalc.GetIndexRecordListDiff();
-var newPositionsVisitor = new NewPositionsVisitor();
-var positions = new Positions
-{
-    NewPositions = recordDiffs.Accept(newPositionsVisitor),
-    IncreasedPositions = new List<IndexRecordDiffDto>(),
-    DecreasedPositions = new List<IndexRecordDiffDto>()
-};
-foreach (var item in positions.NewPositions) {
-    Console.WriteLine(item.Company + " " + item.IsNew);
-}
+List<IVisitor> visitors = new List<IVisitor>()
+    { new NewPositionsVisitor(), new IncreasedPositionsVisitor(), new DecreasedPositionsVisitor() };
+visitors.ForEach(visitor => visitor.Visit(recordDiffs));
