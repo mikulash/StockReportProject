@@ -10,18 +10,6 @@ public class FileDiffCalculator : IFileDiffCalculator
         
     }
 
-    private IndexRecordDto? FindRecordByCusip(List<IndexRecordDto> recordList, string CUSIP)
-    {
-        foreach (var record in recordList)
-        {
-            if (record.CUSIP == CUSIP)
-            {
-                return record;
-            }
-        }
-        return null;
-    }
-    
     private RecordDiffDto GetRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
     {
         return new RecordDiffDto()
@@ -42,7 +30,7 @@ public class FileDiffCalculator : IFileDiffCalculator
         var diffList = new List<RecordDiffDto>();
         foreach (var recordA in listA)
         {
-            var recordB = recordA.CUSIP is not null ? FindRecordByCusip(listB, recordA.CUSIP) : null;
+            var recordB = listB.Find(record => record.CUSIP == recordA.CUSIP);
             if (recordB is not null)
             {
                 var diff = GetRecordDiff(recordA, recordB);
