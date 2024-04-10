@@ -9,7 +9,7 @@ public class NullDecoratorFilter : BaseDecoratorFilter
 
     public override List<IndexRecordDto> ApplyFilter(List<IndexRecordDto> input)
     {
-        var result = input.Where(HasSomeNullProperty).ToList();
+        var result = input.Where(item => !HasSomeNullProperty(item)).ToList();
         return DecoratorFilter is null ? result : DecoratorFilter.ApplyFilter(result);
     }
 }
