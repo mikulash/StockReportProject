@@ -5,6 +5,7 @@ using DiffCalculator.IndexRecordDiffCalculator;
 using DiffCalculator.Model;
 using DiffCalculator.Positions.Visitor;
 using FileLoader.FileParserStrategy;
+using FileLoader.Filter;
 using FileLoader.Model;using FileLoader.Reader;
 using WebScraping;
 
@@ -91,7 +92,9 @@ static List<IndexRecordDto> LoadFile(string filePath)
     var parser = new ParserMiddleware();
     parser.SetNewParserStrategy(FileType.Csv);
 
-    return parser.ParseFileToList(reader);
+    IDecoratorFilter filter = new NullDecoratorFilter();
+
+    return filter.ApplyFilter(parser.ParseFileToList(reader));
 }
 
 static RecordDiffs CalculateDiff(List<IndexRecordDto> prev, List<IndexRecordDto> curr)
