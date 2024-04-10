@@ -12,4 +12,6 @@ public class IndexRecordDiffDto
     public double? MarketValueDiff { get; set; }
     public double? WeightDiff { get; set; }
     public bool IsNew { get; set; }
+
+    public string CompanyCredentials => $"{Company} ({Ticker})";
 }
