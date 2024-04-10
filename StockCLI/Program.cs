@@ -69,6 +69,7 @@ static void PrintHelp()
     System.Console.WriteLine("  download\t<filePathToCsv>");
     System.Console.WriteLine("  load_prev\t<filePathToCsv>");
     System.Console.WriteLine("  load_current\t<filePathToCsv>");
+    System.Console.WriteLine("  calculate_diff");
     System.Console.WriteLine("  extract_and_print");
     System.Console.WriteLine("  exit\t\tExit the program.");
 }
