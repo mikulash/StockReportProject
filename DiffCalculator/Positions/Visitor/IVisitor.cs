@@ -5,4 +5,6 @@ namespace DiffCalculator.Positions.Visitor;
 public interface IVisitor
 {
     void Visit(RecordDiffs recordDiffs);
+
+    string ToString();
 }
