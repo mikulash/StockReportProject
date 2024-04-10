@@ -5,44 +5,44 @@ namespace DiffCalculator.IndexRecordDiffCalculator;
 
 public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
 {
-    private readonly List<IndexRecordDto> _indexRecordListA;
-    private readonly List<IndexRecordDto> _indexRecordListB;
+    private readonly List<IndexRecordDto> _prevIndexRecordList;
+    private readonly List<IndexRecordDto> _currentIndexRecordList;
     
-    public IndexRecordListDiffCalculator(List<IndexRecordDto> indexRecordListA, List<IndexRecordDto> indexRecordListB)
+    public IndexRecordListDiffCalculator(List<IndexRecordDto> prevPrevIndexRecordList, List<IndexRecordDto> currentCurrentIndexRecordList)
     {
-        _indexRecordListA = indexRecordListA;
-        _indexRecordListB = indexRecordListB;
+        _prevIndexRecordList = prevPrevIndexRecordList;
+        _currentIndexRecordList = currentCurrentIndexRecordList;
     }
 
-    private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto recordA, IndexRecordDto recordB)
+    private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto prevRecord, IndexRecordDto currentRecord)
     {
         return new IndexRecordDiffDto()
         {
-            CUSIP = recordA.CUSIP,
-            Company = recordA.Company,
-            Fund = recordA.Fund,
-            Ticker = recordA.Ticker,
-            DayDiff = recordB.Date?.DayNumber - recordA.Date?.DayNumber,
-            SharesDiff = recordB.Shares - recordA.Shares,
-            SharesDiffPercentage =  (recordB.Shares - recordA.Shares) / recordA.Shares * 100 ,
-            MarketValueDiff = recordB.MarketValue - recordA.MarketValue,
-            WeightDiff = recordB.Weight - recordA.Weight,
+            CUSIP = prevRecord.CUSIP,
+            Company = prevRecord.Company,
+            Fund = prevRecord.Fund,
+            Ticker = prevRecord.Ticker,
+            DayDiff = currentRecord.Date?.DayNumber - prevRecord.Date?.DayNumber,
+            SharesDiff = currentRecord.Shares - prevRecord.Shares,
+            SharesDiffPercentage =  (currentRecord.Shares - prevRecord.Shares) / prevRecord.Shares * 100 ,
+            MarketValueDiff = currentRecord.MarketValue - prevRecord.MarketValue,
+            WeightDiff = currentRecord.Weight - prevRecord.Weight,
             IsNew = false
         };
     }
 
-    private IndexRecordDiffDto TransferToDiffDto(IndexRecordDto recordA)
+    private IndexRecordDiffDto CreateNewIndexRecordDiff(IndexRecordDto record)
     {
         return new IndexRecordDiffDto()
         {
-            CUSIP = recordA.CUSIP,
-            Company = recordA.Company,
-            Fund = recordA.Fund,
-            Ticker = recordA.Ticker,
-            DayDiff = recordA.Date?.DayNumber,
-            SharesDiff = recordA.Shares,
-            MarketValueDiff = recordA.MarketValue,
-            WeightDiff = recordA.Weight,
+            CUSIP = record.CUSIP,
+            Company = record.Company,
+            Fund = record.Fund,
+            Ticker = record.Ticker,
+            DayDiff = record.Date?.DayNumber,
+            SharesDiff = record.Shares,
+            MarketValueDiff = record.MarketValue,
+            WeightDiff = record.Weight,
             IsNew = true
         };
     }
@@ -50,17 +50,20 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
     public RecordDiffs GetIndexRecordListDiff()
     {
         var diffList = new List<IndexRecordDiffDto>();
-        foreach (var recordA in _indexRecordListA)
+        var newRecordsInListCurrentIndexRecordList = new List<IndexRecordDto>(_currentIndexRecordList);
+        
+        foreach (var prevRecord in _prevIndexRecordList)
         {
-            var recordB = _indexRecordListB.Find(record => record.CUSIP == recordA.CUSIP);
-            if (recordB is not null)
+            var currentRecord = _currentIndexRecordList.Find(record => record.CUSIP == prevRecord.CUSIP);
+            if (currentRecord is not null)
             {
-                diffList.Add(GetIndexRecordDiff(recordA, recordB));
+                diffList.Add(GetIndexRecordDiff(prevRecord, currentRecord));
+                newRecordsInListCurrentIndexRecordList.RemoveAll(record => record.CUSIP == prevRecord.CUSIP);
             }
-            else
-            {
-                diffList.Add(TransferToDiffDto(recordA));
-            }
+        }
+        foreach (var newRecord in newRecordsInListCurrentIndexRecordList)
+        {
+            diffList.Add(CreateNewIndexRecordDiff(newRecord));
         }
             
         return new RecordDiffs() { DiffRecords = diffList };
