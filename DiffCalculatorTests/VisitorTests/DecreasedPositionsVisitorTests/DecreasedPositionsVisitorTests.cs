@@ -73,4 +73,44 @@ public class DecreasedPositionsVisitorTests
             });
         }
     }
+
+
+    [Test]
+    public void ToString_HasValues_ReturnsStringWithDecreasedPositions()
+    {
+        var visitor = new DecreasedPositionsVisitor();
+        visitor.State.AddRange(new List<IndexRecordDiffDto>
+        {
+            new() { Company = "Company1", Ticker = "XXX", SharesDiffPercentage = -10, WeightDiff = 0.1 },
+            new() { Company = "Company2", Ticker = "XXX", SharesDiffPercentage = -5, WeightDiff = 0.2 }
+        });
+        var expectedHeader = "Decreased Positions:";
+        var expectedLine1 = "Company1 (XXX) : #shares decrease: -10%, weight: 0.1";
+        var expectedLine2 = "Company2 (XXX) : #shares decrease: -5%, weight: 0.2";
+
+        var result = visitor.ToString();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(result, Does.StartWith(expectedHeader));
+            //  regional settings can change the decimal separator
+            Assert.That(result, Does.Contain(expectedLine1.Replace('.', ',')));
+            Assert.That(result, Does.Contain(expectedLine2.Replace('.', ',')));
+        });
+
+
+    }
+
+    [Test]
+    public void ToString_HasNoValues_ReturnsEmptyString()
+    {
+        var visitor = new DecreasedPositionsVisitor();
+        var expectedHeader = "Decreased Positions:\n";
+        var expectedBody = "No positions";
+
+        var result = visitor.ToString();
+
+        Assert.That(result, Does.StartWith(expectedHeader));
+        Assert.That(result, Does.Contain(expectedBody));
+    }
 }
