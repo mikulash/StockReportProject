@@ -1,11 +1,12 @@
-﻿using FileLoader.Extensions;
+﻿using System.Globalization;
+using FileLoader.Extensions;
 using Newtonsoft.Json;
 
 namespace FileLoader.FileParserStrategy.JavaScriptObjectNotation.Converters;
 
 public class DoubleCharacterRemovalJsonConverter : JsonConverter<double?>
 {
-    private readonly char[] _excludedCharacters = [',', '$', '%'];
+    private readonly char[] _charactersToExclude = [',', '$', '%'];
     
     public override void WriteJson(JsonWriter writer, double? value, JsonSerializer serializer) 
         => writer.WriteValue(value?.ToString() ?? string.Empty);
@@ -14,8 +15,8 @@ public class DoubleCharacterRemovalJsonConverter : JsonConverter<double?>
         JsonSerializer serializer)
     {
         string clean = (reader.Value?.ToString() ?? string.Empty)
-            .ExcludeCharacters(_excludedCharacters);
+            .ExcludeCharacters(_charactersToExclude);
 
-        return double.TryParse(clean, out double value) ? value : null;
+        return double.TryParse(clean, CultureInfo.InvariantCulture, out double value) ? value : null;
     }
 }
