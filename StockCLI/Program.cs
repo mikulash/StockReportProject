@@ -7,6 +7,7 @@ using DiffCalculator.Positions.Visitor;
 using FileLoader.FileParserStrategy;
 using FileLoader.Filter;
 using FileLoader.Model;using FileLoader.Reader;
+using ReportExport.Output;
 using WebScraping;
 
 System.Console.WriteLine("Welcome to Stock Reporting CLI");
@@ -107,12 +108,16 @@ static void ExtractAndPrint(RecordDiffs diffs)
 {
     var visitors = new List<IVisitor>
     {
-        new NewPositionsVisitor(), 
-        new IncreasedPositionsVisitor(), 
+        new NewPositionsVisitor(),
+        new IncreasedPositionsVisitor(),
         new DecreasedPositionsVisitor()
     };
-    
+
     visitors.ForEach(visitor => visitor.Visit(diffs));
-    
-    // TODO here call the prints
+
+    var consoleOutputStrategy = new ConsoleOutputStrategy();
+    var outputContext = new ExportReportContext(consoleOutputStrategy);
+    var stockPositionGroupsFormatted = visitors.Select(visitor => visitor.ToString()).ToList();
+
+    outputContext.PrintReport(stockPositionGroupsFormatted);
 }

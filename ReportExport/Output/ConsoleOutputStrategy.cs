@@ -6,7 +6,7 @@ public class ConsoleOutputStrategy : IOutputStrategy
     {
         foreach (var positionGroup in positionGroups)
         {
-            Console.WriteLine(positionGroup);
+            Console.Write(positionGroup);
         }
     }
 }
