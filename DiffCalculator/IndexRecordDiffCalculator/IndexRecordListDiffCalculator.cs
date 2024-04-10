@@ -24,7 +24,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             Ticker = prevRecord.Ticker,
             DayDiff = currentRecord.Date?.DayNumber - prevRecord.Date?.DayNumber,
             SharesDiff = currentRecord.Shares - prevRecord.Shares,
-            SharesDiffPercentage =  (currentRecord.Shares - prevRecord.Shares) / prevRecord.Shares * 100 ,
+            SharesDiffPercentage = (double)(currentRecord.Shares - prevRecord.Shares) / prevRecord.Shares * 100 ,
             MarketValueDiff = currentRecord.MarketValue - prevRecord.MarketValue,
             WeightDiff = currentRecord.Weight - prevRecord.Weight,
             IsNew = false
