@@ -23,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Common\Common.csproj" />
       <ProjectReference Include="..\FileManager\FileManager.csproj" />
       <ProjectReference Include="..\WebScraping\WebScraping.csproj" />
     </ItemGroup>
