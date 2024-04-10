@@ -50,17 +50,20 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
     public RecordDiffs GetIndexRecordListDiff()
     {
         var diffList = new List<IndexRecordDiffDto>();
+        var newRecordsInListB = new List<IndexRecordDto>(_indexRecordListB);
+        
         foreach (var recordA in _indexRecordListA)
         {
             var recordB = _indexRecordListB.Find(record => record.CUSIP == recordA.CUSIP);
             if (recordB is not null)
             {
                 diffList.Add(GetIndexRecordDiff(recordA, recordB));
+                newRecordsInListB.RemoveAll(record => record.CUSIP == recordA.CUSIP);
             }
-            else
-            {
-                diffList.Add(TransferToDiffDto(recordA));
-            }
+        }
+        foreach (var recordB in newRecordsInListB)
+        {
+            diffList.Add(TransferToDiffDto(recordB));
         }
             
         return new RecordDiffs() { DiffRecords = diffList };
