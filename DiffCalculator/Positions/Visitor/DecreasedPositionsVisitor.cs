@@ -2,7 +2,7 @@ using DiffCalculator.Model;
 
 namespace DiffCalculator.Positions.Visitor;
 
-public class DecreasedPositionsVisitor: AbstractPositionVisitor
+public class DecreasedPositionsVisitor : AbstractPositionVisitor
 {
     public override void Visit(RecordDiffs recordDiffs)
         => State.AddRange(recordDiffs.DiffRecords?
@@ -10,10 +10,6 @@ public class DecreasedPositionsVisitor: AbstractPositionVisitor
                           ?? new List<IndexRecordDiffDto>());
 
     public override string ToString()
-    {
-        var retval =  "Decreased Positions:\n";
-        State.ForEach(record => retval += $"Company: {record.CompanyCredentials} : #shares decrease: {record.SharesDiffPercentage}%, weight: {record.WeightDiff}\n");
-        retval += "\n";
-        return retval;
-    }
+        => ToStringHelper("Decreased Positions:", record =>
+            $"{record.CompanyCredentials} : #shares decrease: {record.SharesDiffPercentage}%, weight: {record.WeightDiff}");
 }
