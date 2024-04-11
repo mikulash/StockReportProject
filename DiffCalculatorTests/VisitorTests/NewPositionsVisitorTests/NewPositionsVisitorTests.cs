@@ -74,4 +74,23 @@ public class NewPositionsVisitorTests
             Assert.That(record.IsNew, Is.True);
         }
     }
+
+    [Test]
+    public void ToString_HasValues_ReturnsStringWithDecreasedPositions()
+    {
+        var visitor = new NewPositionsVisitor();
+        var record = new IndexRecordDiffDto
+        {
+            Company = "Company",
+            Ticker = "CO",
+            SharesDiffPercentage = 10,
+            WeightDiff = 0.1
+        };
+        visitor.State.Add(record);
+
+        var result = visitor.ToString();
+
+        Assert.That(result, Does.StartWith("New Positions:"));
+        Assert.That(result, Does.Contain("Company (CO) : #shares: 10%, weight: 0.1".Replace(".", ",")));
+    }
 }

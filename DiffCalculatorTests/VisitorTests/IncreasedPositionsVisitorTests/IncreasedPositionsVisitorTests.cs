@@ -73,4 +73,37 @@ public class IncreasedPositionsVisitorTests
             });
         }
     }
+
+    [Test]
+    public void ToString_HasValue_ReturnsExpectedString()
+    {
+        var visitor = new IncreasedPositionsVisitor();
+        var record = new IndexRecordDiffDto
+        {
+            Company = "Company",
+            Ticker = "CO",
+            SharesDiffPercentage = 10,
+            WeightDiff = 0.1
+        };
+        visitor.State.Add(record);
+        var expectedHeader = "Increased Positions:";
+        var expectedRecord = "Company (CO) : #shares increase: 10%, weight: 0.1";
+
+        var result = visitor.ToString();
+
+        Assert.That(result, Does.StartWith(expectedHeader));
+        //  regional settings can change the decimal separator
+        Assert.That(result, Does.Contain(expectedRecord.Replace('.', ',')));
+    }
+
+    [Test]
+    public void ToString_HasNoValues_ReturnsEmptyString()
+    {
+        var visitor = new IncreasedPositionsVisitor();
+
+        var result = visitor.ToString();
+
+        Assert.That(result, Does.StartWith("Increased Positions:"));
+        Assert.That(result, Does.Contain("No positions"));
+    }
 }
