@@ -93,12 +93,9 @@ public class DecreasedPositionsVisitorTests
         Assert.Multiple(() =>
         {
             Assert.That(result, Does.StartWith(expectedHeader));
-            //  regional settings can change the decimal separator
-            Assert.That(result, Does.Contain(expectedLine1.Replace('.', ',')));
-            Assert.That(result, Does.Contain(expectedLine2.Replace('.', ',')));
+            Assert.That(result, Does.Contain(expectedLine1));
+            Assert.That(result, Does.Contain(expectedLine2));
         });
-
-
     }
 
     [Test]

@@ -92,8 +92,7 @@ public class IncreasedPositionsVisitorTests
         var result = visitor.ToString();
 
         Assert.That(result, Does.StartWith(expectedHeader));
-        //  regional settings can change the decimal separator
-        Assert.That(result, Does.Contain(expectedRecord.Replace('.', ',')));
+        Assert.That(result, Does.Contain(expectedRecord));
     }
 
     [Test]

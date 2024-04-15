@@ -10,6 +10,5 @@ public class IncreasedPositionsVisitor : AbstractPositionVisitor
                           ?? new List<IndexRecordDiffDto>());
 
     public override string ToString()
-        => ToStringHelper("Increased Positions:", record =>
-            $"{record.CompanyCredentials} : #shares increase: {record.SharesDiffPercentage}%, weight: {record.WeightDiff}");
+        => ToStringHelper("Increased Positions:", "increase");
 }
