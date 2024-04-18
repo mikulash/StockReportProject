@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCLI", "StockCLI\StockC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportExport", "ReportExport\ReportExport.csproj", "{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.SQLite.Migrations", "DAL.SQLite.Migrations\DAL.SQLite.Migrations.csproj", "{40DD0418-4B54-4FDA-8AE9-15032D001B93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,14 @@ Global
 		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40DD0418-4B54-4FDA-8AE9-15032D001B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40DD0418-4B54-4FDA-8AE9-15032D001B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40DD0418-4B54-4FDA-8AE9-15032D001B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40DD0418-4B54-4FDA-8AE9-15032D001B93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
