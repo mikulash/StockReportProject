@@ -1,17 +1,18 @@
 ﻿using BusinessLayer.DTOs.FundDTO;
 using BusinessLayer.Facades;
 using DataAccessLayer.Models;
+using Infrastructure.Query.Filters.EntityFilters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StockWebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class FundController : ControllerBase
 {
-    private IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto> _facade;
+    private IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter> _facade;
 
-    public FundController(IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto> facade)
+    public FundController(IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter> facade)
     {
         _facade = facade;
     }
@@ -28,6 +29,11 @@ public class FundController : ControllerBase
 
     [HttpGet]
     public async Task<IActionResult> FetchAll() => Ok(await _facade.FetchAllAsync());
+    
+    [HttpGet]
+    [Route("filter")]
+    public async Task<IActionResult> FetchAllFiltered([FromQuery] FundFilterDto filter) 
+        => Ok(await _facade.FetchAllFilteredAsync(filter));
 
     [HttpPut]
     [Route("{id}")]

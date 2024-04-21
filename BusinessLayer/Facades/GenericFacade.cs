@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
+using BusinessLayer.DTOs.BaseFilter;
 using BusinessLayer.Services;
 using DataAccessLayer.Models;
+using Infrastructure.Query;
+using Infrastructure.Query.Filters;
 
 namespace BusinessLayer.Facades;
 
-public class GenericFacade<TEntity, TKey, TCreateDto, TUpdateDto, TViewDto, TViewAllDto> 
-    : IGenericFacade<TEntity, TKey, TCreateDto, TUpdateDto, TViewDto, TViewAllDto> where TEntity : BaseEntity<TKey>
+public class GenericFacade<TEntity, TKey, TCreateDto, TUpdateDto, TViewDto, TViewAllDto, TFilter> 
+    : IGenericFacade<TEntity, TKey, TCreateDto, TUpdateDto, TViewDto, TViewAllDto, TFilter> 
+    where TEntity : BaseEntity<TKey> 
+    where TFilter : IFilter<TEntity>
 {
     protected IMapper Mapper { get; init; }
     public IGenericService<TEntity, TKey> Service { get; init; }
@@ -36,4 +41,12 @@ public class GenericFacade<TEntity, TKey, TCreateDto, TUpdateDto, TViewDto, TVie
 
     public async Task<IEnumerable<TViewAllDto>> FetchAllAsync() 
         => Mapper.Map<List<TViewAllDto>>(await Service.FetchAllAsync());
+
+    public async Task<FilterResultDto<TViewAllDto>> FetchAllFilteredAsync(FilterDto filter)
+    {
+        var queryResult = await Service.FetchFilteredAsync(Mapper.Map<TFilter>(filter), 
+            Mapper.Map<QueryParams>(filter));
+        
+        return Mapper.Map<FilterResultDto<TViewAllDto>>(queryResult);
+    }
 }
