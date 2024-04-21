@@ -1,11 +1,11 @@
-﻿using DataAccessLayer.Models;
+﻿using DataAccessLayer.Data;
+using DataAccessLayer.Models;
 using Infrastructure.Exceptions;
 using Infrastructure.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.UnitOfWork;
 
-public class StockUnitOfWork(DbContext dbContext) : IUnitOfWork
+public class StockUnitOfWork(StockDbContext dbContext) : IUnitOfWork
 {
     private GenericRepository<Company, long>? _companyRepository;
     private GenericRepository<Fund, long>? _fundRepository;

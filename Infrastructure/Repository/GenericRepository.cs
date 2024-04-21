@@ -1,12 +1,13 @@
 ﻿using System.Linq.Expressions;
+using DataAccessLayer.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository;
 
-public class GenericRepository<TEntity, TKey>(DbContext dbContext) : IGenericRepository<TEntity, TKey>
+public class GenericRepository<TEntity, TKey>(StockDbContext dbContext) : IGenericRepository<TEntity, TKey>
     where TEntity : class
 {
-    public string KeyName { get; } = "id";
+    public string KeyName { get; } = RepositoryConstants.KeyName;
 
     public virtual IQueryable<TEntity> AsQueryable() => dbContext.Set<TEntity>().AsQueryable();
 

@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Data;
 
-public class StockDbContext : DbContext
+public class StockDbContext(DbContextOptions<StockDbContext> options) : DbContext(options)
 {
     public DbSet<Fund> Funds { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<IndexRecord> Holdings { get; set; }
-    
+
+
     private static void SetUpDatabaseRelations(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Fund>()

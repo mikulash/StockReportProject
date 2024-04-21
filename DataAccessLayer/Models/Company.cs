@@ -11,5 +11,5 @@ public class Company : BaseEntity<long>
     [MaxLength(9)]
     public required string Cusip { get; set; }
     
-    public IEnumerable<IndexRecord>? IndexRecords { get; set; }
+    public virtual IEnumerable<IndexRecord>? IndexRecords { get; set; }
 }
