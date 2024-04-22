@@ -16,6 +16,7 @@ public class IndexRecordProfile : Profile
         CreateMap<UpdateIndexRecordDto, IndexRecord>();
         CreateMap<IndexRecord, DetailedViewIndexRecordDto>();
         CreateMap<IndexRecord, DetailedViewIndexRecordDto>();
+        CreateMap<IndexRecord, BasicViewIndexRecordDto>();
         
         CreateMap<IndexRecordFilterDto, IndexRecordFilter>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

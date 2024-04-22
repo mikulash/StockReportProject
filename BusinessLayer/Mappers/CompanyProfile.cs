@@ -16,6 +16,8 @@ public class CompanyProfile : Profile
         CreateMap<UpdateCompanyDto, Company>();
         CreateMap<Company, BasicViewCompanyDto>();
         CreateMap<Company, DetailedViewCompanyDto>();
+        CreateMap<Company, ViewCompanyFilteredIndexRecordDto>()
+            .ForMember(dest => dest.FilteredRecords, opt => opt.Ignore());
         
         CreateMap<CompanyFilterDto, CompanyFilter>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

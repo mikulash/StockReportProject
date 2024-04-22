@@ -34,10 +34,7 @@ public class GenericService<TEntity, TKey> : BaseService, IGenericService<TEntit
         return entity;
     }
 
-    public virtual async Task<IEnumerable<TEntity>> FetchAllAsync()
-    {
-        return await Repository.GetAllAsync();
-    }
+    public virtual async Task<IEnumerable<TEntity>> FetchAllAsync() => await Repository.GetAllAsync();
 
     protected async Task<QueryResult<TEntity>> ExecuteQueryAsync(IFilter<TEntity> filter, QueryParams queryParams,
         params Expression<Func<TEntity, object?>>[]? includes)
@@ -64,10 +61,8 @@ public class GenericService<TEntity, TKey> : BaseService, IGenericService<TEntit
         return result;
     }
 
-    public virtual async Task<QueryResult<TEntity>> FetchFilteredAsync(IFilter<TEntity> filter, QueryParams queryParams)
-    {
-        return await ExecuteQueryAsync(filter, queryParams);
-    }
+    public virtual async Task<QueryResult<TEntity>> FetchFilteredAsync(IFilter<TEntity> filter, QueryParams queryParams) 
+        => await ExecuteQueryAsync(filter, queryParams);
 
     public virtual async Task<TEntity> FindByIdAsync(TKey id)
     {

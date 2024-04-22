@@ -1,12 +1,13 @@
-﻿using BusinessLayer.DTOs.FundDTO;
-using BusinessLayer.DTOs.FundDTO.Create;
+﻿using BusinessLayer.DTOs.FundDTO.Create;
 using BusinessLayer.DTOs.FundDTO.Filter;
 using BusinessLayer.DTOs.FundDTO.Update;
-using BusinessLayer.DTOs.FundDTO.View;
-using BusinessLayer.Facades;
-using DataAccessLayer.Models;
-using Infrastructure.Query.Filters.EntityFilters;
 using Microsoft.AspNetCore.Mvc;
+
+using FundFacade = BusinessLayer.Facades.IGenericFacade<DataAccessLayer.Models.Fund, long, 
+    BusinessLayer.Services.IGenericService<DataAccessLayer.Models.Fund, long>, 
+    BusinessLayer.DTOs.FundDTO.Create.CreateFundDto, BusinessLayer.DTOs.FundDTO.Update.UpdateFundDto, 
+    BusinessLayer.DTOs.FundDTO.View.ViewFundDto, BusinessLayer.DTOs.FundDTO.View.ViewFundDto, 
+    Infrastructure.Query.Filters.EntityFilters.FundFilter>;
 
 namespace StockWebAPI.Controllers;
 
@@ -14,9 +15,9 @@ namespace StockWebAPI.Controllers;
 [Route("api/[controller]")]
 public class FundController : ControllerBase
 {
-    private IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter> _fundFacade;
+    private readonly FundFacade _fundFacade;
 
-    public FundController(IGenericFacade<Fund, long, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter> fundFacade)
+    public FundController(FundFacade fundFacade)
     {
         _fundFacade = fundFacade;
     }
