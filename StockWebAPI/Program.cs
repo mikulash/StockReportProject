@@ -19,6 +19,8 @@ builder.Services.RegisterInfrastructureDependencies();
 
 builder.Services.RegisterBLDependecies();
 
+builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

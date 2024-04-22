@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.DTOs.FundDTO;
+﻿namespace BusinessLayer.DTOs.FundDTO.View;
 
 public class ViewFundDto
 {
