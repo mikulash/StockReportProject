@@ -6,8 +6,6 @@ public class IndexRecordFilter : FilterBase<IndexRecord>
 {
     protected override void SetUpSpecialLambdaExpressions()
     {
-        //LambdaDictionary.Add("Fund", source => source.Fund!.FundName.Contains(Fund!));
-        //LambdaDictionary.Add("Company", source => source.Company!.CompanyName.Contains(Company!));
     }
     
     public string? CONTAINS_Fund_FundName { get; set; }
