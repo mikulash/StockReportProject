@@ -4,8 +4,8 @@ namespace BusinessLayer.DTOs.IndexRecordDTOs.Filter;
 
 public class IndexRecordFilterDto : FilterDto
 {
-    public string? Fund { get; set; }
-    public string? Company { get; set; }
+    public string? CONTAINS_Fund_FundName { get; set; }
+    public string? CONTAINS_Company_CompanyName { get; set; }
     
     public DateOnly? GE_IssueDate { get; set; }
     public DateOnly? LE_IssueDate { get; set; }

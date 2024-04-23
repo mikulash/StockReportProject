@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
-using Infrastructure.Exceptions;
 using Infrastructure.Query.Filters.ExpressionStrategy;
+using Infrastructure.Query.Filters.ExpressionStrategy.ExpressionOperation;
 using Infrastructure.Query.Filters.LambdaAndOr;
 
 namespace Infrastructure.Query.Filters;
@@ -8,8 +8,6 @@ namespace Infrastructure.Query.Filters;
 public abstract class FilterBase<TEntity> : IFilter<TEntity> where TEntity : class
 {
     private const string LambdaParam = "source";
-    private const char SeparatorCharacter = '_';
-    private const string DefaultOperation = "EQ";
 
     protected readonly IDictionary<string, Expression<Func<TEntity, bool>>> LambdaDictionary;
     
@@ -21,9 +19,13 @@ public abstract class FilterBase<TEntity> : IFilter<TEntity> where TEntity : cla
 
     protected abstract void SetUpSpecialLambdaExpressions();
 
-    protected virtual Expression BuildExpression(string? op, Expression left, Expression right) 
-        => new ExpressionContext(string.IsNullOrEmpty(op) ? DefaultOperation : op.ToUpper())
+    protected virtual Expression BuildExpression(Operation op, Expression left, Expression right) 
+        => new ExpressionContext(
+                EnumOperationConversion.ConvertOperation(op)
+            )
             .BuildExpression(left, right);
+    
+    
 
     public virtual Expression<Func<TEntity, bool>>? CreateExpression()
     {
@@ -38,27 +40,11 @@ public abstract class FilterBase<TEntity> : IFilter<TEntity> where TEntity : cla
                 continue;
             }
 
-            Expression<Func<TEntity, bool>>? current;
-            if (LambdaDictionary.TryGetValue(item.Name, out var value))
+            if (!LambdaDictionary.TryGetValue(item.Name, out Expression<Func<TEntity, bool>>? current))
             {
-                current = value;
-            }
-            else
-            {
-                var itemName = item.Name;
-                string op = string.Empty;
-                var split = itemName.Split(SeparatorCharacter);
-                if (split.Length == 2)
-                {
-                    itemName = split[1];
-                    op = split[0];
-                }
-                else if (split.Length > 3)
-                {
-                    throw new UnsupportedPropertyNameException(item.Name);
-                }
-                MemberExpression member = Expression.Property(param, itemName);
-                Expression expression = BuildExpression(op, member, constant);
+                var filterParams = new PropertyFilterParameters();
+                filterParams.ParsePropertyName(item.Name);
+                Expression expression = BuildExpression(filterParams.Operation, filterParams.TryCreateMember(param), constant);
                 current = Expression.Lambda<Func<TEntity, bool>>(expression, param);
             }
 
