@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.SQLite.Migrations.Migrations
 {
     [DbContext(typeof(StockDbContext))]
-    [Migration("20240421171355_Initial")]
+    [Migration("20240423134149_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -96,7 +96,7 @@ namespace DAL.SQLite.Migrations.Migrations
 
                     b.HasIndex("FundId");
 
-                    b.ToTable("Holdings");
+                    b.ToTable("IndexRecords");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.IndexRecord", b =>

@@ -40,7 +40,7 @@ namespace DAL.SQLite.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Holdings",
+                name: "IndexRecords",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -54,15 +54,15 @@ namespace DAL.SQLite.Migrations.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Holdings", x => x.Id);
+                    table.PrimaryKey("PK_IndexRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Holdings_Companies_CompanyId",
+                        name: "FK_IndexRecords_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Holdings_Funds_FundId",
+                        name: "FK_IndexRecords_Funds_FundId",
                         column: x => x.FundId,
                         principalTable: "Funds",
                         principalColumn: "Id",
@@ -70,13 +70,13 @@ namespace DAL.SQLite.Migrations.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Holdings_CompanyId",
-                table: "Holdings",
+                name: "IX_IndexRecords_CompanyId",
+                table: "IndexRecords",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Holdings_FundId",
-                table: "Holdings",
+                name: "IX_IndexRecords_FundId",
+                table: "IndexRecords",
                 column: "FundId");
         }
 
@@ -84,7 +84,7 @@ namespace DAL.SQLite.Migrations.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Holdings");
+                name: "IndexRecords");
 
             migrationBuilder.DropTable(
                 name: "Companies");

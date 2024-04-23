@@ -93,7 +93,7 @@ namespace DAL.SQLite.Migrations.Migrations
 
                     b.HasIndex("FundId");
 
-                    b.ToTable("Holdings");
+                    b.ToTable("IndexRecords");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.IndexRecord", b =>

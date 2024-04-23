@@ -7,7 +7,7 @@ public class StockDbContext(DbContextOptions<StockDbContext> options) : DbContex
 {
     public DbSet<Fund> Funds { get; set; }
     public DbSet<Company> Companies { get; set; }
-    public DbSet<IndexRecord> Holdings { get; set; }
+    public DbSet<IndexRecord> IndexRecords { get; set; }
 
 
     private static void SetUpDatabaseRelations(ModelBuilder modelBuilder)
