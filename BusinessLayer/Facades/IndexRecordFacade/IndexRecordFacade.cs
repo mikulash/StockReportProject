@@ -41,4 +41,23 @@ public class IndexRecordFacade
 
         return indexRecord;
     }
+
+    public override async Task<DetailedViewIndexRecordDto> UpdateAsync(long key, UpdateIndexRecordDto update)
+    {
+        var record = await Service.FindByIdAsync(key);
+
+        var newRecord = Mapper.Map<IndexRecord>(update);
+        newRecord.Company = 
+            record.CompanyId == update.CompanyId 
+                ? record.Company 
+                : await _companyService.FindByIdAsync(update.CompanyId);
+        newRecord.Fund = 
+            record.FundId == update.FundId 
+                ? record.Fund 
+                : await _fundService.FindByIdAsync(update.FundId);
+        
+        record.SelfUpdate(newRecord);
+        
+        return Mapper.Map<DetailedViewIndexRecordDto>(await Service.UpdateAsync(record));
+    }
 }

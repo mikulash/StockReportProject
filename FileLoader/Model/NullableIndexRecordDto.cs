@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace FileLoader.Model;
 
-public class IndexRecordDto
+public class NullableIndexRecordDto
 {
     [JsonConverter(typeof(DateOnlyJsonConverter))]
     public DateOnly? Date { get; set; }
