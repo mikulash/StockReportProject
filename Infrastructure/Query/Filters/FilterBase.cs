@@ -17,7 +17,9 @@ public abstract class FilterBase<TEntity> : IFilter<TEntity> where TEntity : cla
         SetUpSpecialLambdaExpressions();
     }
 
-    protected abstract void SetUpSpecialLambdaExpressions();
+    protected virtual void SetUpSpecialLambdaExpressions()
+    {
+    }
 
     protected virtual Expression BuildExpression(Operation op, Expression left, Expression right) 
         => new ExpressionContext(

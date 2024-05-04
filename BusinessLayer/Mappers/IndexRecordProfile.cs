@@ -18,6 +18,13 @@ public class IndexRecordProfile : Profile
         CreateMap<IndexRecord, DetailedViewIndexRecordDto>();
         CreateMap<IndexRecord, DetailedViewIndexRecordDto>();
         CreateMap<IndexRecord, BasicViewIndexRecordDto>();
+
+        CreateMap<IndexRecord, DiffCalculator.Model.IndexRecordDto>()
+            .ForMember(dto => dto.Date, opts => opts.MapFrom(rec => rec.IssueDate))
+            .ForMember(dto => dto.Company, opts => opts.MapFrom(rec => rec.Company!.CompanyName))
+            .ForMember(dto => dto.Ticker, opts => opts.MapFrom(rec => rec.Company!.Ticker))
+            .ForMember(dto => dto.CUSIP, opts => opts.MapFrom(rec => rec.Company!.CUSIP))
+            .ForMember(dto => dto.Fund, opts => opts.MapFrom(rec => rec.Fund!.FundName));
         
         CreateMap<IndexRecordFilterDto, IndexRecordFilter>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

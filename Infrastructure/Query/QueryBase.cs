@@ -80,6 +80,13 @@ public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey> where TEntity : Ba
         return this;
     }
 
+    public void Reset()
+    {
+        _query = UnitOfWork
+            .GetRepositoryByEntity<TEntity, TKey>()
+            .AsQueryable();
+    }
+
     public IQuery<TEntity, TKey> Include(params Expression<Func<TEntity, object?>>[]? includes)
     {
         if (includes != null)

@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapingTests", "WebScrapingTests\WebScrapingTests.csproj", "{99439716-DE96-45D0-9561-73BDD388C2D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockCLI", "StockCLI\StockCLI.csproj", "{67BCE041-D25F-454E-BDE8-9CD8237D1022}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportExport", "ReportExport\ReportExport.csproj", "{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}"
@@ -36,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67BCE041-D25F-454E-BDE8-9CD8237D1022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67BCE041-D25F-454E-BDE8-9CD8237D1022}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67BCE041-D25F-454E-BDE8-9CD8237D1022}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67BCE041-D25F-454E-BDE8-9CD8237D1022}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0ACC3F4F-0EC6-4062-BE96-E8CBE18582B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F23C86-33D0-43B7-9095-6C1EF0BA7D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

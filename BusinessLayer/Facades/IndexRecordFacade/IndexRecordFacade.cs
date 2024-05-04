@@ -63,16 +63,7 @@ public class IndexRecordFacade
 
     public async Task DeleteByDateAndFundAsync(string fundName, DateOnly date)
     {
-        var itemsToDelete = 
-            (await Service.FetchFilteredAsync(
-                new IndexRecordFilter 
-                { 
-                    CONTAINS_Fund_FundName = fundName, 
-                    GE_IssueDate = date, 
-                    LE_IssueDate = date 
-                }, null))
-            .Items;
-
+        var itemsToDelete = await Service.FetchByDateAndFundNameAsync(fundName, date);
         await Service.DeleteRangeAsync(itemsToDelete.ToArray());
     }
 }

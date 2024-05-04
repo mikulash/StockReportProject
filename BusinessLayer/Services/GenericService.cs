@@ -54,6 +54,8 @@ public class GenericService<TEntity, TKey> : BaseService, IGenericService<TEntit
         Query.Filter = filter;
         Query.QueryParams = queryParams;
 
+        Query.Reset();
+
         Query
             .Where(Query.Filter.CreateExpression());
 

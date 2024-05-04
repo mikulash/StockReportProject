@@ -11,7 +11,7 @@ public class DateOnlyJsonConverter : JsonConverter<DateOnly?>
 
     public override DateOnly? ReadJson(JsonReader reader, Type objectType, DateOnly? existingValue,
         bool hasExistingValue, JsonSerializer serializer) 
-        => DateOnly.TryParse(reader?.Value?.ToString() ?? string.Empty, out DateOnly date)
+        => DateOnly.TryParseExact(reader?.Value?.ToString() ?? string.Empty, "MM/dd/yyyy", out DateOnly date)
             ? date
             : null;
 }

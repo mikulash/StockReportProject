@@ -79,7 +79,7 @@ public class JsonMemoryReaderTests
         // assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Is.Not.Empty);
-        Assert.That(result.Select(item => item.Date), Has.All.EqualTo(DateOnly.Parse("03/08/2024")));
+        Assert.That(result.Select(item => item.Date), Has.All.EqualTo(DateOnly.Parse("08/03/2024")));
         Assert.That(result.Select(item => item.Company), Has.All.Not.Null);
         Assert.That(result.Select(item => item.MarketValue), Has.All.GreaterThan(0));
         Assert.That(result.Select(item => item.Fund), Has.All.EqualTo("ARKK"));

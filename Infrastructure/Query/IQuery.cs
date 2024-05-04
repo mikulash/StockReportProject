@@ -7,7 +7,7 @@ public interface IQuery<TEntity, TKey> where TEntity : class
 {
     IFilter<TEntity>? Filter { get; set; }
     QueryParams? QueryParams { get; set; }
-
+    void Reset();
     IQuery<TEntity, TKey> Include(params Expression<Func<TEntity, object?>>[] includes);
     IQuery<TEntity, TKey> Where(Expression<Func<TEntity, bool>>? filter = null);
     IQuery<TEntity, TKey> SortBy(string sortAccordingTo, bool ascending);

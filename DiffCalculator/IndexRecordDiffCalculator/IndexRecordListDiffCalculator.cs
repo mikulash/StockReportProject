@@ -1,20 +1,19 @@
 using DiffCalculator.Model;
-using FileLoader.Model;
 
 namespace DiffCalculator.IndexRecordDiffCalculator;
 
 public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
 {
-    private readonly List<NullableIndexRecordDto> _prevIndexRecordList;
-    private readonly List<NullableIndexRecordDto> _currentIndexRecordList;
+    private readonly List<IndexRecordDto> _prevIndexRecordList;
+    private readonly List<IndexRecordDto> _currentIndexRecordList;
     
-    public IndexRecordListDiffCalculator(List<NullableIndexRecordDto> prevPrevIndexRecordList, List<NullableIndexRecordDto> currentCurrentIndexRecordList)
+    public IndexRecordListDiffCalculator(List<IndexRecordDto> prevPrevIndexRecordList, List<IndexRecordDto> currentCurrentIndexRecordList)
     {
         _prevIndexRecordList = prevPrevIndexRecordList;
         _currentIndexRecordList = currentCurrentIndexRecordList;
     }
 
-    private IndexRecordDiffDto GetIndexRecordDiff(NullableIndexRecordDto prevRecord, NullableIndexRecordDto currentRecord)
+    private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto prevRecord, IndexRecordDto currentRecord)
     {
         return new IndexRecordDiffDto()
         {
@@ -22,7 +21,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             Company = prevRecord.Company,
             Fund = prevRecord.Fund,
             Ticker = prevRecord.Ticker,
-            DayDiff = currentRecord.Date?.DayNumber - prevRecord.Date?.DayNumber,
+            DayDiff = currentRecord.Date.DayNumber - prevRecord.Date.DayNumber,
             SharesDiff = currentRecord.Shares - prevRecord.Shares,
             SharesDiffPercentage = (double)(currentRecord.Shares - prevRecord.Shares) / prevRecord.Shares * 100 ,
             MarketValueDiff = currentRecord.MarketValue - prevRecord.MarketValue,
@@ -31,7 +30,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
         };
     }
 
-    private IndexRecordDiffDto CreateNewIndexRecordDiff(NullableIndexRecordDto record)
+    private IndexRecordDiffDto CreateNewIndexRecordDiff(IndexRecordDto record)
     {
         return new IndexRecordDiffDto()
         {
@@ -39,7 +38,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             Company = record.Company,
             Fund = record.Fund,
             Ticker = record.Ticker,
-            DayDiff = record.Date?.DayNumber,
+            DayDiff = record.Date.DayNumber,
             SharesDiff = record.Shares,
             MarketValueDiff = record.MarketValue,
             WeightDiff = record.Weight,
@@ -50,7 +49,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
     public RecordDiffs GetIndexRecordListDiff()
     {
         var diffList = new List<IndexRecordDiffDto>();
-        var newRecordsInListCurrentIndexRecordList = new List<NullableIndexRecordDto>(_currentIndexRecordList);
+        var newRecordsInListCurrentIndexRecordList = new List<IndexRecordDto>(_currentIndexRecordList);
         
         foreach (var prevRecord in _prevIndexRecordList)
         {

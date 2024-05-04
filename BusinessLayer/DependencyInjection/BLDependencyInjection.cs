@@ -3,6 +3,7 @@ using BusinessLayer.DTOs.FundDTO.Update;
 using BusinessLayer.DTOs.FundDTO.View;
 using BusinessLayer.Facades;
 using BusinessLayer.Facades.CompanyFacade;
+using BusinessLayer.Facades.IndexRecordDiffFacade;
 using BusinessLayer.Facades.IndexRecordFacade;
 using BusinessLayer.Facades.ProcessFileFacade;
 using BusinessLayer.Mappers;
@@ -48,6 +49,7 @@ public static class BLDependencyInjection
         services.AddScoped<ICompanyFacade, CompanyFacade>();
         services.AddScoped<IIndexRecordFacade, IndexRecordFacade>();
         services.AddScoped<IProcessFileFacade, ProcessFileFacade>();
+        services.AddScoped<IIndexRecordDiffFacade, IndexRecordDiffFacade>();
     }
     
     public static void RegisterBLDependecies(this IServiceCollection services)
