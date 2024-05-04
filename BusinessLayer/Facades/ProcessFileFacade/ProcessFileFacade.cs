@@ -73,19 +73,19 @@ public class ProcessFileFacade : IProcessFileFacade
     {
         var queryResult
             = await _companyService.FetchFilteredAsync(
-                new CompanyCusipRangeFilter { IN_Cusip = companies.Select(comp => comp.Cusip).ToList() }, 
+                new CompanyCusipRangeFilter { IN_CUSIP = companies.Select(comp => comp.CUSIP).ToList() }, 
                 null);
         var existingCompanies = queryResult.Items.ToList();
 
         var newCompanies = 
-            companies.Where(comp => existingCompanies.All(x => x.Cusip != comp.Cusip));
+            companies.Where(comp => existingCompanies.All(x => x.CUSIP != comp.CUSIP));
 
         var newEntities = 
             await _companyService.CreateRangeAsync(_mapper.Map<IEnumerable<Company>>(newCompanies).ToArray(), false);
         
         existingCompanies.AddRange(newEntities);
 
-        return existingCompanies.ToDictionary(comp => comp.Cusip, comp => comp);
+        return existingCompanies.ToDictionary(comp => comp.CUSIP, comp => comp);
     }
 
     private async Task CreateIndexRecords(List<NullableIndexRecordDto> indexRecords, DateOnly issueDate,

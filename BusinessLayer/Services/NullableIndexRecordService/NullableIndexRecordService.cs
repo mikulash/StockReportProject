@@ -39,7 +39,7 @@ public class NullableIndexRecordService : INullableIndexRecordService
                 => new CreateCompanyDto
                 {
                     CompanyName = rec.Company ?? string.Empty, 
-                    Cusip = rec.CUSIP ?? string.Empty, 
+                    CUSIP = rec.CUSIP ?? string.Empty, 
                     Ticker = rec.Ticker ?? string.Empty
                 })
             .ToList();

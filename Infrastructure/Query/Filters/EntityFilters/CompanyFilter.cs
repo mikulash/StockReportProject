@@ -10,7 +10,7 @@ public class CompanyFilter : FilterBase<Company>
 
     public string? CONTAINS_CompanyName { get; set; }
     public string? CONTAINS_Ticker { get; set; }
-    public string? CONTAINS_Cusip { get; set; }
+    public string? CONTAINS_CUSIP { get; set; }
 }
 
 public class CompanyCusipRangeFilter : FilterBase<Company>
@@ -19,5 +19,5 @@ public class CompanyCusipRangeFilter : FilterBase<Company>
     {
     }
     
-    public List<string>? IN_Cusip { get; set; }
+    public List<string>? IN_CUSIP { get; set; }
 }

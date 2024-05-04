@@ -9,7 +9,7 @@ public class Company : BaseEntity<long>
     [MaxLength(20)]
     public required string Ticker { get; set; }
     [MaxLength(9)]
-    public required string Cusip { get; set; }
+    public required string CUSIP { get; set; }
     
     public virtual IEnumerable<IndexRecord>? IndexRecords { get; set; }
 }
