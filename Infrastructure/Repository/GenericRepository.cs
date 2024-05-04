@@ -18,8 +18,10 @@ public class GenericRepository<TEntity, TKey>(StockDbContext dbContext) : IGener
         => await dbContext.Set<TEntity>().AddRangeAsync(entities);
 
     public virtual void Delete(TEntity entity) => dbContext.Set<TEntity>().Remove(entity);
+    public void DeleteRange(params TEntity[] entities) => dbContext.Set<TEntity>().RemoveRange(entities);
 
     public virtual void Update(TEntity entity) => dbContext.Set<TEntity>().Update(entity);
+    public void UpdateRange(params TEntity[] entities) => dbContext.Set<TEntity>().UpdateRange(entities);
 
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync(
         Expression<Func<TEntity, bool>>? filter = null,

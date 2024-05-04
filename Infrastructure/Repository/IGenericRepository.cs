@@ -10,7 +10,9 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     Task AddAsync(TEntity entity);
     Task AddRangeAsync(params TEntity[] entities);
     void Delete(TEntity entity);
+    void DeleteRange(params TEntity[] entities);
     void Update(TEntity entity);
+    void UpdateRange(params TEntity[] entities);
     Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, params Expression<Func<TEntity, object>>[] includes);
     Task<TEntity?> GetSingleAsync(Expression<Func<TEntity, bool>>? filter = null, params Expression<Func<TEntity, object>>[] includes);
     Task<TEntity?> GetByIdAsync(TKey id, params Expression<Func<TEntity, object>>[] includes);
