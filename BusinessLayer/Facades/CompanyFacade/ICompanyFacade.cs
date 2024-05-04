@@ -1,10 +1,11 @@
-﻿using BusinessLayer.DTOs.BaseFilter;
-using BusinessLayer.DTOs.CompanyDTOs.Create;
-using BusinessLayer.DTOs.CompanyDTOs.Update;
-using BusinessLayer.DTOs.CompanyDTOs.View;
-using BusinessLayer.Services.CompanyService;
+﻿using BusinessLayer.Services.CompanyService;
 using DataAccessLayer.Models;
+using GenericBusinessLayer.DTOs.BaseFilter;
+using GenericBusinessLayer.Facades;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.CompanyDTOs.Create;
+using StockAPI.DTOs.CompanyDTOs.Update;
+using StockAPI.DTOs.CompanyDTOs.View;
 
 namespace BusinessLayer.Facades.CompanyFacade;
 

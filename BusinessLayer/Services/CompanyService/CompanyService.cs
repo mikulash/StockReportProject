@@ -1,13 +1,16 @@
 ﻿using BusinessLayer.Exceptions;
 using DataAccessLayer.Models;
+using GenericBusinessLayer.Exceptions;
+using GenericBusinessLayer.Services;
+using GenericInfrastructure.Query;
 using Infrastructure.Query;
 using Infrastructure.UnitOfWork;
 
 namespace BusinessLayer.Services.CompanyService;
 
-public class CompanyService : GenericService<Company, long>, ICompanyService
+public class CompanyService : GenericService<Company, long, IStockUnitOfWork>, ICompanyService
 {
-    public CompanyService(IUnitOfWork unitOfWork, IQuery<Company, long> query) : base(unitOfWork, query)
+    public CompanyService(IStockUnitOfWork unitOfWork, IQuery<Company, long> query) : base(unitOfWork, query)
     {
     }
 

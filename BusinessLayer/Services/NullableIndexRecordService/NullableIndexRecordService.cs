@@ -1,6 +1,6 @@
-﻿using BusinessLayer.DTOs.CompanyDTOs.Create;
-using BusinessLayer.Exceptions;
+﻿using BusinessLayer.Exceptions;
 using FileLoader.Model;
+using StockAPI.DTOs.CompanyDTOs.Create;
 
 namespace BusinessLayer.Services.NullableIndexRecordService;
 

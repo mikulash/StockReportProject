@@ -1,9 +1,9 @@
-﻿using BusinessLayer.DTOs.IndexRecordDTOs.Create;
-using BusinessLayer.DTOs.IndexRecordDTOs.Filter;
-using BusinessLayer.DTOs.IndexRecordDTOs.Update;
-using BusinessLayer.Facades.IndexRecordFacade;
+﻿using BusinessLayer.Facades.IndexRecordFacade;
 using BusinessLayer.Facades.ProcessFileFacade;
 using Microsoft.AspNetCore.Mvc;
+using StockAPI.DTOs.IndexRecordDTOs.Create;
+using StockAPI.DTOs.IndexRecordDTOs.Filter;
+using StockAPI.DTOs.IndexRecordDTOs.Update;
 
 namespace StockWebAPI.Controllers;
 

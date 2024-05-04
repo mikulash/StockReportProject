@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BusinessLayer.DTOs.IndexRecordDTOs.Create;
-using BusinessLayer.DTOs.IndexRecordDTOs.Filter;
-using BusinessLayer.DTOs.IndexRecordDTOs.Update;
-using BusinessLayer.DTOs.IndexRecordDTOs.View;
 using DataAccessLayer.Models;
 using FileLoader.Model;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.IndexRecordDTOs.Create;
+using StockAPI.DTOs.IndexRecordDTOs.Filter;
+using StockAPI.DTOs.IndexRecordDTOs.Update;
+using StockAPI.DTOs.IndexRecordDTOs.View;
 
 namespace BusinessLayer.Mappers;
 

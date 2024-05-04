@@ -1,45 +1,24 @@
 ﻿using DataAccessLayer.Data;
 using DataAccessLayer.Models;
-using Infrastructure.Exceptions;
-using Infrastructure.Repository;
+using GenericInfrastructure.Repository;
+using GenericInfrastructure.UnitOfWork;
 
 namespace Infrastructure.UnitOfWork;
 
-public class StockUnitOfWork(StockDbContext dbContext) : IUnitOfWork
+public class StockUnitOfWork : BaseUnitOfWork<StockDbContext>, IStockUnitOfWork
 {
-    private GenericRepository<Company, long>? _companyRepository;
-    private GenericRepository<Fund, long>? _fundRepository;
-    private GenericRepository<IndexRecord, long>? _indexRecordRepository;
-
-    public IGenericRepository<Company, long> CompanyRepository => _companyRepository ??= new GenericRepository<Company, long>(dbContext);
-    public IGenericRepository<Fund, long> FundRepository => _fundRepository ??= new GenericRepository<Fund, long>(dbContext);
-    public IGenericRepository<IndexRecord, long> IndexRecordRepository => _indexRecordRepository ??= new GenericRepository<IndexRecord, long>(dbContext);
-
-    public IGenericRepository<TEntity, TKey> GetRepositoryByEntity<TEntity, TKey>() where TEntity : BaseEntity<TKey>
+    public StockUnitOfWork(StockDbContext dbContext, 
+        IGenericRepository<Company, long> companyRepository, 
+        IGenericRepository<Fund, long> fundRepository, 
+        IGenericRepository<IndexRecord, long> indexRecordRepository) 
+        : base(dbContext)
     {
-        var repository = GetType()
-            .GetProperties()
-            .FirstOrDefault(x => x.PropertyType == typeof(IGenericRepository<TEntity, TKey>))?
-            .GetValue(this);
-
-        return repository is not null ? 
-            (IGenericRepository<TEntity, TKey>) repository 
-            : throw new RepositoryNotFoundException(typeof(TEntity));
-    }
-    
-    public async Task CommitAsync() => await dbContext.SaveChangesAsync();
-
-    public void Rollback()
-    {
+        CompanyRepository = companyRepository;
+        FundRepository = fundRepository;
+        IndexRecordRepository = indexRecordRepository;
     }
 
-    public void Dispose() => Dispose(true);
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            dbContext.Dispose();
-        }
-    }
+    public IGenericRepository<Company, long> CompanyRepository { get; init; }
+    public IGenericRepository<Fund, long> FundRepository { get; init; }
+    public IGenericRepository<IndexRecord, long> IndexRecordRepository { get; init; }
 }

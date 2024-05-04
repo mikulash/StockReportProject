@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using BusinessLayer.DTOs.CompanyDTOs.Create;
-using BusinessLayer.DTOs.CompanyDTOs.Filter;
-using BusinessLayer.DTOs.CompanyDTOs.Update;
-using BusinessLayer.DTOs.CompanyDTOs.View;
 using DataAccessLayer.Models;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.CompanyDTOs.Create;
+using StockAPI.DTOs.CompanyDTOs.Filter;
+using StockAPI.DTOs.CompanyDTOs.Update;
+using StockAPI.DTOs.CompanyDTOs.View;
 
 namespace BusinessLayer.Mappers;
 

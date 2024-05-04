@@ -1,12 +1,11 @@
-﻿using BusinessLayer.DTOs.FundDTO.Create;
-using BusinessLayer.DTOs.FundDTO.Filter;
-using BusinessLayer.DTOs.FundDTO.Update;
-using Microsoft.AspNetCore.Mvc;
-
-using FundFacade = BusinessLayer.Facades.IGenericFacade<DataAccessLayer.Models.Fund, long, 
-    BusinessLayer.Services.IGenericService<DataAccessLayer.Models.Fund, long>, 
-    BusinessLayer.DTOs.FundDTO.Create.CreateFundDto, BusinessLayer.DTOs.FundDTO.Update.UpdateFundDto, 
-    BusinessLayer.DTOs.FundDTO.View.ViewFundDto, BusinessLayer.DTOs.FundDTO.View.ViewFundDto, 
+﻿using Microsoft.AspNetCore.Mvc;
+using StockAPI.DTOs.FundDTO.Create;
+using StockAPI.DTOs.FundDTO.Filter;
+using StockAPI.DTOs.FundDTO.Update;
+using FundFacade = GenericBusinessLayer.Facades.IGenericFacade<DataAccessLayer.Models.Fund, long, 
+    GenericBusinessLayer.Services.IGenericService<DataAccessLayer.Models.Fund, long>, 
+    StockAPI.DTOs.FundDTO.Create.CreateFundDto, StockAPI.DTOs.FundDTO.Update.UpdateFundDto, 
+    StockAPI.DTOs.FundDTO.View.ViewFundDto, StockAPI.DTOs.FundDTO.View.ViewFundDto, 
     Infrastructure.Query.Filters.EntityFilters.FundFilter>;
 
 namespace StockWebAPI.Controllers;

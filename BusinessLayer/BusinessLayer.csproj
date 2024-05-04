@@ -9,7 +9,9 @@
     <ItemGroup>
       <ProjectReference Include="..\DiffCalculator\DiffCalculator.csproj" />
       <ProjectReference Include="..\FileLoader\FileLoader.csproj" />
+      <ProjectReference Include="..\GenericBusinessLayer\GenericBusinessLayer.csproj" />
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+      <ProjectReference Include="..\StockAPI\StockAPI.csproj" />
     </ItemGroup>
 
     <ItemGroup>

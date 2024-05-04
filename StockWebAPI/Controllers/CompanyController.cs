@@ -1,9 +1,9 @@
-﻿using BusinessLayer.DTOs.BaseFilter;
-using BusinessLayer.DTOs.CompanyDTOs.Create;
-using BusinessLayer.DTOs.CompanyDTOs.Filter;
-using BusinessLayer.DTOs.CompanyDTOs.Update;
-using BusinessLayer.Facades.CompanyFacade;
+﻿using BusinessLayer.Facades.CompanyFacade;
+using GenericBusinessLayer.DTOs.BaseFilter;
 using Microsoft.AspNetCore.Mvc;
+using StockAPI.DTOs.CompanyDTOs.Create;
+using StockAPI.DTOs.CompanyDTOs.Filter;
+using StockAPI.DTOs.CompanyDTOs.Update;
 
 namespace StockWebAPI.Controllers;
 

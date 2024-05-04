@@ -1,14 +1,15 @@
 ﻿using DataAccessLayer.Models;
-using Infrastructure.Query;
-using Infrastructure.Query.Filters;
+using GenericBusinessLayer.Services;
+using GenericInfrastructure.Query;
+using GenericInfrastructure.Query.Filters;
 using Infrastructure.Query.Filters.EntityFilters;
 using Infrastructure.UnitOfWork;
 
 namespace BusinessLayer.Services.IndexRecordService;
 
-public class IndexRecordService : GenericService<IndexRecord, long>, IIndexRecordService
+public class IndexRecordService : GenericService<IndexRecord, long, IStockUnitOfWork>, IIndexRecordService
 {
-    public IndexRecordService(IUnitOfWork unitOfWork, IQuery<IndexRecord, long> query) : base(unitOfWork, query)
+    public IndexRecordService(IStockUnitOfWork unitOfWork, IQuery<IndexRecord, long> query) : base(unitOfWork, query)
     {
     }
 

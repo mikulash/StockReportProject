@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using BusinessLayer.DTOs.BaseFilter;
+using GenericBusinessLayer.DTOs.BaseFilter;
+using GenericInfrastructure.Query;
 using Infrastructure.Query;
 
 namespace BusinessLayer.Mappers;

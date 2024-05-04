@@ -1,4 +1,7 @@
 ﻿using DataAccessLayer.Models;
+using GenericBusinessLayer.Services;
+using GenericInfrastructure.Query;
+using GenericInfrastructure.Query.Filters;
 using Infrastructure.Query;
 using Infrastructure.Query.Filters;
 

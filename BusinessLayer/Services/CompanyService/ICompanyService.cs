@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using GenericBusinessLayer.Services;
 
 namespace BusinessLayer.Services.CompanyService;
 

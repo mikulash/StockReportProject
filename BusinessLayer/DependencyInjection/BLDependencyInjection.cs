@@ -1,7 +1,4 @@
-﻿using BusinessLayer.DTOs.FundDTO.Create;
-using BusinessLayer.DTOs.FundDTO.Update;
-using BusinessLayer.DTOs.FundDTO.View;
-using BusinessLayer.Facades;
+﻿using BusinessLayer.Facades;
 using BusinessLayer.Facades.CompanyFacade;
 using BusinessLayer.Facades.IndexRecordDiffFacade;
 using BusinessLayer.Facades.IndexRecordFacade;
@@ -13,8 +10,14 @@ using BusinessLayer.Services.IndexRecordService;
 using BusinessLayer.Services.NullableIndexRecordService;
 using DataAccessLayer.Models;
 using FileLoader.FileParserStrategy;
+using GenericBusinessLayer.Facades;
+using GenericBusinessLayer.Services;
 using Infrastructure.Query.Filters.EntityFilters;
+using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
+using StockAPI.DTOs.FundDTO.Create;
+using StockAPI.DTOs.FundDTO.Update;
+using StockAPI.DTOs.FundDTO.View;
 
 namespace BusinessLayer.DependencyInjection;
 
@@ -36,7 +39,7 @@ public static class BLDependencyInjection
 
     private static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IGenericService<Fund, long>, GenericService<Fund, long>>();
+        services.AddScoped<IGenericService<Fund, long>, GenericService<Fund, long, IStockUnitOfWork>>();
         services.AddScoped<ICompanyService, CompanyService>();
         services.AddScoped<IIndexRecordService, IndexRecordService>();
         services.AddScoped<INullableIndexRecordService, NullableIndexRecordService>();

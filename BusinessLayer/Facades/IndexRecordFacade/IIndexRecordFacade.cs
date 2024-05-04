@@ -1,9 +1,10 @@
-﻿using BusinessLayer.DTOs.IndexRecordDTOs.Create;
-using BusinessLayer.DTOs.IndexRecordDTOs.Update;
-using BusinessLayer.DTOs.IndexRecordDTOs.View;
-using BusinessLayer.Services.IndexRecordService;
+﻿using BusinessLayer.Services.IndexRecordService;
 using DataAccessLayer.Models;
+using GenericBusinessLayer.Facades;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.IndexRecordDTOs.Create;
+using StockAPI.DTOs.IndexRecordDTOs.Update;
+using StockAPI.DTOs.IndexRecordDTOs.View;
 
 namespace BusinessLayer.Facades.IndexRecordFacade;
 

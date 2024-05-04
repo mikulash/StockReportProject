@@ -1,20 +1,22 @@
 ﻿using AutoMapper;
-using BusinessLayer.DTOs.CompanyDTOs.View;
-using BusinessLayer.DTOs.FundDTO.View;
-using BusinessLayer.DTOs.IndexRecordDTOs.Create;
-using BusinessLayer.DTOs.IndexRecordDTOs.Update;
-using BusinessLayer.DTOs.IndexRecordDTOs.View;
 using BusinessLayer.Services;
 using BusinessLayer.Services.CompanyService;
 using BusinessLayer.Services.IndexRecordService;
 using DataAccessLayer.Models;
+using GenericBusinessLayer.Facades;
+using GenericBusinessLayer.Services;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.CompanyDTOs.View;
+using StockAPI.DTOs.FundDTO.View;
+using StockAPI.DTOs.IndexRecordDTOs.Create;
+using StockAPI.DTOs.IndexRecordDTOs.Update;
+using StockAPI.DTOs.IndexRecordDTOs.View;
 
 namespace BusinessLayer.Facades.IndexRecordFacade;
 
 public class IndexRecordFacade 
     : GenericFacade<IndexRecord, long, IIndexRecordService, CreateIndexRecordDto, UpdateIndexRecordDto, 
-        DetailedViewIndexRecordDto, DetailedViewIndexRecordDto, IndexRecordFilter>, 
+            DetailedViewIndexRecordDto, DetailedViewIndexRecordDto, IndexRecordFilter>, 
         IIndexRecordFacade
 {
     private readonly ICompanyService _companyService;

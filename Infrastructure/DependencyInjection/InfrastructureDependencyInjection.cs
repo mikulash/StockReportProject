@@ -1,6 +1,7 @@
-﻿using DataAccessLayer.Models;
-using Infrastructure.Query;
-using Infrastructure.Repository;
+﻿using DataAccessLayer.Data;
+using DataAccessLayer.Models;
+using GenericInfrastructure.Query;
+using GenericInfrastructure.Repository;
 using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,14 +11,14 @@ public static class InfrastructureDependencyInjection
 {
     public static void RegisterInfrastructureDependencies(this IServiceCollection services)
     {
-        services.AddScoped<IGenericRepository<Company, long>, GenericRepository<Company, long>>();
-        services.AddScoped<IGenericRepository<Fund, long>, GenericRepository<Fund, long>>();
-        services.AddScoped<IGenericRepository<IndexRecord, long>, GenericRepository<IndexRecord, long>>();
+        services.AddScoped<IGenericRepository<Company, long>, GenericRepository<Company, long, StockDbContext>>();
+        services.AddScoped<IGenericRepository<Fund, long>, GenericRepository<Fund, long, StockDbContext>>();
+        services.AddScoped<IGenericRepository<IndexRecord, long>, GenericRepository<IndexRecord, long, StockDbContext>>();
 
-        services.AddScoped<IUnitOfWork, StockUnitOfWork>();
+        services.AddScoped<IStockUnitOfWork, StockUnitOfWork>();
         
-        services.AddScoped<IQuery<Company, long>, QueryBase<Company, long>>();
-        services.AddScoped<IQuery<Fund, long>, QueryBase<Fund, long>>();
-        services.AddScoped<IQuery<IndexRecord, long>, QueryBase<IndexRecord, long>>();
+        services.AddScoped<IQuery<Company, long>, QueryBase<Company, long, IStockUnitOfWork>>();
+        services.AddScoped<IQuery<Fund, long>, QueryBase<Fund, long, IStockUnitOfWork>>();
+        services.AddScoped<IQuery<IndexRecord, long>, QueryBase<IndexRecord, long, IStockUnitOfWork>>();
     }
 }

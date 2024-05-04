@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
-using BusinessLayer.DTOs.BaseFilter;
-using BusinessLayer.DTOs.CompanyDTOs.Create;
-using BusinessLayer.DTOs.CompanyDTOs.Update;
-using BusinessLayer.DTOs.CompanyDTOs.View;
-using BusinessLayer.DTOs.IndexRecordDTOs.View;
 using BusinessLayer.Services.CompanyService;
 using BusinessLayer.Services.IndexRecordService;
 using DataAccessLayer.Models;
+using GenericBusinessLayer.DTOs.BaseFilter;
+using GenericBusinessLayer.Facades;
+using GenericInfrastructure.Query;
 using Infrastructure.Query;
 using Infrastructure.Query.Filters.EntityFilters;
+using StockAPI.DTOs.CompanyDTOs.Create;
+using StockAPI.DTOs.CompanyDTOs.Update;
+using StockAPI.DTOs.CompanyDTOs.View;
+using StockAPI.DTOs.IndexRecordDTOs.View;
 
 namespace BusinessLayer.Facades.CompanyFacade;
 
