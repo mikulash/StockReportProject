@@ -23,6 +23,8 @@ public static class EnumOperationConversion
             case Operation.CONTAINS 
                 or Operation.STARTSWITH:
                 return new OperationStringMethods(operation.ToString());
+            case Operation.IN:
+                return new OperationIn();
             default:
                 return new OperationEqual();
         }

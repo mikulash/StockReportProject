@@ -2,6 +2,7 @@
 using BusinessLayer.DTOs.IndexRecordDTOs.Filter;
 using BusinessLayer.DTOs.IndexRecordDTOs.Update;
 using BusinessLayer.Facades.IndexRecordFacade;
+using BusinessLayer.Facades.ProcessFileFacade;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StockWebAPI.Controllers;
@@ -11,10 +12,12 @@ namespace StockWebAPI.Controllers;
 public class IndexRecordController : ControllerBase
 {
     private readonly IIndexRecordFacade _indexRecordFacade;
+    private readonly IProcessFileFacade _processFileFacade;
 
-    public IndexRecordController(IIndexRecordFacade indexRecordFacade)
+    public IndexRecordController(IIndexRecordFacade indexRecordFacade, IProcessFileFacade processFileFacade)
     {
         _indexRecordFacade = indexRecordFacade;
+        _processFileFacade = processFileFacade;
     }
     
     [HttpPost]
@@ -49,6 +52,18 @@ public class IndexRecordController : ControllerBase
     public async Task<IActionResult> DeleteById(long id)
     {
         await _indexRecordFacade.DeleteByIdAsync(id);
+        return NoContent();
+    }
+
+    [HttpPost]
+    [Route("upload")]
+    public async Task<IActionResult> UploadFile(IFormFile file)
+    {
+        await using (var fileStream = file.OpenReadStream())
+        {
+            await _processFileFacade.ProcessAndSaveFileAsync(fileStream, file.ContentType);
+        }
+
         return NoContent();
     }
 }

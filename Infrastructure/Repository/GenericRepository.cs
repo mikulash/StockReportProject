@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 using DataAccessLayer.Data;
+using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository;
 
 public class GenericRepository<TEntity, TKey>(StockDbContext dbContext) : IGenericRepository<TEntity, TKey>
-    where TEntity : class
+    where TEntity : BaseEntity<TKey>
 {
     public string KeyName { get; } = RepositoryConstants.KeyName;
 

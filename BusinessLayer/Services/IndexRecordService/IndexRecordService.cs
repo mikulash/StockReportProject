@@ -15,7 +15,7 @@ public class IndexRecordService : GenericService<IndexRecord, long>, IIndexRecor
         => await ExecuteQueryAsync(filter, queryParams);
 
     public override async Task<QueryResult<IndexRecord>> FetchFilteredAsync(IFilter<IndexRecord> filter,
-        QueryParams queryParams)
+        QueryParams? queryParams)
         => await ExecuteQueryAsync(
             filter, queryParams, 
             rec => rec.Company, 

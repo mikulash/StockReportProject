@@ -1,21 +1,47 @@
 ﻿// NOTE: This class serves only for simple usage purposes, it will be reinvented later
 
 
+using System.Net.Http.Headers;
 using DiffCalculator.IndexRecordDiffCalculator;
 using DiffCalculator.Model;
 using DiffCalculator.Positions.Visitor;
 using FileLoader.FileParserStrategy;
-using FileLoader.Filter;
-using FileLoader.Model;using FileLoader.Reader;
+using FileLoader.Model;
+using FileLoader.Reader;
 using ReportExport.Output;
 using WebScraping;
 
 System.Console.WriteLine("Welcome to Stock Reporting CLI");
 System.Console.WriteLine("Type 'help' for a list of available commands.");
 
-var listPrev = new List<IndexRecordDto>();
-var listCurr = new List<IndexRecordDto>();
+var listPrev = new List<NullableIndexRecordDto>();
+var listCurr = new List<NullableIndexRecordDto>();
 var diff = new RecordDiffs();
+
+using (var httpClient = new HttpClient())
+{
+    using (var form = new MultipartFormDataContent())
+    {
+        string filePath = "C:\\Users\\Jozef\\Desktop\\540468\\4.Sem\\PV260\\TempDB\\ARK_2024_03_08.csv";
+        using (var fs = File.OpenRead(filePath))
+        {
+            using (var streamContent = new StreamContent(fs))
+            {
+                using (var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync()))
+                {
+                    fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+                    // "file" parameter name should be the same as the server side input parameter name
+                    form.Add(fileContent, "file", "rand");
+                    HttpResponseMessage response = await httpClient.PostAsync("http://localhost:5177/api/indexrecord/upload?fileType=csv", form);
+                    Console.WriteLine(response);
+                }
+            }
+        }
+    }
+}
+
+return;
 
 
 while (true)
@@ -86,19 +112,19 @@ static async Task Download(string filePath)
         : $"Error: {response.msg}");
 }
 
-static List<IndexRecordDto> LoadFile(string filePath)
+static List<NullableIndexRecordDto> LoadFile(string filePath)
 {
     using var reader = new FileReader(filePath);
 
     var parser = new ParserMiddleware();
     parser.SetNewParserStrategy(FileType.Csv);
 
-    IDecoratorFilter filter = new NullDecoratorFilter();
+    //IDecoratorFilter filter = new NullDecoratorFilter();
 
-    return filter.ApplyFilter(parser.ParseFileToList(reader));
+    return parser.ParseFileToList(reader);
 }
 
-static RecordDiffs CalculateDiff(List<IndexRecordDto> prev, List<IndexRecordDto> curr)
+static RecordDiffs CalculateDiff(List<NullableIndexRecordDto> prev, List<NullableIndexRecordDto> curr)
 {
     var diffCalc = new IndexRecordListDiffCalculator(prev, curr);
     return diffCalc.GetIndexRecordListDiff();

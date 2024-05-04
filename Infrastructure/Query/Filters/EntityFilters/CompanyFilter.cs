@@ -12,3 +12,12 @@ public class CompanyFilter : FilterBase<Company>
     public string? CONTAINS_Ticker { get; set; }
     public string? CONTAINS_Cusip { get; set; }
 }
+
+public class CompanyCusipRangeFilter : FilterBase<Company>
+{
+    protected override void SetUpSpecialLambdaExpressions()
+    {
+    }
+    
+    public List<string>? IN_Cusip { get; set; }
+}

@@ -15,7 +15,7 @@ public class StockUnitOfWork(StockDbContext dbContext) : IUnitOfWork
     public IGenericRepository<Fund, long> FundRepository => _fundRepository ??= new GenericRepository<Fund, long>(dbContext);
     public IGenericRepository<IndexRecord, long> IndexRecordRepository => _indexRecordRepository ??= new GenericRepository<IndexRecord, long>(dbContext);
 
-    public IGenericRepository<TEntity, TKey> GetRepositoryByEntity<TEntity, TKey>() where TEntity : class
+    public IGenericRepository<TEntity, TKey> GetRepositoryByEntity<TEntity, TKey>() where TEntity : BaseEntity<TKey>
     {
         var repository = GetType()
             .GetProperties()

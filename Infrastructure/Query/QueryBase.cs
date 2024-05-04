@@ -3,10 +3,11 @@ using Infrastructure.Query.Filters;
 using Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using DataAccessLayer.Models;
 
 namespace Infrastructure.Query;
 
-public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey> where TEntity : class
+public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey> where TEntity : BaseEntity<TKey>
 {
     private IQueryable<TEntity> _query;
 
@@ -31,7 +32,7 @@ public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey> where TEntity : cl
         {
             Items = result,
             PageSize = QueryParams?.PageSize ?? PagingParameters.defaultPageSize,
-            PagingEnabled = true,
+            PagingEnabled = QueryParams is not null,
             PageNumber = QueryParams?.PageNumber ?? PagingParameters.defaultPageNumber
         };
 

@@ -9,5 +9,6 @@ public enum Operation
     GT,
     GE,
     CONTAINS,
-    STARTSWITH
+    STARTSWITH,
+    IN
 }

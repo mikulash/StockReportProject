@@ -27,10 +27,10 @@ public class CsvParserStrategy : IFileParserStrategy
         };
     }
     
-    public List<IndexRecordDto> ParseFileToList(IReader reader)
+    public List<NullableIndexRecordDto> ParseFileToList(IReader reader)
     {
         using var csvReader = new CsvReader(reader.Reader, CreateCsvConfiguration());
         RegisterCsvMaps(csvReader);
-        return csvReader.TryValidateHeader<IndexRecordDto>() ? csvReader.GetRecords<IndexRecordDto>().ToList() : [];
+        return csvReader.TryValidateHeader<NullableIndexRecordDto>() ? csvReader.GetRecords<NullableIndexRecordDto>().ToList() : [];
     }
 }

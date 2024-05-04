@@ -1,8 +1,9 @@
 ﻿using System.Linq.Expressions;
+using DataAccessLayer.Models;
 
 namespace Infrastructure.Repository;
 
-public interface IGenericRepository<TEntity, TKey> where TEntity : class
+public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
 {
     public string KeyName { get; }
     IQueryable<TEntity> AsQueryable();

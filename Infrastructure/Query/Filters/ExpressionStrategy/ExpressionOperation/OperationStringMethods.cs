@@ -4,7 +4,7 @@ namespace Infrastructure.Query.Filters.ExpressionStrategy.ExpressionOperation;
 
 public class OperationStringMethods : IExpressionOperation
 {
-    private string _stringMethodName = string.Empty;
+    private readonly string _stringMethodName;
 
     public OperationStringMethods(string stringMethod)
     {

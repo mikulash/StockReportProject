@@ -15,8 +15,8 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_EmptyLists_ReturnsEmptyDiffList()
     {
         // Arrange
-        var listA = new List<IndexRecordDto>();
-        var listB = new List<IndexRecordDto>();
+        var listA = new List<NullableIndexRecordDto>();
+        var listB = new List<NullableIndexRecordDto>();
         var diffCalculator = new IndexRecordListDiffCalculator(listA, listB);
 
         var expected = new RecordDiffs()
@@ -35,9 +35,9 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_EmptyListB_ReturnsEmptyDiffList()
     {
         // Arrange
-        var listA = new List<IndexRecordDto>()
+        var listA = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -49,7 +49,7 @@ public class IndexRecordDiffCalculatorTests
                 Weight = 1000
             },
         };
-        var listB = new List<IndexRecordDto>();
+        var listB = new List<NullableIndexRecordDto>();
         var diffCalculator = new IndexRecordListDiffCalculator(listA, listB);
 
         var expected = new RecordDiffs()
@@ -68,10 +68,10 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_EmptyListA_ReturnsAllFromListBAsNew()
     {
         // Arrange
-        var listA = new List<IndexRecordDto>();
-        var listB = new List<IndexRecordDto>()
+        var listA = new List<NullableIndexRecordDto>();
+        var listB = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -115,9 +115,9 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_SameLists_ReturnsNoDifference()
     {
         // Arrange
-        var list = new List<IndexRecordDto>()
+        var list = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -162,9 +162,9 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_DifferentFiles_ReturnsCorrectDiff()
     {
         // Arrange
-        var listA = new List<IndexRecordDto>()
+        var listA = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -176,9 +176,9 @@ public class IndexRecordDiffCalculatorTests
                 Weight = 1000
             },
         };
-        var listB = new List<IndexRecordDto>()
+        var listB = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -223,9 +223,9 @@ public class IndexRecordDiffCalculatorTests
     public void GetIndexRecordListDiff_Decrease_ReturnsNegativeValue()
     {
         // Arrange
-        var listA = new List<IndexRecordDto>()
+        var listA = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",
@@ -237,9 +237,9 @@ public class IndexRecordDiffCalculatorTests
                 Weight = 1000
             },
         };
-        var listB = new List<IndexRecordDto>()
+        var listB = new List<NullableIndexRecordDto>()
         {
-            new IndexRecordDto
+            new NullableIndexRecordDto
             {
                 CUSIP = "A1",
                 Company = "Test Company 1",

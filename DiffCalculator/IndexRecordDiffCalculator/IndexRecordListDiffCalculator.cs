@@ -5,16 +5,16 @@ namespace DiffCalculator.IndexRecordDiffCalculator;
 
 public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
 {
-    private readonly List<IndexRecordDto> _prevIndexRecordList;
-    private readonly List<IndexRecordDto> _currentIndexRecordList;
+    private readonly List<NullableIndexRecordDto> _prevIndexRecordList;
+    private readonly List<NullableIndexRecordDto> _currentIndexRecordList;
     
-    public IndexRecordListDiffCalculator(List<IndexRecordDto> prevPrevIndexRecordList, List<IndexRecordDto> currentCurrentIndexRecordList)
+    public IndexRecordListDiffCalculator(List<NullableIndexRecordDto> prevPrevIndexRecordList, List<NullableIndexRecordDto> currentCurrentIndexRecordList)
     {
         _prevIndexRecordList = prevPrevIndexRecordList;
         _currentIndexRecordList = currentCurrentIndexRecordList;
     }
 
-    private IndexRecordDiffDto GetIndexRecordDiff(IndexRecordDto prevRecord, IndexRecordDto currentRecord)
+    private IndexRecordDiffDto GetIndexRecordDiff(NullableIndexRecordDto prevRecord, NullableIndexRecordDto currentRecord)
     {
         return new IndexRecordDiffDto()
         {
@@ -31,7 +31,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
         };
     }
 
-    private IndexRecordDiffDto CreateNewIndexRecordDiff(IndexRecordDto record)
+    private IndexRecordDiffDto CreateNewIndexRecordDiff(NullableIndexRecordDto record)
     {
         return new IndexRecordDiffDto()
         {
@@ -50,7 +50,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
     public RecordDiffs GetIndexRecordListDiff()
     {
         var diffList = new List<IndexRecordDiffDto>();
-        var newRecordsInListCurrentIndexRecordList = new List<IndexRecordDto>(_currentIndexRecordList);
+        var newRecordsInListCurrentIndexRecordList = new List<NullableIndexRecordDto>(_currentIndexRecordList);
         
         foreach (var prevRecord in _prevIndexRecordList)
         {

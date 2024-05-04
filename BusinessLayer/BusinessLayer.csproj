@@ -7,10 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Exceptions\" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\FileLoader\FileLoader.csproj" />
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 

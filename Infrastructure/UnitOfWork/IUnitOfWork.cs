@@ -9,7 +9,7 @@ public interface IUnitOfWork : IDisposable
     IGenericRepository<Fund, long> FundRepository { get; }
     IGenericRepository<IndexRecord, long> IndexRecordRepository { get; }
     
-    IGenericRepository<TEntity, TKey> GetRepositoryByEntity<TEntity, TKey>() where TEntity : class;
+    IGenericRepository<TEntity, TKey> GetRepositoryByEntity<TEntity, TKey>() where TEntity : BaseEntity<TKey>;
     Task CommitAsync();
     void Rollback();
 }
