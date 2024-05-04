@@ -64,6 +64,14 @@ public class IndexRecordController : ControllerBase
             await _processFileFacade.ProcessAndSaveFileAsync(fileStream, file.ContentType);
         }
 
+        return Created();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteByDateAndFund([FromQuery] string fundName, [FromQuery] DateOnly date)
+    {
+        await _indexRecordFacade.DeleteByDateAndFundAsync(fundName, date);
+        
         return NoContent();
     }
 }

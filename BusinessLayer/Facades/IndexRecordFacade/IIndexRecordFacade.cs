@@ -10,5 +10,5 @@ namespace BusinessLayer.Facades.IndexRecordFacade;
 public interface IIndexRecordFacade : IGenericFacade<IndexRecord, long, IIndexRecordService, 
     CreateIndexRecordDto, UpdateIndexRecordDto, DetailedViewIndexRecordDto, DetailedViewIndexRecordDto, IndexRecordFilter>
 {
-    
+    Task DeleteByDateAndFundAsync(string fundName, DateOnly date);
 }

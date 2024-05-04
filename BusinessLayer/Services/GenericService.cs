@@ -95,4 +95,10 @@ public class GenericService<TEntity, TKey> : BaseService, IGenericService<TEntit
         Repository.Delete(entity);
         await SaveAsync(save);
     }
+
+    public virtual async Task DeleteRangeAsync(TEntity[] entities, bool save = true)
+    {
+        Repository.DeleteRange(entities);
+        await SaveAsync(save);
+    }
 }

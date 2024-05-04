@@ -11,6 +11,9 @@ public class IndexRecordService : GenericService<IndexRecord, long>, IIndexRecor
     {
     }
 
+    public override async Task<IEnumerable<IndexRecord>> FetchAllAsync() =>
+        await Repository.GetAllAsync(null, rec => rec.Company!, rec => rec.Fund!);
+
     public async Task<QueryResult<IndexRecord>> FetchFilteredMinimalAsync(IFilter<IndexRecord> filter, QueryParams queryParams) 
         => await ExecuteQueryAsync(filter, queryParams);
 

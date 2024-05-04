@@ -60,4 +60,19 @@ public class IndexRecordFacade
         
         return Mapper.Map<DetailedViewIndexRecordDto>(await Service.UpdateAsync(record));
     }
+
+    public async Task DeleteByDateAndFundAsync(string fundName, DateOnly date)
+    {
+        var itemsToDelete = 
+            (await Service.FetchFilteredAsync(
+                new IndexRecordFilter 
+                { 
+                    CONTAINS_Fund_FundName = fundName, 
+                    GE_IssueDate = date, 
+                    LE_IssueDate = date 
+                }, null))
+            .Items;
+
+        await Service.DeleteRangeAsync(itemsToDelete.ToArray());
+    }
 }
