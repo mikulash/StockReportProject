@@ -54,7 +54,7 @@ public static class BLDependencyInjection
         services.AddScoped<IIndexRecordDiffFacade, IndexRecordDiffFacade>();
     }
     
-    public static void RegisterBLDependecies(this IServiceCollection services)
+    public static void RegisterBLDependencies(this IServiceCollection services)
     {
         RegisterExternal(services);
         RegisterMappers(services);
