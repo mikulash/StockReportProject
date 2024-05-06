@@ -19,7 +19,6 @@ public class FundServiceTests
 
     private Mock<IGenericRepository<Fund, long>> _mockedRepository = null!;
     private Mock<IQuery<Fund, long>> _mockedQuery = null!;
-
     private Mock<IStockUnitOfWork> _mockedUoW = null!;
 
     private void InitializeUoW()
