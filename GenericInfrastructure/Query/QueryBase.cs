@@ -2,28 +2,25 @@
 using GenericDataAccessLayer.Models;
 using GenericInfrastructure.Exceptions;
 using GenericInfrastructure.Query.Filters;
-using GenericInfrastructure.UnitOfWork;
+using GenericInfrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace GenericInfrastructure.Query;
 
-public class QueryBase<TEntity, TKey, TUnitOfWork> : IQuery<TEntity, TKey> 
+public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey> 
     where TEntity : BaseEntity<TKey>
-    where TUnitOfWork : IBaseUnitOfWork
 {
     private IQueryable<TEntity> _query;
     
-    public IBaseUnitOfWork BaseUnitOfWork {  get; set; }
+    public IGenericRepository<TEntity, TKey> Repository {  get; set; }
     public IFilter<TEntity>? Filter { get; set; }
     public QueryParams? QueryParams { get; set; }
 
 
-    public QueryBase(TUnitOfWork baseUnitOfWork)
+    public QueryBase(IGenericRepository<TEntity, TKey> repository)
     {
-        BaseUnitOfWork = baseUnitOfWork;
-        _query = baseUnitOfWork
-            .GetRepositoryByEntity<TEntity, TKey>()
-            .AsQueryable();
+        Repository = repository;
+        _query = repository.AsQueryable();
     }
 
     public async Task<QueryResult<TEntity>> ExecuteAsync()
@@ -82,12 +79,7 @@ public class QueryBase<TEntity, TKey, TUnitOfWork> : IQuery<TEntity, TKey>
         return this;
     }
 
-    public void Reset()
-    {
-        _query = BaseUnitOfWork
-            .GetRepositoryByEntity<TEntity, TKey>()
-            .AsQueryable();
-    }
+    public void Reset() => _query = Repository.AsQueryable();
 
     public IQuery<TEntity, TKey> Include(params Expression<Func<TEntity, object?>>[]? includes)
     {

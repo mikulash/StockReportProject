@@ -9,7 +9,7 @@ namespace StockBusinessLayer.Services.IndexRecordService;
 
 public class IndexRecordService : GenericService<IndexRecord, long, IStockUnitOfWork>, IIndexRecordService
 {
-    public IndexRecordService(IStockUnitOfWork unitOfWork, IQuery<IndexRecord, long> query) : base(unitOfWork, query)
+    public IndexRecordService(IStockUnitOfWork unitOfWork) : base(unitOfWork)
     {
     }
 

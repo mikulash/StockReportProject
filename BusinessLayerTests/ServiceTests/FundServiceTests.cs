@@ -1,10 +1,10 @@
 ﻿using DataAccessLayer.Models;
 using GenericBusinessLayer.Services;
 using GenericInfrastructure.Repository;
-using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 using TestUtilities;
 using Moq;
+using StockInfrastructure.UnitOfWork;
 
 namespace BusinessLayerTests.ServiceTests;
 

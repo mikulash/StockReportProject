@@ -15,10 +15,10 @@ public class GenericService<TEntity, TKey, TUnitOfWork> : BaseService<TUnitOfWor
     public readonly IGenericRepository<TEntity, TKey> Repository;
     public readonly IQuery<TEntity, TKey> Query;
 
-    public GenericService(TUnitOfWork unitOfWork, IQuery<TEntity, TKey> query) : base(unitOfWork)
+    public GenericService(TUnitOfWork unitOfWork) : base(unitOfWork)
     {
         Repository = UnitOfWork.GetRepositoryByEntity<TEntity, TKey>();
-        Query = query;
+        Query = UnitOfWork.GetQueryByEntity<TEntity, TKey>();
     }
 
     public virtual async Task<TEntity> CreateAsync(TEntity entity, bool save = true)
