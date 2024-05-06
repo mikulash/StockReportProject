@@ -52,10 +52,10 @@ public class GenericService<TEntity, TKey, TUnitOfWork> : BaseService<TUnitOfWor
         QueryParams? queryParams,
         params Expression<Func<TEntity, object?>>[]? includes)
     {
+        Query.Reset();
+        
         Query.Filter = filter;
         Query.QueryParams = queryParams;
-
-        Query.Reset();
 
         Query
             .Where(Query.Filter.CreateExpression());
