@@ -5,8 +5,7 @@ using StockAPI.DTOs.FundDTO.Update;
 using FundFacade = GenericBusinessLayer.Facades.IGenericFacade<DataAccessLayer.Models.Fund, long, 
     GenericBusinessLayer.Services.IGenericService<DataAccessLayer.Models.Fund, long>, 
     StockAPI.DTOs.FundDTO.Create.CreateFundDto, StockAPI.DTOs.FundDTO.Update.UpdateFundDto, 
-    StockAPI.DTOs.FundDTO.View.ViewFundDto, StockAPI.DTOs.FundDTO.View.ViewFundDto, 
-    StockInfrastructure.Query.Filters.EntityFilters.FundFilter>;
+    StockAPI.DTOs.FundDTO.View.ViewFundDto, StockAPI.DTOs.FundDTO.View.ViewFundDto>;
 
 namespace StockWebAPI.Controllers;
 

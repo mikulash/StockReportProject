@@ -10,7 +10,7 @@ using StockBusinessLayer.Services.CompanyService;
 namespace StockBusinessLayer.Facades.CompanyFacade;
 
 public interface ICompanyFacade : IGenericFacade<Company, long, ICompanyService, 
-    CreateCompanyDto, UpdateCompanyDto, DetailedViewCompanyDto, BasicViewCompanyDto, CompanyFilter>
+    CreateCompanyDto, UpdateCompanyDto, DetailedViewCompanyDto, BasicViewCompanyDto>
 {
     public Task<ViewCompanyFilteredIndexRecordDto> FindByIdFilteredIndexRecords(long id, FilterDto filter);
 }
