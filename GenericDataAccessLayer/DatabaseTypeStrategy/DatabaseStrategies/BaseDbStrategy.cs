@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GenericDataAccessLayer.DatabaseTypeStrategy.DatabaseStrategies;
 
-public abstract class IDBStrategy(IConfiguration configuration)
+public abstract class BaseDbStrategy(IConfiguration configuration)
 {
     protected readonly IConfiguration Config = configuration;
 

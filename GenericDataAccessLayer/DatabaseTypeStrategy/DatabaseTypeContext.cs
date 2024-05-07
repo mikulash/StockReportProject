@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GenericDataAccessLayer.DatabaseTypeStrategy;
 
-public class DatabaseTypeContext(IDBStrategy strategy)
+public class DatabaseTypeContext(BaseDbStrategy strategy)
 {
-    public IDBStrategy DatabaseStrategy { get; set; } = strategy;
+    public BaseDbStrategy DatabaseStrategy { get; set; } = strategy;
 
     public void AddDbContext<TDbContext>(IServiceCollection serviceCollection) 
         where TDbContext : DbContext 
