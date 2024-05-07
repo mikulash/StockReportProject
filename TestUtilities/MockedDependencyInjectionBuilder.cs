@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using DataAccessLayer.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using StockBusinessLayer.DependencyInjection;
 using StockInfrastructure.DependencyInjection;
 
@@ -8,6 +10,12 @@ public class MockedDependencyInjectionBuilder
 {
     private IServiceCollection _serviceCollection = new ServiceCollection();
 
+    public MockedDependencyInjectionBuilder AddDataAccessLayer(IConfiguration configuration)
+    {
+        _serviceCollection.RegisterDALDependencies(configuration);
+        return this;
+    }
+    
     public MockedDependencyInjectionBuilder AddInfrastructure()
     {
         _serviceCollection.RegisterInfrastructureDependencies();
