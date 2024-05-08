@@ -16,7 +16,7 @@ using FundFacade = GenericBusinessLayer.Facades.IGenericFacade<DataAccessLayer.M
     StockAPI.DTOs.FundDTO.Create.CreateFundDto, StockAPI.DTOs.FundDTO.Update.UpdateFundDto, 
     StockAPI.DTOs.FundDTO.View.ViewFundDto, StockAPI.DTOs.FundDTO.View.ViewFundDto>;
 
-namespace BusinessLayerTests.FacadeTests;
+namespace StockBusinessLayerTests.FacadeTests;
 
 public class FundFacadeTests
 {
@@ -128,7 +128,7 @@ public class FundFacadeTests
     }
 
     [Test]
-    public async Task FindByIdAsync_EntityNotFound_ThrowsNoSuchEntityException()
+    public void FindByIdAsync_EntityNotFound_ThrowsNoSuchEntityException()
     {
         // arrange
         var nonExistingId = 100000L;
@@ -209,13 +209,14 @@ public class FundFacadeTests
             PageNumber = 1
         };
 
+        var enumerable = funds.ToList();
         var expected = new QueryResult<Fund>
         {
             PageNumber = 1,
             PageSize = 10,
-            Items = funds,
+            Items = enumerable,
             PagingEnabled = true,
-            TotalItemsCount = funds.Count()
+            TotalItemsCount = enumerable.Count()
         };
 
         _mockedFundService

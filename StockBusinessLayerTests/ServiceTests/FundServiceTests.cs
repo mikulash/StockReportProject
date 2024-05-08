@@ -11,7 +11,7 @@ using StockInfrastructure.Query.Filters.EntityFilters;
 using StockInfrastructure.UnitOfWork;
 using TestUtilities;
 
-namespace BusinessLayerTests.ServiceTests;
+namespace StockBusinessLayerTests.ServiceTests;
 
 public class FundServiceTests
 {

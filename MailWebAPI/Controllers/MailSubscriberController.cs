@@ -10,8 +10,7 @@ using SubscriberFacade = GenericBusinessLayer.Facades.IGenericFacade<
     MailAPI.DTOs.MailSubscriberDTOs.Create.CreateMailSubscriberDto, 
     MailAPI.DTOs.MailSubscriberDTOs.Update.UpdateMailSubscriberDto, 
     MailAPI.DTOs.MailSubscriberDTOs.View.ViewMailSubscriberDto, 
-    MailAPI.DTOs.MailSubscriberDTOs.View.ViewMailSubscriberDto, 
-    MailInfrastructure.EntityFilters.MailSubscriberFilter>;
+    MailAPI.DTOs.MailSubscriberDTOs.View.ViewMailSubscriberDto>;
 
 namespace MailWebAPI.Controllers;
 

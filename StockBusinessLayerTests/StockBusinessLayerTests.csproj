@@ -23,14 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-      <ProjectReference Include="..\StockDataAccessLayer\StockDataAccessLayer.csproj" />
       <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Company\" />
-      <Folder Include="IndexRecord\" />
     </ItemGroup>
 
 </Project>

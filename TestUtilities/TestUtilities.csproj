@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
       <ProjectReference Include="..\StockBusinessLayer\StockBusinessLayer.csproj" />
       <ProjectReference Include="..\StockInfrastructure\StockInfrastructure.csproj" />
     </ItemGroup>

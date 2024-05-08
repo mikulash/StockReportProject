@@ -3,7 +3,7 @@ using GenericDataAccessLayer.DatabaseTypeStrategy.DatabaseStrategies;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
-namespace InfrastructureTests;
+namespace StockInfrastructureTests;
 
 public static class InfrastructureTestUtilities
 {

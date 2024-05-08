@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StockInfrastructure.UnitOfWork;
 using TestUtilities;
 
-namespace InfrastructureTests.Fund;
+namespace StockInfrastructureTests.Fund;
 
 public class FundQueryTests
 {

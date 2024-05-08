@@ -31,7 +31,7 @@ public static class BLDependencyInjection
         services.AddScoped
         <
             IGenericFacade<MailSubscriber, long, IGenericService<MailSubscriber, long>, CreateMailSubscriberDto,
-                UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto, MailSubscriberFilter>,
+                UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto>,
             GenericFacade<MailSubscriber, long, IGenericService<MailSubscriber, long>, CreateMailSubscriberDto,
                 UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto, MailSubscriberFilter>
         >();

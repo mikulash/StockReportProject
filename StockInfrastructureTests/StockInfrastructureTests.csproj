@@ -23,8 +23,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
       <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Company\" />
+      <Folder Include="IndexRecord\" />
     </ItemGroup>
 
 </Project>
