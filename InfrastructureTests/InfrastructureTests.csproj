@@ -28,4 +28,9 @@
       <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Company\" />
+      <Folder Include="IndexRecord\" />
+    </ItemGroup>
+
 </Project>
