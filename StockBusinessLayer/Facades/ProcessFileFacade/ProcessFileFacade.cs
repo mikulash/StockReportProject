@@ -105,6 +105,14 @@ public class ProcessFileFacade : IProcessFileFacade
 
         await _indexRecordService.CreateRangeAsync(newIndexRecords.ToArray());
     }
+
+    private async Task CheckRecordExistence(string fundName, DateOnly date)
+    {
+        if (await _indexRecordService.ExistByDateAndFundNameAsync(fundName, date))
+        {
+            throw new RecordExistenceCheckException(fundName, date);
+        }
+    }
     
     public async Task ProcessAndSaveFileAsync(Stream file, string contentType)
     {
@@ -115,6 +123,8 @@ public class ProcessFileFacade : IProcessFileFacade
         var fund = await FetchByNameOrCreateAsync(_nullableIndexRecordService.FundName);
         var companyDictionary = await FetchByCusipOrCreateAsync(_nullableIndexRecordService.CompanyList);
 
+        await CheckRecordExistence(fund.FundName, _nullableIndexRecordService.Date);
+        
         await CreateIndexRecords(_nullableIndexRecordService.IndexRecordList, 
             _nullableIndexRecordService.Date, fund, companyDictionary);
     }

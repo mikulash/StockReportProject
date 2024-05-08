@@ -19,13 +19,24 @@ public class IndexRecordService : GenericService<IndexRecord, long, IStockUnitOf
     public async Task<QueryResult<IndexRecord>> FetchFilteredMinimalAsync(IFilter<IndexRecord> filter, QueryParams queryParams) 
         => await ExecuteQueryAsync(filter, queryParams);
 
+    public async Task<bool> ExistByDateAndFundNameAsync(string fundName, DateOnly date)
+    {
+        var filter = new IndexRecordDateExactFilter { EQ_IssueDate = date, EQ_Fund_FundName = fundName };
+
+        return (await ExecuteQueryAsync(filter, null,
+                rec => rec.Fund, rec => rec.Company))
+            .Items.Count() is not 0;
+    }
+
     public async Task<IEnumerable<IndexRecord>> FetchByDateAndFundNameAsync(string fundName, DateOnly date)
-        => (await FetchFilteredAsync(new IndexRecordFilter
-            {
-                CONTAINS_Fund_FundName = fundName,
-                GE_IssueDate = date,
-                LE_IssueDate = date
-            }, null))
+        => (await FetchFilteredAsync(
+                new IndexRecordFilter
+                {
+                    CONTAINS_Fund_FundName = fundName,
+                    GE_IssueDate = date,
+                    LE_IssueDate = date
+                }, null)
+            )
             .Items;
 
     public async Task<DateOnly?> FetchComparableOlderDateAsync(string fundName, DateOnly date)

@@ -21,3 +21,9 @@ public class IndexRecordDateFilter : FilterBase<IndexRecord>
     public string? EQ_Fund_FundName { get; set; }
     public DateOnly? LT_IssueDate { get; set; }
 }
+
+public class IndexRecordDateExactFilter : FilterBase<IndexRecord>
+{
+    public string? EQ_Fund_FundName { get; set; }
+    public DateOnly? EQ_IssueDate { get; set; }
+}
