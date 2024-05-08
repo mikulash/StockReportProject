@@ -34,7 +34,7 @@ public class NullableIndexRecordService : INullableIndexRecordService
 
     private static List<CreateCompanyDto> ExtractCompanies(List<NullableIndexRecordDto> indexList) =>
         indexList
-            .Where(rec => rec.CUSIP is not null && rec.Company is not null && rec.Ticker is not null)
+            .Where(rec => rec.CUSIP is not null && rec.Company is not null)
             .Select(rec 
                 => new CreateCompanyDto
                 {
