@@ -1,5 +1,5 @@
-﻿using BusinessLayer.Facades.IndexRecordFacade;
-using BusinessLayer.Facades.ProcessFileFacade;
+﻿using StockBusinessLayer.Facades.IndexRecordFacade;
+using StockBusinessLayer.Facades.ProcessFileFacade;
 using Microsoft.AspNetCore.Mvc;
 using StockAPI.DTOs.IndexRecordDTOs.Create;
 using StockAPI.DTOs.IndexRecordDTOs.Filter;

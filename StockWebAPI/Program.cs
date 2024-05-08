@@ -1,10 +1,10 @@
-using BusinessLayer.DependencyInjection;
+using StockBusinessLayer.DependencyInjection;
 using DataAccessLayer.Data;
 using DataAccessLayer.DependencyInjection;
-using Infrastructure.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using StockInfrastructure.DependencyInjection;
 using StockWebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -6,7 +6,7 @@ using FundFacade = GenericBusinessLayer.Facades.IGenericFacade<DataAccessLayer.M
     GenericBusinessLayer.Services.IGenericService<DataAccessLayer.Models.Fund, long>, 
     StockAPI.DTOs.FundDTO.Create.CreateFundDto, StockAPI.DTOs.FundDTO.Update.UpdateFundDto, 
     StockAPI.DTOs.FundDTO.View.ViewFundDto, StockAPI.DTOs.FundDTO.View.ViewFundDto, 
-    Infrastructure.Query.Filters.EntityFilters.FundFilter>;
+    StockInfrastructure.Query.Filters.EntityFilters.FundFilter>;
 
 namespace StockWebAPI.Controllers;
 

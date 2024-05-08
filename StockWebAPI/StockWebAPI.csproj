@@ -16,8 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
-      <ProjectReference Include="..\DAL.SQLite.Migrations\DAL.SQLite.Migrations.csproj" />
+      <ProjectReference Include="..\StockBusinessLayer\StockBusinessLayer.csproj" />
+      <ProjectReference Include="..\StockDAL.SQLite.Migrations\StockDAL.SQLite.Migrations.csproj" />
     </ItemGroup>
 
 </Project>

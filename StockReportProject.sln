@@ -16,15 +16,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapingTests", "WebScra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportExport", "ReportExport\ReportExport.csproj", "{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockDataAccessLayer", "StockDataAccessLayer\StockDataAccessLayer.csproj", "{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.SQLite.Migrations", "DAL.SQLite.Migrations\DAL.SQLite.Migrations.csproj", "{40DD0418-4B54-4FDA-8AE9-15032D001B93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockDAL.SQLite.Migrations", "StockDAL.SQLite.Migrations\StockDAL.SQLite.Migrations.csproj", "{40DD0418-4B54-4FDA-8AE9-15032D001B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{08B0B936-1D66-4DA3-98E2-F069BEE465FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockInfrastructure", "StockInfrastructure\StockInfrastructure.csproj", "{08B0B936-1D66-4DA3-98E2-F069BEE465FE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{9C1F14EE-7833-483A-B448-44B02FC89508}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StockWebAPI", "StockWebAPI", "{9C1F14EE-7833-483A-B448-44B02FC89508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{D86C955B-E9BB-4F00-AA98-808E525559B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockBusinessLayer", "StockBusinessLayer\StockBusinessLayer.csproj", "{D86C955B-E9BB-4F00-AA98-808E525559B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockWebAPI", "StockWebAPI\StockWebAPI.csproj", "{3A526F2C-2049-4B38-99B7-6564112E9EAE}"
 EndProject

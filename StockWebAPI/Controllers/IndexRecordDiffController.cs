@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Facades.IndexRecordDiffFacade;
+﻿using StockBusinessLayer.Facades.IndexRecordDiffFacade;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StockWebAPI.Controllers;

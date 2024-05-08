@@ -6,7 +6,7 @@ namespace GenericDataAccessLayer.DatabaseTypeStrategy.DatabaseStrategies;
 
 public class SQLiteDbStrategy(IConfiguration configuration) : IDBStrategy(configuration)
 {
-    private const string MigrationsProject = "DAL.SQLite.Migrations";
+    private const string MigrationsProject = "StockDAL.SQLite.Migrations";
     private const string ConnectionString = "DefaultConnection";
 
     public override IServiceCollection AddDbContext<TDbContext>(IServiceCollection services)

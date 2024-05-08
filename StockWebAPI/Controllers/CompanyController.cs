@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Facades.CompanyFacade;
+﻿using StockBusinessLayer.Facades.CompanyFacade;
 using GenericBusinessLayer.DTOs.BaseFilter;
 using Microsoft.AspNetCore.Mvc;
 using StockAPI.DTOs.CompanyDTOs.Create;

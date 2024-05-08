@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
-using BusinessLayer.Exceptions;
+using StockBusinessLayer.Exceptions;
 using GenericBusinessLayer.Exceptions;
 
 namespace StockWebAPI.Middleware;
