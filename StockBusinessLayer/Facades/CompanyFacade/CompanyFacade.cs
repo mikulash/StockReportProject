@@ -17,7 +17,7 @@ namespace StockBusinessLayer.Facades.CompanyFacade;
 public class CompanyFacade : GenericFacade<Company, long, ICompanyService, 
     CreateCompanyDto, UpdateCompanyDto, DetailedViewCompanyDto, BasicViewCompanyDto, CompanyFilter>, ICompanyFacade
 {
-    private IIndexRecordService _indexRecordService;
+    private readonly IIndexRecordService _indexRecordService;
     
     public CompanyFacade(ICompanyService service, IMapper mapper, IIndexRecordService indexRecordService) : base(service, mapper)
     {

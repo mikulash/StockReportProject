@@ -79,7 +79,7 @@ public class ProcessFileFacade : IProcessFileFacade
         var existingCompanies = queryResult.Items.ToList();
 
         var newCompanies = 
-            companies.Where(comp => existingCompanies.All(x => x.CUSIP != comp.CUSIP));
+            companies.Where(comp => existingCompanies.TrueForAll(x => x.CUSIP != comp.CUSIP));
 
         var newEntities = 
             await _companyService.CreateRangeAsync(_mapper.Map<IEnumerable<Company>>(newCompanies).ToArray(), false);

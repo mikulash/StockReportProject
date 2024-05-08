@@ -13,18 +13,18 @@ public class NullableIndexRecordService : INullableIndexRecordService
 
     private static DateOnly ExtractDate(List<NullableIndexRecordDto> indexList)
     {
-        var indexRecord = indexList.FirstOrDefault(rec => rec.Date is not null);
+        var indexRecord = indexList.Find(rec => rec.Date is not null);
         return (indexRecord is not null 
-                && indexList.All(rec => rec.Date == indexRecord.Date)) 
+                && indexList.TrueForAll(rec => rec.Date == indexRecord.Date)) 
             ? (DateOnly)indexRecord.Date! 
             : throw new InvalidRecordsException("Multiple date(s) detected inside provided file");
     }
 
     private static string ExtractFundName(List<NullableIndexRecordDto> indexList)
     {
-        var indexRecord = indexList.FirstOrDefault(rec => rec.Fund is not null);
+        var indexRecord = indexList.Find(rec => rec.Fund is not null);
         if (indexRecord is null 
-            || indexList.Any(rec => rec.Fund != indexRecord.Fund))
+            || indexList.Exists(rec => rec.Fund != indexRecord.Fund))
         {
             throw new InvalidRecordsException("Multiple Funds detected inside provided file");
         }
