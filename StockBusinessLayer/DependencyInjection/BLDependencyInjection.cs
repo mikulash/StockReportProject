@@ -1,8 +1,7 @@
-﻿using StockBusinessLayer.Facades;
-using StockBusinessLayer.Services;
-using DataAccessLayer.Models;
+﻿using DataAccessLayer.Models;
 using FileLoader.FileParserStrategy;
 using GenericBusinessLayer.Facades;
+using GenericBusinessLayer.Mappers;
 using GenericBusinessLayer.Services;
 using StockInfrastructure.Query.Filters.EntityFilters;
 using StockInfrastructure.UnitOfWork;

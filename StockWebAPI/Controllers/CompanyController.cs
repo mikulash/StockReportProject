@@ -19,7 +19,7 @@ public class CompanyController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateFund(CreateCompanyDto createCompanyDto)
+    public async Task<IActionResult> CreateCompany(CreateCompanyDto createCompanyDto)
     {
         var company = await _companyFacade.CreateAsync(createCompanyDto);
         return Created(
@@ -38,7 +38,7 @@ public class CompanyController : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> UpdateFund(long id, UpdateCompanyDto updateCompanyDto) 
+    public async Task<IActionResult> UpdateCompany(long id, UpdateCompanyDto updateCompanyDto) 
         => Ok(await _companyFacade.UpdateAsync(id, updateCompanyDto));
 
     [HttpGet]

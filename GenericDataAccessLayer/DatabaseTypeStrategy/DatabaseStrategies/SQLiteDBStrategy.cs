@@ -6,7 +6,7 @@ namespace GenericDataAccessLayer.DatabaseTypeStrategy.DatabaseStrategies;
 
 public class SQLiteDbStrategy(IConfiguration configuration) : IDBStrategy(configuration)
 {
-    private const string MigrationsProject = "StockDAL.SQLite.Migrations";
+    private const string MigrationsProjectKey = "MigrationsProject";
     private const string ConnectionString = "DefaultConnection";
 
     public override IServiceCollection AddDbContext<TDbContext>(IServiceCollection services)
@@ -16,7 +16,7 @@ public class SQLiteDbStrategy(IConfiguration configuration) : IDBStrategy(config
             options
                 .UseSqlite(
                     Config.GetConnectionString(ConnectionString),
-                    x => x.MigrationsAssembly(MigrationsProject)
+                    x => x.MigrationsAssembly(Config.GetSection(MigrationsProjectKey).Value ?? string.Empty)
                 )
                 .UseLazyLoadingProxies();
         });

@@ -21,7 +21,7 @@ public class IndexRecordController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateFund(CreateIndexRecordDto createIndexRecord)
+    public async Task<IActionResult> CreateIndexRecord(CreateIndexRecordDto createIndexRecord)
     {
         var indexRecord = await _indexRecordFacade.CreateAsync(createIndexRecord);
         return Created(
@@ -40,7 +40,7 @@ public class IndexRecordController : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> UpdateFund(long id, UpdateIndexRecordDto updateIndexRecord) 
+    public async Task<IActionResult> UpdateIndexRecord(long id, UpdateIndexRecordDto updateIndexRecord) 
         => Ok(await _indexRecordFacade.UpdateAsync(id, updateIndexRecord));
 
     [HttpGet]
