@@ -11,8 +11,8 @@ public class QueryBase<TEntity, TKey> : IQuery<TEntity, TKey>
     where TEntity : BaseEntity<TKey>
 {
     private IQueryable<TEntity> _query;
-    
-    public IGenericRepository<TEntity, TKey> Repository {  get; set; }
+
+    private IGenericRepository<TEntity, TKey> Repository {  get; set; }
     public IFilter<TEntity>? Filter { get; set; }
     public QueryParams? QueryParams { get; set; }
 
