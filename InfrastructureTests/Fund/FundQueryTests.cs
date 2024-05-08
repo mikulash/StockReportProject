@@ -1,7 +1,7 @@
 ﻿using DataAccessLayer.Data;
 using GenericInfrastructure.Query;
-using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
+using StockInfrastructure.UnitOfWork;
 using TestUtilities;
 
 namespace InfrastructureTests.Fund;
