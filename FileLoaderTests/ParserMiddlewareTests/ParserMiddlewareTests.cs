@@ -10,10 +10,10 @@ namespace FileLoaderTests.ParserMiddlewareTests;
 
 public class ParserMiddlewareTests
 {
-    private static List<IndexRecordDto> _dummyList = 
+    private static List<NullableIndexRecordDto> _dummyList = 
         [
-            new IndexRecordDto {Company = "TestComp"}, 
-            new IndexRecordDto {Company = "TestComp2"}
+            new NullableIndexRecordDto {Company = "TestComp"}, 
+            new NullableIndexRecordDto {Company = "TestComp2"}
         ];
     
     [Test]

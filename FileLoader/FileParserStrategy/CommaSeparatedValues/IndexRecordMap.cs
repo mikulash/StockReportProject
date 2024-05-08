@@ -5,7 +5,7 @@ using FileLoader.Model;
 
 namespace FileLoader.FileParserStrategy.CommaSeparatedValues;
 
-public sealed class IndexRecordMap : ClassMap<IndexRecordDto>
+public sealed class IndexRecordMap : ClassMap<NullableIndexRecordDto>
 {
     public IndexRecordMap()
     {

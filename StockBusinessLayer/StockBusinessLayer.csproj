@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DiffCalculator\DiffCalculator.csproj" />
+      <ProjectReference Include="..\FileLoader\FileLoader.csproj" />
+      <ProjectReference Include="..\GenericBusinessLayer\GenericBusinessLayer.csproj" />
+      <ProjectReference Include="..\StockInfrastructure\StockInfrastructure.csproj" />
+      <ProjectReference Include="..\StockAPI\StockAPI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    </ItemGroup>
+
+</Project>

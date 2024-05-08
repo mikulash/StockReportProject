@@ -1,5 +1,4 @@
 using DiffCalculator.Model;
-using FileLoader.Model;
 
 namespace DiffCalculator.IndexRecordDiffCalculator;
 
@@ -22,7 +21,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             Company = prevRecord.Company,
             Fund = prevRecord.Fund,
             Ticker = prevRecord.Ticker,
-            DayDiff = currentRecord.Date?.DayNumber - prevRecord.Date?.DayNumber,
+            DayDiff = currentRecord.Date.DayNumber - prevRecord.Date.DayNumber,
             SharesDiff = currentRecord.Shares - prevRecord.Shares,
             SharesDiffPercentage = (double)(currentRecord.Shares - prevRecord.Shares) / prevRecord.Shares * 100 ,
             MarketValueDiff = currentRecord.MarketValue - prevRecord.MarketValue,
@@ -39,7 +38,7 @@ public class IndexRecordListDiffCalculator : IIndexRecordListDiffCalculator
             Company = record.Company,
             Fund = record.Fund,
             Ticker = record.Ticker,
-            DayDiff = record.Date?.DayNumber,
+            DayDiff = record.Date.DayNumber,
             SharesDiff = record.Shares,
             MarketValueDiff = record.MarketValue,
             WeightDiff = record.Weight,
