@@ -1,8 +1,8 @@
-﻿
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using DataAccessLayer.Models;
 using GenericBusinessLayer.Exceptions;
 using GenericBusinessLayer.Services;
+using GenericDataAccessLayer.Models;
 using GenericInfrastructure.Query;
 using GenericInfrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,90 +13,15 @@ using TestUtilities;
 
 namespace StockBusinessLayerTests.ServiceTests;
 
-public class FundServiceTests
+public class FundServiceTests : ServiceTestBase<Fund>
 {
-    private MockedDependencyInjectionBuilder _serviceProviderBuilder = null!;
-
-    private Mock<IGenericRepository<Fund, long>> _mockedRepository = null!;
-    private Mock<IQuery<Fund, long>> _mockedQuery = null!;
-    private Mock<IStockUnitOfWork> _mockedUoW = null!;
-
-    private void InitializeUoW()
-    {
-        _mockedUoW
-            .Setup(mock => mock.GetRepositoryByEntity<Fund, long>())
-            .Returns(_mockedRepository.Object);
-        _mockedUoW
-            .Setup(mock => mock.GetQueryByEntity<Fund, long>())
-            .Returns(_mockedQuery.Object);
-        _mockedUoW
-            .Setup(mock => mock.CommitAsync())
-            .Verifiable();
-    }
-
-    private void InitializeQuery()
-    {
-        _mockedQuery
-            .Setup(mock => mock.Reset())
-            .Verifiable();
-
-        _mockedQuery
-            .Setup(mock => mock.Where(It.IsAny<Expression<Func<Fund, bool>>?>()))
-            .Returns(_mockedQuery.Object)
-            .Verifiable();
-
-        _mockedQuery
-            .Setup(mock => mock.Include(It.IsAny<Expression<Func<Fund, object?>>[]>()))
-            .Returns(_mockedQuery.Object)
-            .Verifiable();
-        
-        _mockedQuery
-            .Setup(mock => mock.Page(It.IsAny<int>(), It.IsAny<int>()))
-            .Returns(_mockedQuery.Object)
-            .Verifiable();
-        
-        _mockedQuery
-            .Setup(mock => mock.SortBy(It.IsAny<string>(), It.IsAny<bool>()))
-            .Returns(_mockedQuery.Object)
-            .Verifiable();
-    }
-
-    [SetUp]
-    public void Initialize()
-    {
-       _serviceProviderBuilder = new MockedDependencyInjectionBuilder()
-           .AddInfrastructure()
-           .AddBusinessLayer();
-
-       _mockedRepository = new();
-       _mockedQuery = new();
-       _mockedUoW = new();
-       
-       InitializeQuery();
-       InitializeUoW();
-    }
-
-    private ServiceProvider CreateServiceProvider() =>
-        _serviceProviderBuilder
-            .AddScoped(_mockedRepository.Object)
-            .AddScoped(_mockedUoW.Object)
-            .Create();
-
-    private IGenericService<Fund, long> GetService()
-    {
-        var serviceProvider = CreateServiceProvider();
-
-        using var scope = serviceProvider.CreateScope();
-        return scope.ServiceProvider.GetRequiredService<IGenericService<Fund, long>>();
-    }
-
     [Test]
     public async Task CreateAsync_NewFundCorrectFormat_ReturnsCreatedFund()
     {
         // arrange
         var expected = TestDataInitializer.GetTestFund();
         
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.AddAsync(It.IsAny<Fund>()))
             .Returns(Task.FromResult(expected))
             .Verifiable();
@@ -109,8 +34,8 @@ public class FundServiceTests
         Assert.NotNull(actual);
         Assert.That(actual, Is.EqualTo(expected));
         
-        _mockedRepository.Verify(repo => repo.AddAsync(It.IsAny<Fund>()));
-        _mockedUoW.Verify(uow => uow.CommitAsync());
+        MockedRepository.Verify(repo => repo.AddAsync(It.IsAny<Fund>()));
+        MockedUoW.Verify(uow => uow.CommitAsync());
     }
 
     [Test]
@@ -119,7 +44,7 @@ public class FundServiceTests
         // arrange
         var expected = TestDataInitializer.GetTestFunds().ToArray();
 
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.AddRangeAsync(It.IsAny<Fund[]>()))
             .Returns(Task.FromResult(expected))
             .Verifiable();
@@ -133,8 +58,8 @@ public class FundServiceTests
         Assert.That(actual.Length, Is.EqualTo(expected.Length));
         Assert.That(actual, Is.EquivalentTo(expected));
         
-        _mockedRepository.Verify(repo => repo.AddRangeAsync(It.IsAny<Fund[]>()));
-        _mockedUoW.Verify(uow => uow.CommitAsync());
+        MockedRepository.Verify(repo => repo.AddRangeAsync(It.IsAny<Fund[]>()));
+        MockedUoW.Verify(uow => uow.CommitAsync());
     }
 
     [TestCase("NewFund")]
@@ -145,7 +70,7 @@ public class FundServiceTests
         var expected = TestDataInitializer.GetTestFund();
         expected.FundName = newFundName;
         
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.Update(It.IsAny<Fund>()))
             .Verifiable();
         
@@ -158,8 +83,8 @@ public class FundServiceTests
         Assert.That(actual, Is.EqualTo(expected));
         Assert.That(actual.FundName, Is.EqualTo(newFundName));
         
-        _mockedRepository.Verify(repo => repo.Update(It.IsAny<Fund>()));
-        _mockedUoW.Verify(uow => uow.CommitAsync());
+        MockedRepository.Verify(repo => repo.Update(It.IsAny<Fund>()));
+        MockedUoW.Verify(uow => uow.CommitAsync());
     }
 
     [Test]
@@ -168,7 +93,7 @@ public class FundServiceTests
         // arrange
         var expected = TestDataInitializer.GetTestFunds();
 
-        _mockedRepository
+        MockedRepository
             .Setup(mock => 
                 mock.GetAllAsync(
                     It.IsAny<Expression<Func<Fund, bool>>?>(), 
@@ -185,7 +110,7 @@ public class FundServiceTests
         Assert.That(actual.Count, Is.EqualTo(expected.Count));
         Assert.That(actual, Is.EquivalentTo(expected));
         
-        _mockedRepository.Verify(repo => repo.GetAllAsync(
+        MockedRepository.Verify(repo => repo.GetAllAsync(
             It.IsAny<Expression<Func<Fund, bool>>?>(), 
             It.IsAny<Expression<Func<Fund, object>>[]>()));
     }
@@ -218,21 +143,21 @@ public class FundServiceTests
             TotalItemsCount = expectedItems.Count
         };
 
-        _mockedQuery
+        MockedQuery
             .Setup(mock => mock.CountTotalAsync())
             .Returns(Task.FromResult(expectedItems.Count))
             .Verifiable();
 
-        _mockedQuery
+        MockedQuery
             .Setup(mock => mock.ExecuteAsync())
             .Returns(Task.FromResult(expected))
             .Verifiable();
         
-        _mockedQuery
+        MockedQuery
             .Setup(mock => mock.Filter)
             .Returns(filter);
 
-        _mockedQuery
+        MockedQuery
             .Setup(mock => mock.QueryParams)
             .Returns(queryParams);
         
@@ -246,9 +171,9 @@ public class FundServiceTests
         Assert.That(actual, Is.EqualTo(expected));
         Assert.That(actual.Items, Is.EquivalentTo(expected.Items));
         
-        _mockedQuery.Verify(query => query.Where(It.IsAny<Expression<Func<Fund, bool>>?>()));
-        _mockedQuery.Verify(query => query.CountTotalAsync());
-        _mockedQuery.Verify(query => query.ExecuteAsync());
+        MockedQuery.Verify(query => query.Where(It.IsAny<Expression<Func<Fund, bool>>?>()));
+        MockedQuery.Verify(query => query.CountTotalAsync());
+        MockedQuery.Verify(query => query.ExecuteAsync());
     }
 
     [Test]
@@ -257,7 +182,7 @@ public class FundServiceTests
         // arrange
         var expected = TestDataInitializer.GetTestFund();
 
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.GetByIdAsync(It.IsAny<long>()))
             .Returns(Task.FromResult(expected)!)
             .Verifiable();
@@ -270,7 +195,7 @@ public class FundServiceTests
         Assert.NotNull(actual);
         Assert.That(actual, Is.EqualTo(expected));
         
-        _mockedRepository.Verify(repo => repo.GetByIdAsync(It.IsAny<long>()));
+        MockedRepository.Verify(repo => repo.GetByIdAsync(It.IsAny<long>()));
     }
 
     [Test]
@@ -279,7 +204,7 @@ public class FundServiceTests
         // arrange
         var nonExistingId = 100000L;
         
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.GetByIdAsync(It.IsAny<long>()))
             .Returns(Task.FromResult<Fund>(null!)!);
         
@@ -287,7 +212,7 @@ public class FundServiceTests
         var fundService = GetService();
         Assert.ThrowsAsync<NoSuchEntityException<long>>(async () => await fundService.FindByIdAsync(nonExistingId));
         
-        _mockedRepository.Verify(repo => repo.GetByIdAsync(It.IsAny<long>()));
+        MockedRepository.Verify(repo => repo.GetByIdAsync(It.IsAny<long>()));
     }
 
     [Test]
@@ -296,7 +221,7 @@ public class FundServiceTests
         // arrange
         var toDelete = TestDataInitializer.GetTestFund();
         
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.Delete(It.IsAny<Fund>()))
             .Verifiable();
         
@@ -305,8 +230,8 @@ public class FundServiceTests
         await fundService.DeleteAsync(toDelete);
             
         // assert
-        _mockedRepository.Verify(repo => repo.Delete(It.IsAny<Fund>()));
-        _mockedUoW.Verify(uow => uow.CommitAsync());
+        MockedRepository.Verify(repo => repo.Delete(It.IsAny<Fund>()));
+        MockedUoW.Verify(uow => uow.CommitAsync());
     }
     
     [Test]
@@ -315,7 +240,7 @@ public class FundServiceTests
         // arrange
         var toDelete = TestDataInitializer.GetTestFunds().ToArray();
         
-        _mockedRepository
+        MockedRepository
             .Setup(mock => mock.DeleteRange(It.IsAny<Fund[]>()))
             .Verifiable();
         
@@ -324,7 +249,7 @@ public class FundServiceTests
         await fundService.DeleteRangeAsync(toDelete);
             
         // assert
-        _mockedRepository.Verify(repo => repo.DeleteRange(It.IsAny<Fund[]>()));
-        _mockedUoW.Verify(uow => uow.CommitAsync());
+        MockedRepository.Verify(repo => repo.DeleteRange(It.IsAny<Fund[]>()));
+        MockedUoW.Verify(uow => uow.CommitAsync());
     }
 }
