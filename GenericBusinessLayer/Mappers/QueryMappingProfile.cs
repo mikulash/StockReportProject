@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using GenericBusinessLayer.DTOs.BaseFilter;
 using GenericInfrastructure.Query;
-using StockInfrastructure.Query;
 
-namespace StockBusinessLayer.Mappers;
+namespace GenericBusinessLayer.Mappers;
 
 public class QueryMappingProfile : Profile
 {
