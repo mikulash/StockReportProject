@@ -32,14 +32,14 @@ public class ServiceTestBase<TEntity> where TEntity : BaseEntity<long>
         BusinessLayerTestUtilities.InitializeUoW<TEntity>(MockedUoW, MockedRepository, MockedQuery);
     }
     
-    protected ServiceProvider CreateServiceProvider() =>
+    protected virtual ServiceProvider CreateServiceProvider() =>
         ServiceProviderBuilder
             .AddScoped(MockedRepository.Object)
             .AddScoped(MockedQuery.Object)
             .AddScoped(MockedUoW.Object)
             .Create();
     
-    protected IGenericService<TEntity, long> GetService()
+    protected virtual IGenericService<TEntity, long> GetService()
     {
         var serviceProvider = CreateServiceProvider();
 
