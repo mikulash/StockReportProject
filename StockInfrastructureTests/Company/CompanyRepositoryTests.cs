@@ -2,9 +2,9 @@
 using StockInfrastructure.UnitOfWork;
 using TestUtilities;
 
-namespace StockInfrastructureTests.Fund;
+namespace StockInfrastructureTests.Company;
 
-public class FundRepositoryTests : InfrastructureBaseTest
+public class CompanyRepositoryTests : InfrastructureBaseTest
 {
     [Test]
     public async Task AddAsync_CreateCalled_NewEntityCreated()

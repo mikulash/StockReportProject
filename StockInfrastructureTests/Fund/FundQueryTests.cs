@@ -6,37 +6,8 @@ using TestUtilities;
 
 namespace StockInfrastructureTests.Fund;
 
-public class FundQueryTests
+public class FundQueryTests : InfrastructureBaseTest
 {
-    private MockedDependencyInjectionBuilder _serviceProviderBuilder = null!;
-    private IServiceScope _serviceScope = null!;
-
-    [OneTimeSetUp]
-    public void InitializeOnce()
-    {
-        _serviceProviderBuilder = new MockedDependencyInjectionBuilder()
-            .AddDataAccessLayer(InfrastructureTestUtilities.CreateConfig())
-            .AddInfrastructure();
-    }
-
-    [SetUp]
-    public async Task Initialize()
-    {
-        _serviceScope = _serviceProviderBuilder.Create().CreateScope();
-
-        var dbContext = _serviceScope.ServiceProvider.GetRequiredService<StockDbContext>();
-        await dbContext.Database.EnsureDeletedAsync();
-        await dbContext.Database.EnsureCreatedAsync();
-        await dbContext.Funds.AddRangeAsync(TestDataInitializer.GetTestFunds());
-        await dbContext.SaveChangesAsync();
-    }
-    
-    [TearDown]
-    public void AfterEach()
-    {
-        _serviceScope.Dispose();
-    }
-
     [Test]
     public async Task ExecuteAsync_NoRestrictions_ReturnsAllEntities()
     {
@@ -45,7 +16,7 @@ public class FundQueryTests
         var queryParams = new QueryParams { PageNumber = 1, PageSize = 20, };
         
         // act
-        using var uow = _serviceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
+        using var uow = ServiceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
         var query = uow.FundQuery;
         
         query.Reset();
@@ -75,7 +46,7 @@ public class FundQueryTests
             .Count(x => x.FundName.Contains(nameRestriction));
         
         // act
-        using var uow = _serviceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
+        using var uow = ServiceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
         var query = uow.FundQuery;
         
         query.Reset();
@@ -99,7 +70,7 @@ public class FundQueryTests
             .Count(x => x.FundName.Contains(nameRestriction));
         
         // act
-        using var uow = _serviceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
+        using var uow = ServiceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
         var query = uow.FundQuery;
         
         query.Reset();
@@ -127,7 +98,7 @@ public class FundQueryTests
         };
         
         // act
-        using var uow = _serviceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
+        using var uow = ServiceScope.ServiceProvider.GetRequiredService<IStockUnitOfWork>();
         var query = uow.FundQuery;
         
         query.Reset();
