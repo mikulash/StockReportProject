@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import CatFactPage from "./pages/CatFactPage";
 import Error404Page from "./pages/Error404Page";
 import EmailManagementPage from "./pages/Dashboard/EmailManagementPage";
+import SubscribtionPage from "./pages/SubscriptionPage";
 
 const Router = () => {
   return useRoutes([
@@ -17,7 +18,7 @@ const Router = () => {
     },
     {
       path: `/subscribe`,
-      element: <div>Subscribe</div>,
+      element: <SubscribtionPage />,
       errorElement: <Error404Page />,
     },
     { path: "*", element: <Error404Page /> },
