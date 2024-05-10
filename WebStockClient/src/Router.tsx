@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import CatFactPage from "./pages/CatFactPage";
 import Error404Page from "./pages/Error404Page";
-import DashboardPage from "./pages/DashboardPage";
+import EmailManagementPage from "./pages/Dashboard/EmailManagementPage";
 
 const Router = () => {
   return useRoutes([
@@ -12,7 +12,7 @@ const Router = () => {
     },
     {
       path: `/dashboard`,
-      element: <DashboardPage />,
+      element: <EmailManagementPage />,
       errorElement: <Error404Page />,
     },
     {
