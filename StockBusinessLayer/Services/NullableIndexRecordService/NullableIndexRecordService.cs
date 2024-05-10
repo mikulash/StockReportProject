@@ -48,7 +48,7 @@ public class NullableIndexRecordService : INullableIndexRecordService
         record.Shares is null || record.MarketValue is null;
 
     private static bool HasCompanyIdentificationNull(NullableIndexRecordDto record) =>
-        record.Company is null && record.Ticker is null && record.CUSIP is null;
+        record.Company is null && record.CUSIP is null;
     
     public void ApplyFilter(List<NullableIndexRecordDto> indexRecordList)
     {

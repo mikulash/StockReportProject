@@ -332,14 +332,14 @@ public class IndexRecordServiceTests : ServiceTestBase<IndexRecord>
         MockedQuery.Verify(query => query.ExecuteAsync());
     }
 
-    private static List<Tuple<string, DateOnly>> FetchByDateAndFundNameAsync() =>
+    private static List<Tuple<string, DateOnly>> FetchByDateAndFundNameAsyncTestData() =>
     [
         new("STARK", new DateOnly(2024, 1, 1)),
         new("STARK", new DateOnly(2024, 1, 2)),
         new("DoesNotExist", new DateOnly(2030, 1, 1))
     ];
 
-    [TestCaseSource(nameof(FetchByDateAndFundNameAsync))]
+    [TestCaseSource(nameof(FetchByDateAndFundNameAsyncTestData))]
     public async Task FetchByDateAndFundNameAsync_FundNameAndDateFilters_ReturnsFilteredEntities(Tuple<string, DateOnly> testCase)
     {
         // arrange
@@ -380,7 +380,7 @@ public class IndexRecordServiceTests : ServiceTestBase<IndexRecord>
         MockedQuery.Verify(mock => mock.ExecuteAsync());
     }
 
-    [TestCaseSource(nameof(FetchByDateAndFundNameAsync))]
+    [TestCaseSource(nameof(FetchByDateAndFundNameAsyncTestData))]
     public async Task ExistByDateAndFundNameAsync_FundNameAndDateFilters_ReturnsFoundOrNotFound(Tuple<string, DateOnly> testCase)
     {
         // arrange

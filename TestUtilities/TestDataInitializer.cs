@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using FileLoader.Model;
 
 namespace TestUtilities;
 
@@ -69,5 +70,15 @@ public static class TestDataInitializer
         new () { FundId = 1, CompanyId = 2, IssueDate = new DateOnly(2024, 1, 5), Shares = 4567, MarketValue = 4567, Weight = 65.97 },
         new () { FundId = 1, CompanyId = 3, IssueDate = new DateOnly(2024, 1, 5), Shares = 10321, MarketValue = 81723, Weight = 28.13 },
         new () { FundId = 1, CompanyId = 4, IssueDate = new DateOnly(2024, 1, 5), Shares = 111, MarketValue = 9, Weight = 0.54 },
+    ];
+
+    public static List<NullableIndexRecordDto> GetTestNullableIndexRecords() =>
+    [
+        new () { Fund = "STARK", Company = "Windows", CUSIP = "1323124PW", Ticker = "WIN", 
+            Date = new DateOnly(2024, 1, 1), MarketValue = 10.25, Shares = 1032132, Weight = 82.13 },
+        new () { Fund = "STARK", Company = "BetterWindows", CUSIP = "103LL0312M", Ticker = "BWIN", 
+            Date = new DateOnly(2024, 1, 1), MarketValue = 3213124.10291, Shares = 32131, Weight = 12.17 },
+        new () { Fund = "STARK", Company = "EventBetterWindows", CUSIP = "DAS3120LLS", Ticker = "EBWIN", 
+            Date = new DateOnly(2024, 1, 1), MarketValue = 4.20, Shares = 4, Weight = 5.7 }
     ];
 }
