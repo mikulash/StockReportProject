@@ -7,7 +7,7 @@ namespace TestUtilities;
 
 public static class TestDataInitializer
 {
-    public static Fund GetTestFund() => GetTestFunds().ElementAt(0);
+    public static Fund GetTestFund() => GetTestFunds()[0];
 
     public static ViewFundDto GetTestFundDto(Fund fund) => new() { Id = fund.Id, FundName = fund.FundName };
 
@@ -19,7 +19,7 @@ public static class TestDataInitializer
         new() { Id = 4, FundName = "UTF-8" }
     ];
 
-    public static Fund GetUncommittedTestFund() => GetUncommittedTestFunds().ElementAt(0);
+    public static Fund GetUncommittedTestFund() => GetUncommittedTestFunds()[0];
 
     public static List<Fund> GetUncommittedTestFunds() =>
     [
@@ -29,7 +29,7 @@ public static class TestDataInitializer
     ];
 
 
-    public static Company GetTestCompany() => GetTestCompanies().ElementAt(0);
+    public static Company GetTestCompany() => GetTestCompanies()[0];
 
     public static BasicViewCompanyDto GetTestCompanyDto(Company company) =>
         new () { Id = company.Id, CompanyName = company.CompanyName, CUSIP = company.CUSIP, Ticker = company.Ticker };
@@ -43,7 +43,7 @@ public static class TestDataInitializer
         new() {Id = 5, CompanyName = "ROBINHOOD MARKETS INC - A", Ticker = "HOOD", CUSIP = "770700102" }
     ];
 
-    public static Company GetUncommittedTestCompany() => GetUncommittedTestCompanies().ElementAt(0);
+    public static Company GetUncommittedTestCompany() => GetUncommittedTestCompanies()[0];
     
     public static List<Company> GetUncommittedTestCompanies() =>
     [
@@ -55,7 +55,7 @@ public static class TestDataInitializer
     ];
 
 
-    public static IndexRecord GetTestIndexRecord() => GetTestIndexRecords().ElementAt(0);
+    public static IndexRecord GetTestIndexRecord() => GetTestIndexRecords()[0];
     
     public static List<IndexRecord> GetTestIndexRecords() =>
     [
@@ -69,7 +69,7 @@ public static class TestDataInitializer
         new() { Id = 8, FundId = 1, CompanyId = 4, IssueDate = new DateOnly(2024, 1, 2), Shares = 500, MarketValue = 80, Weight = 1.70 }
     ];
 
-    public static IndexRecord GetUncommittedTestIndexRecord() => GetUncommittedTestIndexRecords().ElementAt(0);
+    public static IndexRecord GetUncommittedTestIndexRecord() => GetUncommittedTestIndexRecords()[0];
     
     public static List<IndexRecord> GetUncommittedTestIndexRecords() =>
     [
