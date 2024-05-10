@@ -5,5 +5,5 @@ namespace FileLoader.FileParserStrategy;
 
 public interface IFileParserStrategy
 {
-    List<IndexRecordDto> ParseFileToList(IReader reader);
+    List<NullableIndexRecordDto> ParseFileToList(IReader reader);
 }

@@ -5,7 +5,7 @@ using FileLoader.Reader;
 
 namespace FileLoader.FileParserStrategy;
 
-public class ParserMiddleware
+public class ParserMiddleware : IParserMiddleware
 {
     private const FileType DefaultFileType = FileType.Csv;
     public IFileParserStrategy ParserStrategy { get; set; }
@@ -25,6 +25,6 @@ public class ParserMiddleware
         };
     }
 
-    public List<IndexRecordDto> ParseFileToList(IReader reader) 
+    public List<NullableIndexRecordDto> ParseFileToList(IReader reader) 
         => reader.Validate() ? ParserStrategy.ParseFileToList(reader) : [];
 }
