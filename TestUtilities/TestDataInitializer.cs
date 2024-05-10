@@ -1,11 +1,15 @@
 ﻿using DataAccessLayer.Models;
 using FileLoader.Model;
+using StockAPI.DTOs.CompanyDTOs.View;
+using StockAPI.DTOs.FundDTO.View;
 
 namespace TestUtilities;
 
 public static class TestDataInitializer
 {
     public static Fund GetTestFund() => GetTestFunds().ElementAt(0);
+
+    public static ViewFundDto GetTestFundDto(Fund fund) => new() { Id = fund.Id, FundName = fund.FundName };
 
     public static List<Fund> GetTestFunds() =>
     [
@@ -26,6 +30,9 @@ public static class TestDataInitializer
 
 
     public static Company GetTestCompany() => GetTestCompanies().ElementAt(0);
+
+    public static BasicViewCompanyDto GetTestCompanyDto(Company company) =>
+        new () { Id = company.Id, CompanyName = company.CompanyName, CUSIP = company.CUSIP, Ticker = company.Ticker };
     
     public static List<Company> GetTestCompanies() =>
     [

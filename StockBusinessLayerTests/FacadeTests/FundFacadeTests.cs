@@ -3,7 +3,6 @@ using GenericBusinessLayer.Exceptions;
 using GenericBusinessLayer.Services;
 using GenericInfrastructure.Query;
 using GenericInfrastructure.Query.Filters;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using StockAPI.DTOs.FundDTO.Create;
 using StockAPI.DTOs.FundDTO.Filter;
@@ -18,34 +17,8 @@ using FundFacade = GenericBusinessLayer.Facades.IGenericFacade<DataAccessLayer.M
 
 namespace StockBusinessLayerTests.FacadeTests;
 
-public class FundFacadeTests
+public class FundFacadeTests : FacadeTestBase<IGenericService<Fund, long>>
 {
-    private MockedDependencyInjectionBuilder _serviceProviderBuilder = null!;
-    private Mock<IGenericService<Fund, long>> _mockedFundService = null!;
-
-    [SetUp]
-    public void Initialize()
-    {
-        _serviceProviderBuilder = new MockedDependencyInjectionBuilder()
-            .AddInfrastructure()
-            .AddBusinessLayer();
-
-        _mockedFundService = new();
-    }
-
-    private ServiceProvider CreateServiceProvider() =>
-        _serviceProviderBuilder
-            .AddScoped(_mockedFundService.Object)
-            .Create();
-    
-    private FundFacade GetFacade()
-    {
-        var serviceProvider = CreateServiceProvider();
-
-        using var scope = serviceProvider.CreateScope();
-        return scope.ServiceProvider.GetRequiredService<FundFacade>();
-    }
-
     [Test]
     public async Task CreateAsync_NewEntity_ReturnsCreatedEntity()
     {
@@ -54,13 +27,13 @@ public class FundFacadeTests
         var create = new CreateFundDto { FundName = fund.FundName };
         var expected = new ViewFundDto { Id = fund.Id, FundName = fund.FundName };
         
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.CreateAsync(It.IsAny<Fund>(), It.IsAny<bool>()))
             .Returns(Task.FromResult(fund))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         var actual = await facade.CreateAsync(create);
         
         // assert
@@ -68,7 +41,7 @@ public class FundFacadeTests
         Assert.That(actual.Id, Is.EqualTo(expected.Id));
         Assert.That(actual.FundName, Is.EqualTo(expected.FundName));
         
-        _mockedFundService.Verify(service => service.CreateAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
+        MockedService.Verify(service => service.CreateAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
     }
 
     [Test]
@@ -80,18 +53,18 @@ public class FundFacadeTests
         var updated = new Fund { Id = fund.Id, FundName = update.FundName };
         var expected = new ViewFundDto { Id = updated.Id, FundName = updated.FundName };
 
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FindByIdAsync(It.IsAny<long>()))
             .Returns(Task.FromResult(fund))
             .Verifiable();
 
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.UpdateAsync(It.IsAny<Fund>(), It.IsAny<bool>()))
             .Returns(Task.FromResult(updated))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         var actual = await facade.UpdateAsync(fund.Id, update);
         
         // assert
@@ -99,8 +72,8 @@ public class FundFacadeTests
         Assert.That(actual.Id, Is.EqualTo(expected.Id));
         Assert.That(actual.FundName, Is.EqualTo(expected.FundName));
         
-        _mockedFundService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
-        _mockedFundService.Verify(mock => mock.UpdateAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
+        MockedService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
+        MockedService.Verify(mock => mock.UpdateAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
     }
 
     [Test]
@@ -110,13 +83,13 @@ public class FundFacadeTests
         var fund = TestDataInitializer.GetTestFund();
         var expected = new ViewFundDto { Id = fund.Id, FundName = fund.FundName };
         
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FindByIdAsync(It.IsAny<long>()))
             .Returns(Task.FromResult(fund))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         var actual = await facade.FindByIdAsync(fund.Id);
         
         // assert
@@ -124,7 +97,7 @@ public class FundFacadeTests
         Assert.That(actual.Id, Is.EqualTo(expected.Id));
         Assert.That(actual.FundName, Is.EqualTo(expected.FundName));
         
-        _mockedFundService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
+        MockedService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
     }
 
     [Test]
@@ -133,17 +106,17 @@ public class FundFacadeTests
         // arrange
         var nonExistingId = 100000L;
 
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FindByIdAsync(It.IsAny<long>()))
             .ThrowsAsync(new NoSuchEntityException<long>(typeof(Fund)));
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         
         // assert
         Assert.ThrowsAsync<NoSuchEntityException<long>>(async () => await facade.FindByIdAsync(nonExistingId));
         
-        _mockedFundService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
+        MockedService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
     }
 
     [Test]
@@ -152,22 +125,22 @@ public class FundFacadeTests
         // arrange
         var fund = TestDataInitializer.GetTestFund();
         
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FindByIdAsync(It.IsAny<long>()))
             .Returns(Task.FromResult(fund))
             .Verifiable();
         
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.DeleteAsync(It.IsAny<Fund>(), It.IsAny<bool>()))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         await facade.DeleteByIdAsync(fund.Id);
         
         // assert
-        _mockedFundService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
-        _mockedFundService.Verify(mock => mock.DeleteAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
+        MockedService.Verify(mock => mock.FindByIdAsync(It.IsAny<long>()));
+        MockedService.Verify(mock => mock.DeleteAsync(It.IsAny<Fund>(), It.IsAny<bool>()));
     }
 
     [Test]
@@ -176,13 +149,13 @@ public class FundFacadeTests
         // arrange
         var funds = TestDataInitializer.GetTestFunds();
         
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FetchAllAsync())
             .Returns(Task.FromResult((IEnumerable<Fund>)funds))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         var actual = (await facade.FetchAllAsync()).ToList();
         
         // assert
@@ -194,7 +167,7 @@ public class FundFacadeTests
         var entityItem = funds.First(x => x.Id == 1);
         Assert.That(item.FundName, Is.EqualTo(entityItem.FundName));
         
-        _mockedFundService.Verify(mock => mock.FetchAllAsync());
+        MockedService.Verify(mock => mock.FetchAllAsync());
     }
 
     [Test]
@@ -219,13 +192,13 @@ public class FundFacadeTests
             TotalItemsCount = enumerable.Count()
         };
 
-        _mockedFundService
+        MockedService
             .Setup(mock => mock.FetchFilteredAsync(It.IsAny<IFilter<Fund>>(), It.IsAny<QueryParams?>()))
             .Returns(Task.FromResult(expected))
             .Verifiable();
         
         // act
-        var facade = GetFacade();
+        var facade = GetFacade<FundFacade>();
         var actual = await facade.FetchAllFilteredAsync(filter);
         
         // assert
@@ -237,7 +210,6 @@ public class FundFacadeTests
         var entityItem = expected.Items.First(x => x.Id == 2);
         Assert.That(item.FundName, Is.EqualTo(entityItem.FundName));
         
-        _mockedFundService.Verify(mock => mock.FetchFilteredAsync(It.IsAny<IFilter<Fund>>(), It.IsAny<QueryParams?>()));
+        MockedService.Verify(mock => mock.FetchFilteredAsync(It.IsAny<IFilter<Fund>>(), It.IsAny<QueryParams?>()));
     }
-    
 }
