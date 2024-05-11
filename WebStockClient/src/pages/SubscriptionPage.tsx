@@ -2,15 +2,16 @@ import { FunctionComponent } from "react";
 
 const SubscribtionPage: FunctionComponent = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 h-page">
+    <section className="bg-white dark:bg-gray-900 h-screen pt-12">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md sm:text-center">
           <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">
-            Sign up for our newsletter
+            Sign up for our stock newsletter
           </h2>
           <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
-            Stay up to date with the roadmap progress, announcements and
-            exclusive discounts feel free to sign up with your email.
+            Stay ahead of market trends and investment opportunities. Sign up
+            for our stock newsletter and receive expert insights, analysis, and
+            exclusive updates straight to your inbox!
           </p>
           <form action="">
             <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
@@ -50,14 +51,7 @@ const SubscribtionPage: FunctionComponent = () => {
               </div>
             </div>
             <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
-              We care about the protection of your data.{" "}
-              <a
-                href="#"
-                className="font-medium text-primary-600 dark:text-primary-500 hover:underline"
-              >
-                Read our Privacy Policy
-              </a>
-              .
+              We care about the protection of your data.
             </div>
           </form>
         </div>
