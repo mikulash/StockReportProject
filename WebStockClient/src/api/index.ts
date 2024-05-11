@@ -3,7 +3,7 @@ import ky from "ky";
 const api = () =>
   ky.extend({
     timeout: 30000,
-    throwHttpErrors: false,
+    throwHttpErrors: true,
     retry: 0,
     hooks: {
       beforeRequest: [],

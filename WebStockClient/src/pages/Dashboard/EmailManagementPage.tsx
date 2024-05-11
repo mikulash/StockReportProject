@@ -4,15 +4,25 @@ import { useMailSubscribers } from "../../api/emailManagement";
 import { MailSubscriberDetail } from "../../model/mailSubscriber";
 
 const EmailManagementPage: FunctionComponent = () => {
-  const mailSubscribersQuery = useMailSubscribers();
+  const { data, isPending, isError } = useMailSubscribers();
 
-  if (mailSubscribersQuery.isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <Dashboard>
+        <p>Loading...</p>
+      </Dashboard>
+    );
 
-  if (mailSubscribersQuery.isError) return <p>Error fetching data</p>;
+  if (isError)
+    return (
+      <Dashboard>
+        <p>Error fetching data</p>
+      </Dashboard>
+    );
 
   return (
     <Dashboard>
-      {mailSubscribersQuery.data.map((mailSubscriber: MailSubscriberDetail) => (
+      {data.map((mailSubscriber: MailSubscriberDetail) => (
         <p>{mailSubscriber.email}</p>
       ))}
     </Dashboard>
