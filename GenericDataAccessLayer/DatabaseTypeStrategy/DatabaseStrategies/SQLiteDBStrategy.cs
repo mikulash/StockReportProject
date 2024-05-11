@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GenericDataAccessLayer.DatabaseTypeStrategy.DatabaseStrategies;
 
-public class SQLiteDbStrategy(IConfiguration configuration) : IDBStrategy(configuration)
+public class SqLiteDbStrategy(IConfiguration configuration) : BaseDbStrategy(configuration)
 {
     private const string MigrationsProjectKey = "MigrationsProject";
     private const string ConnectionString = "DefaultConnection";

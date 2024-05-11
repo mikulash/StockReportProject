@@ -2,5 +2,6 @@
 
 public enum DatabaseType
 {
-    SQLite
+    SQLite,
+    InMemory
 }

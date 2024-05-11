@@ -9,23 +9,25 @@ namespace StockBusinessLayer.Services.IndexRecordService;
 
 public class IndexRecordService : GenericService<IndexRecord, long, IStockUnitOfWork>, IIndexRecordService
 {
-    public IndexRecordService(IStockUnitOfWork unitOfWork, IQuery<IndexRecord, long> query) : base(unitOfWork, query)
+    public IndexRecordService(IStockUnitOfWork unitOfWork) : base(unitOfWork)
     {
     }
 
     public override async Task<IEnumerable<IndexRecord>> FetchAllAsync() =>
         await Repository.GetAllAsync(null, rec => rec.Company!, rec => rec.Fund!);
 
-    public async Task<QueryResult<IndexRecord>> FetchFilteredMinimalAsync(IFilter<IndexRecord> filter, QueryParams queryParams) 
+    public async Task<QueryResult<IndexRecord>> FetchFilteredMinimalAsync(IFilter<IndexRecord> filter, QueryParams? queryParams) 
         => await ExecuteQueryAsync(filter, queryParams);
 
     public async Task<bool> ExistByDateAndFundNameAsync(string fundName, DateOnly date)
     {
         var filter = new IndexRecordDateExactFilter { EQ_IssueDate = date, EQ_Fund_FundName = fundName };
-
-        return (await ExecuteQueryAsync(filter, null,
-                rec => rec.Fund, rec => rec.Company))
-            .Items.Count() is not 0;
+        
+        Query.Reset();
+        return await Query
+            .Include(rec => rec.Fund)
+            .Where(filter.CreateExpression())
+            .CountTotalAsync() is not 0;
     }
 
     public async Task<IEnumerable<IndexRecord>> FetchByDateAndFundNameAsync(string fundName, DateOnly date)
@@ -45,8 +47,7 @@ public class IndexRecordService : GenericService<IndexRecord, long, IStockUnitOf
         var queryParams = new QueryParams
             { PageNumber = 1, PageSize = 1, SortAscending = false, SortParameter = "IssueDate" };
 
-        return (await ExecuteQueryAsync(filter, queryParams, 
-                rec => rec.Fund, rec => rec.Company))
+        return (await ExecuteQueryAsync(filter, queryParams, rec => rec.Fund))
             .Items.FirstOrDefault()?.IssueDate;
     }
 

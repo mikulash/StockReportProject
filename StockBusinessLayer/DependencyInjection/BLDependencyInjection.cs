@@ -46,7 +46,7 @@ public static class BLDependencyInjection
 
     private static void RegisterFacades(IServiceCollection services)
     {
-        services.AddScoped<IGenericFacade<Fund, long, IGenericService<Fund, long>, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter>, 
+        services.AddScoped<IGenericFacade<Fund, long, IGenericService<Fund, long>, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto>, 
             GenericFacade<Fund, long, IGenericService<Fund, long>, CreateFundDto, UpdateFundDto, ViewFundDto, ViewFundDto, FundFilter>>();
         services.AddScoped<ICompanyFacade, CompanyFacade>();
         services.AddScoped<IIndexRecordFacade, IndexRecordFacade>();
@@ -54,7 +54,7 @@ public static class BLDependencyInjection
         services.AddScoped<IIndexRecordDiffFacade, IndexRecordDiffFacade>();
     }
     
-    public static void RegisterBLDependecies(this IServiceCollection services)
+    public static void RegisterBLDependencies(this IServiceCollection services)
     {
         RegisterExternal(services);
         RegisterMappers(services);

@@ -3,6 +3,6 @@
 public class CreateCompanyDto
 {
     public required string CompanyName { get; set; }
-    public required string Ticker { get; set; }
+    public string Ticker { get; set; } = string.Empty;
     public required string CUSIP { get; set; }
 }
