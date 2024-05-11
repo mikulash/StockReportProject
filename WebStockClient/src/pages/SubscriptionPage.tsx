@@ -2,15 +2,17 @@ import { FunctionComponent, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MailSubscriber } from "../model/mailSubscriber";
 import { useMailSubscriberCreate } from "../api/emailManagement";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { MailSubscriberSchema } from "../schema/mailSubscriberSchema";
 
 const SubscribtionPage: FunctionComponent = () => {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
     resetField,
-  } = useForm<MailSubscriber>();
+  } = useForm<MailSubscriber>({ resolver: zodResolver(MailSubscriberSchema) });
   const queryPost = useMailSubscriberCreate();
 
   const onSubmit: SubmitHandler<MailSubscriber> = async (data) => {
@@ -56,7 +58,11 @@ const SubscribtionPage: FunctionComponent = () => {
                   </svg>
                 </div>
                 <input
-                  className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  className={`block p-3 pl-10 w-full text-sm ${
+                    errors.email
+                      ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500"
+                      : "bg-gray-50 text-gray-900 border border-gray-300 focus:ring-primary-500"
+                  }   rounded-lg sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`}
                   placeholder="Enter your email"
                   {...register("email")}
                 />
@@ -70,6 +76,11 @@ const SubscribtionPage: FunctionComponent = () => {
                 </button>
               </div>
             </div>
+            {errors.email && (
+              <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                <span className="font-medium">{errors.email?.message}</span>
+              </p>
+            )}
             <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
               We care about the protection of your data.
             </div>
