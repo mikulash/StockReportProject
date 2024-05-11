@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from ".";
 import { MailSubscriber, MailSubscriberDetail } from "../model/mailSubscriber";
+import { queryClient } from "../main";
 
 export const useMailSubscribers = () =>
   useQuery({
@@ -19,6 +20,9 @@ export const useMailSubscriberCreate = () =>
           json: data,
         })
         .json()) as MailSubscriberDetail,
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
   });
 
 export const useMailSubscriberUpdate = () =>
@@ -29,10 +33,16 @@ export const useMailSubscriberUpdate = () =>
           json: { email: data.email },
         })
         .json()) as MailSubscriberDetail,
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
   });
 
 export const useMailSubscriberDelete = () =>
   useMutation({
     mutationFn: async (id: number) =>
       await api().delete(`/mail-web-api/mailsubscriber/${id}`).json(),
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
   });
