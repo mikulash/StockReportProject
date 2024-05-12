@@ -1,11 +1,11 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { useMailSubscriberDelete } from "../api/emailManagement";
+import { useUnsubscribe } from "../api/emailManagement";
 import { useParams } from "react-router-dom";
 import Error404Page from "./Error404Page";
 
 const UnsubscribePage: FunctionComponent = () => {
   const [isInvalidId, setIsInvalidId] = useState(false);
-  const queryDelete = useMailSubscriberDelete();
+  const queryUnsubscribe = useUnsubscribe();
 
   const { id } = useParams();
 
@@ -17,11 +17,7 @@ const UnsubscribePage: FunctionComponent = () => {
       setIsInvalidId(true);
       return;
     }
-    try {
-      queryDelete.mutateAsync(subscriberId);
-    } catch {
-      // error
-    }
+    queryUnsubscribe.mutate(subscriberId);
   }, [subscriberId]);
 
   if (isInvalidId) return <Error404Page />;
@@ -30,7 +26,7 @@ const UnsubscribePage: FunctionComponent = () => {
     <section className="bg-white dark:bg-gray-900 h-screen pt-12">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md sm:text-center">
-          {queryDelete.isError ? (
+          {queryUnsubscribe.isError ? (
             <>
               <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">
                 Something went wrong
@@ -39,6 +35,8 @@ const UnsubscribePage: FunctionComponent = () => {
                 Try again later.
               </p>
             </>
+          ) : queryUnsubscribe.isPending ? (
+            <p className="mx-auto mt-8 text-gray-500">Pending...</p>
           ) : (
             <>
               <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">

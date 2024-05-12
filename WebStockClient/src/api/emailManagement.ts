@@ -46,3 +46,9 @@ export const useMailSubscriberDelete = () =>
       queryClient.invalidateQueries();
     },
   });
+
+export const useUnsubscribe = () =>
+  useMutation({
+    mutationFn: (id: number) =>
+      api().delete(`/mail-web-api/mailsubscriber/${id}`).json(),
+  });
