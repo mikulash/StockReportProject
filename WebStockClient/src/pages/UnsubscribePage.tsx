@@ -1,11 +1,11 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { useUnsubscribe } from "../api/emailManagement";
+import { useMailSubscriberDelete } from "../api/emailManagement";
 import { useParams } from "react-router-dom";
 import Error404Page from "./Error404Page";
 
 const UnsubscribePage: FunctionComponent = () => {
   const [isInvalidId, setIsInvalidId] = useState(false);
-  const queryUnsubscribe = useUnsubscribe();
+  const queryUnsubscribe = useMailSubscriberDelete();
 
   const { id } = useParams();
 
