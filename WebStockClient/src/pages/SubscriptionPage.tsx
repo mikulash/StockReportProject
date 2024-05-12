@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MailSubscriber } from "../model/mailSubscriber";
 import { useMailSubscriberCreate } from "../api/emailManagement";
@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MailSubscriberSchema } from "../schema/mailSubscriberSchema";
 
 const SubscribtionPage: FunctionComponent = () => {
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
-  const [showErrorToast, setShowErrorToast] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,20 +14,10 @@ const SubscribtionPage: FunctionComponent = () => {
   } = useForm<MailSubscriber>({ resolver: zodResolver(MailSubscriberSchema) });
   const queryPost = useMailSubscriberCreate();
 
-  const onSubmit: SubmitHandler<MailSubscriber> = async (data) => {
-    setShowErrorToast(false);
-    setShowSuccessToast(false);
-    try {
-      await queryPost.mutateAsync(data);
-    } catch {
-      setShowErrorToast(true);
-      return;
-    }
-    if (queryPost.isError) {
-      setShowErrorToast(true);
-    } else {
+  const onSubmit: SubmitHandler<MailSubscriber> = (data) => {
+    queryPost.mutate(data);
+    if (queryPost.isSuccess) {
       resetField("email");
-      setShowSuccessToast(true);
     }
   };
 
@@ -110,7 +98,7 @@ const SubscribtionPage: FunctionComponent = () => {
             </div>
           </form>
 
-          {showErrorToast && (
+          {queryPost.isError && (
             <div className="py-12 flex justify-center">
               <div
                 id="toast-danger"
@@ -137,7 +125,7 @@ const SubscribtionPage: FunctionComponent = () => {
                   className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                   data-dismiss-target="#toast-danger"
                   aria-label="Close"
-                  onClick={() => setShowErrorToast(false)}
+                  onClick={() => queryPost.reset()}
                 >
                   <span className="sr-only">Close</span>
                   <svg
@@ -159,7 +147,7 @@ const SubscribtionPage: FunctionComponent = () => {
               </div>
             </div>
           )}
-          {showSuccessToast && (
+          {queryPost.isSuccess && (
             <div className="py-12 flex justify-center">
               <div
                 id="toast-success"
@@ -184,7 +172,7 @@ const SubscribtionPage: FunctionComponent = () => {
                   className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                   data-dismiss-target="#toast-success"
                   aria-label="Close"
-                  onClick={() => setShowSuccessToast(false)}
+                  onClick={() => queryPost.reset()}
                 >
                   <span className="sr-only">Close</span>
                   <svg
