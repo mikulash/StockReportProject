@@ -21,8 +21,8 @@ public class Scraper
     }
 
     [Function("Scraper")]
-    // public void Run([TimerTrigger("0 0 2 * * *")] TimerInfo myTimer)
-    public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer) // every minute for development
+    public void Run([TimerTrigger("0 0 2 * * *")] TimerInfo myTimer)
+    // public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer) // every minute for development
     {
         _logger.LogInformation("C# Timer trigger function executed at: {Now}", DateTime.Now);
         Scrape().Wait();
