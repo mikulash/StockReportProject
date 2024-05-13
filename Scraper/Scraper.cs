@@ -92,7 +92,6 @@ public class Scraper
         }
         await using Stream streamToReadFrom = await response.Content.ReadAsStreamAsync();
 
-        // await using Stream streamToReadFrom = await DownloadFile(fileUrl);
         string datedFilename = $"{filename}_{DateTime.Now:dd_MM_yyyy}";
         // Store the file locally
         await StoreFileLocally(streamToReadFrom, datedFilename);
