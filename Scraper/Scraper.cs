@@ -30,45 +30,12 @@ public class Scraper
 
     private async Task Scrape()
     {
-        IWebDriver? driver;
         var downloadLink = "";
         try
         {
-            var chromeOptions = new ChromeOptions();
-
-            chromeOptions.AddArgument("--headless");
-            chromeOptions.AddArgument("--no-sandbox");
-            chromeOptions.AddArgument("--disable-dev-shm-usage");
-            chromeOptions.AddArgument("--disable-gpu");
-            chromeOptions.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
-            driver = new ChromeDriver(chromeOptions);
-            driver.Navigate().GoToUrl(url);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));  // Adjust timeout as necessary
-
-
-            //agree cookies
-            driver.FindElement(By.XPath("//*[@id=\"agree_button\"]")).Click();
-            _logger.LogInformation("Agreed to cookies");
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-
-            driver.FindElement(By.XPath("//*[@id=\"hs-eu-confirmation-button\"]")).Click();
-            _logger.LogInformation("Agreed to cookies 2");
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-
-            // select document type
-            IWebElement element = driver.FindElement(By.XPath("/html/body/div[5]/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div/ul/li[8]/a"));
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-            _logger.LogInformation("Scrolled to element");
-            Thread.Sleep(1000); // Consider using a more reliable waiting method in production
-            element.Click();
-            _logger.LogInformation("Clicked on element");
-            // driver.FindElement(By.XPath("/html/body/div[5]/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div/ul/li[8]/a")).Click();
-            // select document
-            downloadLink = driver.FindElement(By.XPath("//*[@id=\"doc-1793\"]/a")).GetAttribute("href");
+            var driver = CreateChromeDriver();
+            downloadLink = ScrapeDownloadLink(driver);
             driver.Close();
-
         }
         catch (Exception ex)
         {
@@ -77,34 +44,77 @@ public class Scraper
         }
         finally
         {
-            await DownloadFileAsync(downloadLink);
+
+            await StoreFileAsync(downloadLink);
             Console.WriteLine("File downloaded successfully!");
         }
     }
 
-    private async Task DownloadFileAsync(string fileUrl)
+    private static ChromeDriver CreateChromeDriver()
+    {
+        var chromeOptions = new ChromeOptions();
+
+        chromeOptions.AddArgument("--headless");
+        chromeOptions.AddArgument("--no-sandbox");
+        chromeOptions.AddArgument("--disable-dev-shm-usage");
+        chromeOptions.AddArgument("--disable-gpu");
+        chromeOptions.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+        return new ChromeDriver(chromeOptions);
+    }
+
+    private string ScrapeDownloadLink(ChromeDriver driver)
+    {
+        driver.Navigate().GoToUrl(url);
+        //agree cookies
+        driver.FindElement(By.XPath("//*[@id=\"agree_button\"]")).Click();
+        driver.FindElement(By.XPath("//*[@id=\"hs-eu-confirmation-button\"]")).Click();
+        // select document type
+        IWebElement element = driver.FindElement(By.XPath("/html/body/div[5]/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div/ul/li[8]/a"));
+        ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        _logger.LogInformation("Scrolled to element");
+        Thread.Sleep(1000); // Consider using a more reliable waiting method in production
+        element.Click();
+        _logger.LogInformation("Clicked on element");
+        // select document
+        var downloadLink = driver.FindElement(By.XPath("//*[@id=\"doc-1793\"]/a")).GetAttribute("href");
+        return downloadLink;
+    }
+
+    private async Task StoreFileAsync(string fileUrl)
     {
         using HttpClient client = new HttpClient();
         client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
         using HttpResponseMessage response = await client.GetAsync(fileUrl);
-        if (response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
-            await using Stream streamToReadFrom = await response.Content.ReadAsStreamAsync();
-            string datedFilename = $"{filename}_{DateTime.Now:dd_MM_yyyy}";
-            _logger.LogInformation("Downloading file to: {DatedFilename}", datedFilename);
+            _logger.LogError("Failed to download file. Status Code: {StatusCode}", response.StatusCode);
+            throw new InvalidOperationException("Failed to download file");
+        }
+        await using Stream streamToReadFrom = await response.Content.ReadAsStreamAsync();
 
-            // Define the path locally if needed for debugging or additional processing
-            string savePath = Path.Combine(Environment.CurrentDirectory, datedFilename);
-            await using Stream streamToWriteTo = File.Open(savePath, FileMode.Create);
-            await streamToReadFrom.CopyToAsync(streamToWriteTo);
-            // Create the blob in Azure Blob Storage and upload the file
-            await UploadToBlobAsync(streamToReadFrom, datedFilename);
+        // await using Stream streamToReadFrom = await DownloadFile(fileUrl);
+        string datedFilename = $"{filename}_{DateTime.Now:dd_MM_yyyy}";
+        // Store the file locally
+        await StoreFileLocally(streamToReadFrom, datedFilename);
+        // Create the blob in Azure Blob Storage and upload the file
+        await UploadToBlobAsync(streamToReadFrom, datedFilename);
+    }
+
+    private async Task StoreFileLocally(Stream dataStream, string datedFilename)
+    {
+        if (dataStream.CanSeek)
+        {
+            dataStream.Position = 0;
         }
         else
         {
-            _logger.LogError("Failed to download file. Status Code: {StatusCode}", response.StatusCode);
+            _logger.LogError("Stream cannot seek to the beginning");
+            throw new InvalidOperationException("Stream must be seekable.");
         }
-
+        _logger.LogInformation("Downloading file to: {DatedFilename}", datedFilename);
+        string savePath = Path.Combine(Environment.CurrentDirectory, datedFilename);
+        await using Stream streamToWriteTo = File.Open(savePath, FileMode.Create);
+        await dataStream.CopyToAsync(streamToWriteTo);
     }
 
     private async Task UploadToBlobAsync(Stream dataStream, string blobName)
