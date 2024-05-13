@@ -12,6 +12,9 @@ public class Scraper
     private const string url = "https://ark-funds.com/download-fund-materials/";
     private const string filename = "ARK_FUNDS";
 
+    private const string fallbackUrl =
+        "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
+
     public Scraper(ILoggerFactory loggerFactory)
     {
         _logger = loggerFactory.CreateLogger<Scraper>();
@@ -28,11 +31,15 @@ public class Scraper
     private async Task Scrape()
     {
         IWebDriver? driver;
+        var downloadLink = "";
         try
         {
             var chromeOptions = new ChromeOptions();
 
             chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
+            chromeOptions.AddArgument("--disable-gpu");
             chromeOptions.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
             driver = new ChromeDriver(chromeOptions);
             driver.Navigate().GoToUrl(url);
@@ -59,16 +66,20 @@ public class Scraper
             _logger.LogInformation("Clicked on element");
             // driver.FindElement(By.XPath("/html/body/div[5]/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div/ul/li[8]/a")).Click();
             // select document
-            var downloadLink = driver.FindElement(By.XPath("//*[@id=\"doc-1793\"]/a")).GetAttribute("href");
+            downloadLink = driver.FindElement(By.XPath("//*[@id=\"doc-1793\"]/a")).GetAttribute("href");
             driver.Close();
-            await DownloadFileAsync(downloadLink);
-            Console.WriteLine("File downloaded successfully!");
+
         }
         catch (Exception ex)
         {
+            downloadLink = fallbackUrl;
             Console.WriteLine($"Error: {ex.Message}");
         }
-
+        finally
+        {
+            await DownloadFileAsync(downloadLink);
+            Console.WriteLine("File downloaded successfully!");
+        }
     }
 
     private async Task DownloadFileAsync(string fileUrl)
