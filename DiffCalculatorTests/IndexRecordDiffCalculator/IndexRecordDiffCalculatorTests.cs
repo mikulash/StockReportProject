@@ -1,6 +1,5 @@
 using DiffCalculator.IndexRecordDiffCalculator;
 using DiffCalculator.Model;
-using FileLoader.Model;
 
 namespace DiffCalculatorTests.IndexRecordDiffCalculator;
 

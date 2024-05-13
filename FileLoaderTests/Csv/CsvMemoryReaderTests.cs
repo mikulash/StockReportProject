@@ -59,7 +59,7 @@ public class CsvMemoryReaderTests
         // assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Is.Not.Empty);
-        Assert.That(result.Select(item => item.Date), Has.All.EqualTo(DateOnly.Parse("04/03/2024")));
+        Assert.That(result.Select(item => item.Date), Has.All.EqualTo(new DateOnly(2024, 4, 3)));
         Assert.That(result.Select(item => item.Company), Has.All.Not.Null);
         Assert.That(result.Select(item => item.MarketValue), Has.All.GreaterThan(0));
         Assert.That(result.Select(item => item.Fund), Has.All.EqualTo("ARKK"));

@@ -1,5 +1,4 @@
 using DiffCalculator.Model;
-using FileLoader.Model;
 
 namespace DiffCalculator.IndexRecordDiffCalculator;
 
