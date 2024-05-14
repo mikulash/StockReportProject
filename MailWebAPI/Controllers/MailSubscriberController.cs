@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using SubscriberFacade = GenericBusinessLayer.Facades.IGenericFacade<
     MailDataAccessLayer.Models.MailSubscriber, 
-    long, 
-    GenericBusinessLayer.Services.IGenericService<MailDataAccessLayer.Models.MailSubscriber, long>, 
+    System.Guid, 
+    GenericBusinessLayer.Services.IGenericService<MailDataAccessLayer.Models.MailSubscriber, System.Guid>, 
     MailAPI.DTOs.MailSubscriberDTOs.Create.CreateMailSubscriberDto, 
     MailAPI.DTOs.MailSubscriberDTOs.Update.UpdateMailSubscriberDto, 
     MailAPI.DTOs.MailSubscriberDTOs.View.ViewMailSubscriberDto, 
@@ -46,16 +46,16 @@ public class MailSubscriberController : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> UpdateMailSubscriber(long id, UpdateMailSubscriberDto updateMailSubscriberDto) 
+    public async Task<IActionResult> UpdateMailSubscriber(Guid id, UpdateMailSubscriberDto updateMailSubscriberDto) 
         => Ok(await _subscriberFacade.UpdateAsync(id, updateMailSubscriberDto));
 
     [HttpGet]
     [Route("all/{id}")]
-    public async Task<IActionResult> FindById(long id) => Ok(await _subscriberFacade.FindByIdAsync(id));
+    public async Task<IActionResult> FindById(Guid id) => Ok(await _subscriberFacade.FindByIdAsync(id));
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<IActionResult> DeleteById(long id)
+    public async Task<IActionResult> DeleteById(Guid id)
     {
         try
         {
