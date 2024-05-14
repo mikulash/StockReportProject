@@ -9,14 +9,20 @@ namespace MailInfrastructure.UnitOfWork;
 public class MailUnitOfWork : BaseUnitOfWork<MailDbContext>, IMailUnitOfWork
 {
     public MailUnitOfWork(MailDbContext dbContext, 
-        IGenericRepository<MailSubscriber, long> mailSubscriberRepository,
-        IQuery<MailSubscriber, long> mailSubscriberQuery) 
+        IGenericRepository<MailSubscriber, Guid> mailSubscriberRepository,
+        IQuery<MailSubscriber, Guid> mailSubscriberQuery, 
+        IGenericRepository<SubscriberPreference, long> subscriberPreferenceRepository, 
+        IQuery<SubscriberPreference, long> subscriberPreferenceQuery) 
         : base(dbContext)
     {
         MailSubscriberRepository = mailSubscriberRepository;
         MailSubscriberQuery = mailSubscriberQuery;
+        SubscriberPreferenceRepository = subscriberPreferenceRepository;
+        SubscriberPreferenceQuery = subscriberPreferenceQuery;
     }
 
-    public IGenericRepository<MailSubscriber, long> MailSubscriberRepository { get; init; }
-    public IQuery<MailSubscriber, long> MailSubscriberQuery { get; init; }
+    public IGenericRepository<MailSubscriber, Guid> MailSubscriberRepository { get; init; }
+    public IQuery<MailSubscriber, Guid> MailSubscriberQuery { get; init; }
+    public IGenericRepository<SubscriberPreference, long> SubscriberPreferenceRepository { get; init; }
+    public IQuery<SubscriberPreference, long> SubscriberPreferenceQuery { get; init; }
 }
