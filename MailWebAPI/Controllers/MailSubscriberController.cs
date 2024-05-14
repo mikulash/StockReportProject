@@ -1,4 +1,5 @@
-﻿using MailAPI.DTOs.MailSubscriberDTOs.Create;
+﻿using GenericBusinessLayer.Exceptions;
+using MailAPI.DTOs.MailSubscriberDTOs.Create;
 using MailAPI.DTOs.MailSubscriberDTOs.Filter;
 using MailAPI.DTOs.MailSubscriberDTOs.Update;
 using Microsoft.AspNetCore.Mvc;
@@ -56,7 +57,16 @@ public class MailSubscriberController : ControllerBase
     [Route("{id}")]
     public async Task<IActionResult> DeleteById(long id)
     {
-        await _subscriberFacade.DeleteByIdAsync(id);
+        try
+        {
+            await _subscriberFacade.DeleteByIdAsync(id);
+        }
+        catch (NoSuchEntityException<long>)
+        {
+            // no exception handling (if entity is not found), because of constant status code 204
+            // other exceptions will go through exception middleware
+        }
+        
         return NoContent();
     }
 }
