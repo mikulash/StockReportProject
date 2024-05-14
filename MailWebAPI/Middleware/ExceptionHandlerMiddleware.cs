@@ -1,10 +1,9 @@
 ﻿using System.Net;
 using System.Text.Json;
 using GenericBusinessLayer.DTOs.Exception;
-using StockBusinessLayer.Exceptions;
 using GenericBusinessLayer.Exceptions;
 
-namespace StockWebAPI.Middleware;
+namespace MailWebAPI.Middleware;
 
 public class ExceptionHandlerMiddleware(RequestDelegate next)
 {
@@ -18,10 +17,6 @@ public class ExceptionHandlerMiddleware(RequestDelegate next)
             case NoSuchEntityException<long>
                 or NoSuchEntityException<IEnumerable<long>>:
                 code = HttpStatusCode.NotFound;
-                break;
-            case InvalidRecordsException
-                or RecordExistenceCheckException:
-                code = HttpStatusCode.BadRequest;
                 break;
             default:
                 code = HttpStatusCode.InternalServerError;
