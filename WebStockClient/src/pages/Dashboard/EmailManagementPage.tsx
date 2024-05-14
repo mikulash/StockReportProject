@@ -13,7 +13,7 @@ const EmailManagementPage: FunctionComponent = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     queryDelete.mutate(id);
   };
 

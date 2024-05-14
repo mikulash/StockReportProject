@@ -25,14 +25,14 @@ const FundsInput: FunctionComponent<FundsInputProps> = ({
   };
 
   return (
-    <>
+    <div className="my-12">
       {fields.map((field, index) => (
         <FundInput key={field.id} name={`${name}.${index}`} />
       ))}
       <button type="button" onClick={handleAddFund}>
         Add
       </button>
-    </>
+    </div>
   );
 };
 

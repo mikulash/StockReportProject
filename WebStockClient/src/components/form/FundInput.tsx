@@ -1,5 +1,7 @@
 import { FunctionComponent } from "react";
 import { useFormContext } from "react-hook-form";
+import { useFunds } from "../../api/funds";
+import { FundDetail } from "../../model/fund";
 
 interface FundInputProps {
   name: string;
@@ -9,6 +11,9 @@ const FundInput: FunctionComponent<FundInputProps> = ({
   name,
 }: FundInputProps) => {
   const { register } = useFormContext();
+
+  const queryGetFunds = useFunds();
+
   return (
     <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm ">
       <label
@@ -23,8 +28,12 @@ const FundInput: FunctionComponent<FundInputProps> = ({
         {...register(`${name}.fundName`)}
       >
         <option defaultValue="">Select a fund</option>
-        <option value="f1">fund 1</option>
-        <option value="f2">fund 2</option>
+        {queryGetFunds.data &&
+          queryGetFunds.data.map((fund: FundDetail) => (
+            <option key={fund.id} value={fund.fundName}>
+              {fund.fundName}
+            </option>
+          ))}
       </select>
       <ul className="items-center w-full mt-4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">

@@ -40,7 +40,7 @@ export const useMailSubscriberUpdate = () =>
 
 export const useMailSubscriberDelete = () =>
   useMutation({
-    mutationFn: async (id: number) =>
+    mutationFn: async (id: string) =>
       await api().delete(`/mail-web-api/mailsubscriber/${id}`).json(),
     onSuccess: () => {
       queryClient.invalidateQueries();
