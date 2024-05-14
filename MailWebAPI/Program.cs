@@ -2,6 +2,7 @@ using MailBusinessLayer.DependencyInjection;
 using MailDataAccessLayer.Data;
 using MailDataAccessLayer.DependencyInjection;
 using MailInfrastructure.DependencyInjection;
+using MailWebAPI.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -43,6 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseAuthorization();
 app.UseAuthentication();
