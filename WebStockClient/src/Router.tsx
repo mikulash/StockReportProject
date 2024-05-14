@@ -1,6 +1,5 @@
 import { useRoutes } from "react-router-dom";
 import Error404Page from "./pages/Error404Page";
-import EmailManagementPage from "./pages/Dashboard/EmailManagementPage";
 import SubscribtionPage from "./pages/SubscriptionPage";
 import UnsubscribePage from "./pages/UnsubscribePage";
 
@@ -14,11 +13,6 @@ const Router = () => {
     {
       path: `/unsubscribe/:id`,
       element: <UnsubscribePage />,
-      errorElement: <Error404Page />,
-    },
-    {
-      path: `/dashboard`,
-      element: <EmailManagementPage />,
       errorElement: <Error404Page />,
     },
     { path: "*", element: <Error404Page /> },
