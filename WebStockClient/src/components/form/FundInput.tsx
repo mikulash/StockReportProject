@@ -13,7 +13,7 @@ const FundInput: FunctionComponent<FundInputProps> = () => {
       </label>
       <select
         id="countries"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
       >
         <option defaultValue="">Select a fund</option>
         <option value="f1">fund 1</option>
@@ -28,7 +28,7 @@ const FundInput: FunctionComponent<FundInputProps> = () => {
               name="list-radio"
               defaultValue="html"
               defaultChecked
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
             />
             <label
               htmlFor="horizontal-list-radio-license"
@@ -45,7 +45,7 @@ const FundInput: FunctionComponent<FundInputProps> = () => {
               type="radio"
               name="list-radio"
               defaultValue="string"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
             />
             <label
               htmlFor="horizontal-list-radio-id"

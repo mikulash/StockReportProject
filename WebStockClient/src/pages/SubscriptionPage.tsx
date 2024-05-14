@@ -58,9 +58,9 @@ const SubscribtionPage: FunctionComponent = () => {
                 <input
                   className={`block p-3 pl-10 w-full text-sm ${
                     errors.email
-                      ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500"
-                      : "bg-gray-50 text-gray-900 border border-gray-300 focus:ring-primary-500"
-                  }   rounded-lg sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`}
+                      ? "bg-red-50 border border-red-500 text-red-900 placeholder-red-700"
+                      : "bg-gray-50 text-gray-900 border border-gray-300"
+                  }   rounded-lg sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none`}
                   placeholder="Enter your email"
                   {...register("email")}
                 />
@@ -68,7 +68,7 @@ const SubscribtionPage: FunctionComponent = () => {
               <div>
                 <button
                   type="submit"
-                  className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700"
                 >
                   Subscribe
                 </button>
