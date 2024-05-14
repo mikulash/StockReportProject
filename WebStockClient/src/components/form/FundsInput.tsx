@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import FundInput from "./FundInput";
 
@@ -16,15 +16,22 @@ const FundsInput: FunctionComponent<FundsInputProps> = ({
     name: "preferences",
   });
 
+  useEffect(() => {
+    if (fields.length === 0) append({});
+  }, []);
+
   const handleAddFund = () => {
     append({});
   };
+
   return (
     <>
       {fields.map((field, index) => (
         <FundInput key={field.id} name={`${name}.${index}`} />
       ))}
-      <button onClick={handleAddFund}>Add</button>
+      <button type="button" onClick={handleAddFund}>
+        Add
+      </button>
     </>
   );
 };

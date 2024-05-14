@@ -12,6 +12,7 @@ const EmailInput: FunctionComponent<EmailInputProps> = ({
     register,
     formState: { errors },
   } = useFormContext();
+  console.log(errors);
   return (
     <>
       <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
