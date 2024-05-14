@@ -5,6 +5,7 @@ import { useMailSubscriberCreate } from "../api/emailManagement";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MailSubscriberSchema } from "../schema/mailSubscriberSchema";
 import Toast from "../components/feedback/Toast";
+import FundInput from "../components/form/FundInput";
 
 const SubscribtionPage: FunctionComponent = () => {
   const {
@@ -97,6 +98,8 @@ const SubscribtionPage: FunctionComponent = () => {
             <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
               We care about the protection of your data.
             </div>
+
+            <FundInput />
           </form>
 
           {queryPost.isError && (
