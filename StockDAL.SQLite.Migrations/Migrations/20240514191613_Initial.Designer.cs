@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.SQLite.Migrations.Migrations
 {
     [DbContext(typeof(StockDbContext))]
-    [Migration("20240508084058_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240514191613_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,9 @@ namespace DAL.SQLite.Migrations.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CUSIP")
+                        .IsUnique();
+
                     b.ToTable("Companies");
                 });
 
@@ -62,6 +65,9 @@ namespace DAL.SQLite.Migrations.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FundName")
+                        .IsUnique();
 
                     b.ToTable("Funds");
                 });

@@ -44,6 +44,9 @@ namespace DAL.SQLite.Migrations.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CUSIP")
+                        .IsUnique();
+
                     b.ToTable("Companies");
                 });
 
@@ -59,6 +62,9 @@ namespace DAL.SQLite.Migrations.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FundName")
+                        .IsUnique();
 
                     b.ToTable("Funds");
                 });

@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GenericDataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Models;
 
+[Index(nameof(CUSIP), IsUnique = true)]
 public class Company : BaseEntity<long>
 {
     [MaxLength(50)]
