@@ -5,13 +5,14 @@ import { useMailSubscriberCreate } from "../api/emailManagement";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MailSubscriberSchema } from "../schema/mailSubscriberSchema";
 import Toast from "../components/feedback/Toast";
-import FundInput from "../components/form/FundInput";
 import EmailInput from "../components/form/EmailInput";
+import FundsInput from "../components/form/FundsInput";
 
 const SubscribtionPage: FunctionComponent = () => {
   const methods = useForm<MailSubscriber>({
     resolver: zodResolver(MailSubscriberSchema),
   });
+
   const queryPost = useMailSubscriberCreate();
 
   const onSubmit: SubmitHandler<MailSubscriber> = (data) => {
@@ -40,7 +41,7 @@ const SubscribtionPage: FunctionComponent = () => {
                 We care about the protection of your data.
               </div>
 
-              <FundInput name={`preferences[${0}]`} />
+              <FundsInput name={`preferences`} />
             </form>
           </FormProvider>
 
