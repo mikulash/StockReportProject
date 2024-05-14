@@ -33,7 +33,7 @@ public class MailSubscriberFacade : GenericFacade<MailSubscriber, Guid, IGeneric
             oldPreferences
                 .Where(pref =>
                     newlyDeclaredPreferences
-                        .Any(newPref =>
+                        .Exists(newPref =>
                             newPref.FundName.Equals(pref.FundName) && newPref.OutputType.Equals(pref.OutputType)
                         )
                 )
@@ -42,7 +42,7 @@ public class MailSubscriberFacade : GenericFacade<MailSubscriber, Guid, IGeneric
         var newPreferences = newlyDeclaredPreferences
             .Where(newPref =>
                 !keptPreferences
-                    .Any(pref
+                    .Exists(pref
                         => pref.FundName.Equals(newPref.FundName) && pref.OutputType.Equals(newPref.OutputType)
                     )
             )
