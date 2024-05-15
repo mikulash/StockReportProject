@@ -17,8 +17,8 @@ public static class InfrastructureDependencyInjection
 
         services.AddScoped<IStockUnitOfWork, StockUnitOfWork>();
         
-        services.AddScoped<IQuery<Company, long>, QueryBase<Company, long, IStockUnitOfWork>>();
-        services.AddScoped<IQuery<Fund, long>, QueryBase<Fund, long, IStockUnitOfWork>>();
-        services.AddScoped<IQuery<IndexRecord, long>, QueryBase<IndexRecord, long, IStockUnitOfWork>>();
+        services.AddScoped<IQuery<Company, long>, QueryBase<Company, long>>();
+        services.AddScoped<IQuery<Fund, long>, QueryBase<Fund, long>>();
+        services.AddScoped<IQuery<IndexRecord, long>, QueryBase<IndexRecord, long>>();
     }
 }

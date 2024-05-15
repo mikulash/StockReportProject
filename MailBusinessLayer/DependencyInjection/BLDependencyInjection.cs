@@ -4,7 +4,9 @@ using GenericBusinessLayer.Services;
 using MailAPI.DTOs.MailSubscriberDTOs.Create;
 using MailAPI.DTOs.MailSubscriberDTOs.Update;
 using MailAPI.DTOs.MailSubscriberDTOs.View;
+using MailBusinessLayer.Facades.MailSubscriberFacade;
 using MailBusinessLayer.Mappers;
+using MailBusinessLayer.Services.MailSubscriberService;
 using MailDataAccessLayer.Models;
 using MailInfrastructure.EntityFilters;
 using MailInfrastructure.UnitOfWork;
@@ -17,24 +19,24 @@ public static class BLDependencyInjection
     private static void RegisterMappers(IServiceCollection services)
     {
         services.AddAutoMapper(typeof(MailSubscriberProfile));
+        services.AddAutoMapper(typeof(SubscriberPreferenceProfile));
 
         services.AddAutoMapper(typeof(QueryMappingProfile));
     }
 
     private static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IGenericService<MailSubscriber, long>, GenericService<MailSubscriber, long, IMailUnitOfWork>>();
+        services.AddScoped<IGenericService<MailSubscriber, Guid>, MailSubscriberService>();
+        services
+            .AddScoped<IGenericService<SubscriberPreference, long>,
+                GenericService<SubscriberPreference, long, IMailUnitOfWork>>();
     }
 
     private static void RegisterFacades(IServiceCollection services)
     {
-        services.AddScoped
-        <
-            IGenericFacade<MailSubscriber, long, IGenericService<MailSubscriber, long>, CreateMailSubscriberDto,
-                UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto, MailSubscriberFilter>,
-            GenericFacade<MailSubscriber, long, IGenericService<MailSubscriber, long>, CreateMailSubscriberDto,
-                UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto, MailSubscriberFilter>
-        >();
+        services.AddScoped<IGenericFacade<MailSubscriber, Guid, IGenericService<MailSubscriber, Guid>, 
+                CreateMailSubscriberDto, UpdateMailSubscriberDto, ViewMailSubscriberDto, ViewMailSubscriberDto>,
+            MailSubscriberFacade>();
     }
     
     public static void RegisterBLDependecies(this IServiceCollection services)

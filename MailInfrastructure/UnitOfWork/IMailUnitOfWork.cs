@@ -7,6 +7,8 @@ namespace MailInfrastructure.UnitOfWork;
 
 public interface IMailUnitOfWork : IBaseUnitOfWork
 {
-    IGenericRepository<MailSubscriber, long> MailSubscriberRepository { get; init; }
-    //IQuery<MailSubscriber, long> MailSubscriberQuery { get; init; }
+    IGenericRepository<MailSubscriber, Guid> MailSubscriberRepository { get; init; }
+    IQuery<MailSubscriber, Guid> MailSubscriberQuery { get; init; }
+    IGenericRepository<SubscriberPreference, long> SubscriberPreferenceRepository { get; init; }
+    IQuery<SubscriberPreference, long> SubscriberPreferenceQuery { get; init; }
 }

@@ -1,5 +1,6 @@
 ﻿using GenericDataAccessLayer.Models;
 using GenericInfrastructure.Exceptions;
+using GenericInfrastructure.Query;
 using GenericInfrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,19 @@ public class BaseUnitOfWork<TDbContext> : IBaseUnitOfWork
             (IGenericRepository<TEntity, TKey>) repository 
             : throw new RepositoryNotFoundException(typeof(TEntity));
     }
-    
+
+    public IQuery<TEntity, TKey> GetQueryByEntity<TEntity, TKey>() where TEntity : BaseEntity<TKey>
+    {
+        var query = GetType()
+            .GetProperties()
+            .FirstOrDefault(query => query.PropertyType == typeof(IQuery<TEntity, TKey>))?
+            .GetValue(this);
+
+        return query is not null
+            ? (IQuery<TEntity, TKey>)query
+            : throw new QueryNotFoundException(typeof(TEntity));
+    }
+
     public async Task CommitAsync() => await DbContext.SaveChangesAsync();
 
     public void Rollback()

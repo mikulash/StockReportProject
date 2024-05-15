@@ -20,7 +20,7 @@ builder.Services.RegisterDALDependencies(configuration);
 
 builder.Services.RegisterInfrastructureDependencies();
 
-builder.Services.RegisterBLDependecies();
+builder.Services.RegisterBLDependencies();
 
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 

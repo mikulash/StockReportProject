@@ -5,9 +5,9 @@ namespace GenericDataAccessLayer.DatabaseTypeStrategy;
 
 public static class EnumToStrategyConverter
 {
-    private const string AppSettingsKeyName = "DatabaseType";
+    public const string AppSettingsKeyName = "DatabaseType";
 
-    public static IDBStrategy CreateStrategy(IConfiguration config)
+    public static BaseDbStrategy CreateStrategy(IConfiguration config)
     {
         if (!Enum.TryParse(config.GetSection(AppSettingsKeyName).Value ?? string.Empty, out DatabaseType dbType))
         {
@@ -16,7 +16,8 @@ public static class EnumToStrategyConverter
 
         return dbType switch
         {
-            DatabaseType.SQLite => new SQLiteDbStrategy(config),
+            DatabaseType.SQLite => new SqLiteDbStrategy(config),
+            DatabaseType.InMemory => new InMemoryDbStrategy(config),
             _ => throw new UnsupportedDatabaseTypeException(dbType)
         };
     }
