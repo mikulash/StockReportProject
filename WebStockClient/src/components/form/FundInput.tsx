@@ -39,7 +39,7 @@ const FundInput: FunctionComponent<FundInputProps> = ({
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center ps-3">
             <input
-              id="horizontal-list-radio-license"
+              id={`horizontal-list-radio-${name}-html`}
               type="radio"
               defaultValue="html"
               defaultChecked
@@ -47,7 +47,7 @@ const FundInput: FunctionComponent<FundInputProps> = ({
               {...register(`${name}.outputType`)}
             />
             <label
-              htmlFor="horizontal-list-radio-license"
+              htmlFor={`horizontal-list-radio-${name}-html`}
               className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               HTML
@@ -57,14 +57,14 @@ const FundInput: FunctionComponent<FundInputProps> = ({
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center ps-3">
             <input
-              id="horizontal-list-radio-id"
+              id={`horizontal-list-radio-${name}-string`}
               type="radio"
               defaultValue="string"
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
               {...register(`${name}.outputType`)}
             />
             <label
-              htmlFor="horizontal-list-radio-id"
+              htmlFor={`horizontal-list-radio-${name}-string`}
               className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Plain text
