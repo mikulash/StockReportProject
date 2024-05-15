@@ -58,6 +58,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockInfrastructureTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scraper", "Scraper\Scraper.csproj", "{66E085DA-91EE-4D4B-80B9-88A526D6A97E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScraperCore", "ScraperCore\ScraperCore.csproj", "{46428401-3BAF-46F2-86F9-87D6F9F719DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{203F657F-A253-456F-B3C8-B3A36C66AD81}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +159,10 @@ Global
 		{2D05CC19-68BE-4CCF-BB5C-D11A04AD632A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66E085DA-91EE-4D4B-80B9-88A526D6A97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66E085DA-91EE-4D4B-80B9-88A526D6A97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46428401-3BAF-46F2-86F9-87D6F9F719DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46428401-3BAF-46F2-86F9-87D6F9F719DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46428401-3BAF-46F2-86F9-87D6F9F719DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46428401-3BAF-46F2-86F9-87D6F9F719DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40DD0418-4B54-4FDA-8AE9-15032D001B93} = {9C1F14EE-7833-483A-B448-44B02FC89508}
