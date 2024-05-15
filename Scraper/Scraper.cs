@@ -11,9 +11,8 @@ public class Scraper
     private readonly ILogger _logger;
     private const string url = "https://ark-funds.com/download-fund-materials/";
     private const string filename = "ARK_FUNDS";
-
-    private const string fallbackUrl =
-        "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
+    private const string localDbEndpoint = "http://localhost:5177/api/indexrecord/upload";
+    private const string fallbackUrl = "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
 
     public Scraper(ILoggerFactory loggerFactory)
     {
@@ -95,6 +94,8 @@ public class Scraper
         string datedFilename = $"{filename}_{DateTime.Now:dd_MM_yyyy}";
         // Store the file locally
         await StoreFileLocally(streamToReadFrom, datedFilename);
+        // Upload the file to the local database
+        await UploadToLocalDbAsync(streamToReadFrom, datedFilename);
         // Create the blob in Azure Blob Storage and upload the file
         await UploadToBlobAsync(streamToReadFrom, datedFilename);
     }
@@ -114,6 +115,27 @@ public class Scraper
         string savePath = Path.Combine(Environment.CurrentDirectory, datedFilename);
         await using Stream streamToWriteTo = File.Open(savePath, FileMode.Create);
         await dataStream.CopyToAsync(streamToWriteTo);
+    }
+
+    private async Task UploadToLocalDbAsync(Stream fileStream, string datedFilename)
+    {
+        using HttpClient client = new HttpClient();
+        using var content = new MultipartFormDataContent();
+        content.Add(new StreamContent(fileStream)
+        {
+            Headers = { ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
+            {
+                Name = "file",
+                FileName = datedFilename
+            }}
+        }, "file", datedFilename);
+
+        using HttpResponseMessage response = await client.PostAsync(localDbEndpoint, content);
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to upload file to endpoint. Status Code: {StatusCode}", response.StatusCode);
+            throw new InvalidOperationException("Failed to upload file to endpoint");
+        }
     }
 
     private async Task UploadToBlobAsync(Stream dataStream, string blobName)
