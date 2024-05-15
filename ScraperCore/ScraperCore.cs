@@ -15,7 +15,7 @@ public class ScraperCore
     public Task Scrape()
     {
         var downloadLink = ScrapeDownloadLink();
-        _=  StoreFileAsync(downloadLink);
+        StoreFileAsync(downloadLink).Wait();
         Console.WriteLine("Scraping complete");
         return Task.CompletedTask;
     }
@@ -134,7 +134,7 @@ public class ScraperCore
         var form = new MultipartFormDataContent();
         var fileContent = new StreamContent(fileStream);
         fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/csv");
-        form.Add(fileContent, datedFilename, "filename.csv");
+        form.Add(fileContent, "file", datedFilename);
         var response = await client.PostAsync(localDbEndpoint, form);
 
         if (!response.IsSuccessStatusCode)
