@@ -27,7 +27,7 @@ const FundInput: FunctionComponent<FundInputProps> = ({
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
         {...register(`${name}.fundName`)}
       >
-        <option defaultValue="">Select a fund</option>
+        <option value="">Select a fund</option>
         {queryGetFunds.data &&
           queryGetFunds.data.map((fund: FundDetail) => (
             <option key={fund.id} value={fund.fundName}>
