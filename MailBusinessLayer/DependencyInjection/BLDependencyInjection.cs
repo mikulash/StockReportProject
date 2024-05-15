@@ -10,6 +10,7 @@ using MailBusinessLayer.Services;
 using MailBusinessLayer.Services.MailService;
 using MailBusinessLayer.Facades.MailSubscriberFacade;
 using MailBusinessLayer.Services.MailSubscriberService;
+using MailBusinessLayer.Services.SubscriberPreferenceService;
 using MailDataAccessLayer.Models;
 using MailInfrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,7 @@ public static class BLDependencyInjection
         services.AddScoped<IGenericService<MailSubscriber, Guid>, MailSubscriberService>();
         services
             .AddScoped<IGenericService<SubscriberPreference, long>,
-                GenericService<SubscriberPreference, long, IMailUnitOfWork>>();
+                SubscriberPreferenceService>();
     }
 
     private static void RegisterFacades(IServiceCollection services)

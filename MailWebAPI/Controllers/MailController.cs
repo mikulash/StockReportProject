@@ -15,5 +15,5 @@ public class MailController: ControllerBase
     }
     [HttpGet]
     [Route("send")]
-    public async Task<IActionResult> Send() => Ok(await _mailFacade.Send());
+    public async Task Send([FromQuery] string fundName, [FromQuery] DateOnly date) => await _mailFacade.Send(fundName,date);
 }

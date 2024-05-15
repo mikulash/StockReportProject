@@ -1,5 +1,7 @@
 
+using MailDataAccessLayer.Enums;
 using Microsoft.Extensions.Configuration;
+using MimeKit.Text;
 
 namespace MailBusinessLayer.EmailSender;
 
@@ -8,31 +10,32 @@ using MimeKit;
 
 public class EmailSender
 {
-    private IConfiguration _configuration;
+    private readonly String? _address;
+    private readonly String? _name;
+    private readonly String? _password;
+
     public EmailSender(IConfiguration config)
     {
-        _configuration = config;
+        var configuration = config;
+        _address = configuration.GetSection("SenderMail").Value;
+        _name = configuration.GetSection("SenderName").Value;
+        _password = configuration.GetSection("Password").Value;
     }
-    public void Send(String content){
+    public void Send(String content,String receiverAddress, OutputType outputType){
         var message = new MimeMessage ();
-        var address = _configuration.GetSection("SenderMail").Value;
-        var name = _configuration.GetSection("SenderName").Value;
-        var password = _configuration.GetSection("Password").Value;
-        var mailApi = _configuration.GetSection("MailWebApiURL").Value;
-        var link = "\n" +
-                   "\n" +
-                   $"Unsubscribe link {mailApi}/unsubscribe/1";
-        message.From.Add (new MailboxAddress (name, address));
-        message.To.Add (new MailboxAddress ("David Rusnak", "davidkorusnak@gmail.com"));
+        
+        message.From.Add (new MailboxAddress (_name, _address));
+        Console.WriteLine(receiverAddress);
+        message.To.Add (new MailboxAddress (receiverAddress, receiverAddress ));
         message.Subject = "Report results";
 
-        message.Body = new TextPart ("html") {
-            Text = content + link
+        message.Body = new TextPart (outputType == OutputType.String ? TextFormat.Plain : TextFormat.Html) {
+            Text = content
         };
 
         using (var client = new SmtpClient ()) {
             client.Connect ("smtp.gmail.com", 587, false);
-            client.Authenticate(address, password);
+            client.Authenticate(_address, _password);
             client.Send (message);
             client.Disconnect (true);
         }

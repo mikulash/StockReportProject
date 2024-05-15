@@ -4,5 +4,5 @@ namespace MailBusinessLayer.Facades.MailFacade;
 
 public interface IMailFacade
 {
-    public Task<String> Send();
+    public Task Send(string fundName, DateOnly date);
 }

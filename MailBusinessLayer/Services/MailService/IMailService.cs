@@ -6,5 +6,5 @@ namespace MailBusinessLayer.Services;
 
 public interface IMailService
 {
-    Task<String>? SendEmail();
+    Task SendEmail(IEnumerable<SubscriberPreference> subscribersPreferences, DateOnly date);
 }
