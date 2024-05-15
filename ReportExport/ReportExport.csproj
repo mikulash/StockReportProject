@@ -7,4 +7,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DiffCalculator\DiffCalculator.csproj" />
+      <ProjectReference Include="..\EmailSender\EmailSender.csproj" />
+      <ProjectReference Include="..\FileLoader\FileLoader.csproj" />
+      <ProjectReference Include="..\FileManager\FileManager.csproj" />
+      <ProjectReference Include="..\WebScraping\WebScraping.csproj" />
+    </ItemGroup>
+
 </Project>

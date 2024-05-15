@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapingTests", "WebScrapingTests\WebScrapingTests.csproj", "{99439716-DE96-45D0-9561-73BDD388C2D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportExport", "ReportExport\ReportExport.csproj", "{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockDataAccessLayer", "StockDataAccessLayer\StockDataAccessLayer.csproj", "{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockDAL.SQLite.Migrations", "StockDAL.SQLite.Migrations\StockDAL.SQLite.Migrations.csproj", "{40DD0418-4B54-4FDA-8AE9-15032D001B93}"
@@ -80,10 +78,6 @@ Global
 		{99439716-DE96-45D0-9561-73BDD388C2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D27F961-6FD1-4079-A005-EBFE792EC9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA25A70D-8B62-443E-9EA4-1A61B3DF5F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6F876F6-C725-40CC-B7F1-6231A74B6CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU

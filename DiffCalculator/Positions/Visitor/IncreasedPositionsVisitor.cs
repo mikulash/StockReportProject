@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using DiffCalculator.Model;
 
 namespace DiffCalculator.Positions.Visitor;
@@ -11,4 +12,6 @@ public class IncreasedPositionsVisitor : AbstractPositionVisitor
 
     public override string ToString()
         => ToStringHelper("Increased Positions:", "increase");
+
+    public override XElement ToHtml() => ToHtmlHelper("Increased Positions:", "increase");
 }
