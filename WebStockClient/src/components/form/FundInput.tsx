@@ -15,7 +15,7 @@ const FundInput: FunctionComponent<FundInputProps> = ({
   const queryGetFunds = useFunds();
 
   return (
-    <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm ">
+    <div>
       <label
         htmlFor="countries"
         className="hidden block mb-2 text-sm font-medium text-gray-900 dark:text-white"
