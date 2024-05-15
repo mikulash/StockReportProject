@@ -8,9 +8,7 @@ public class ScraperCore
     private const string url = "https://ark-funds.com/download-fund-materials/";
     private const string filename = "ARK_FUNDS";
     private const string localDbEndpoint = "http://localhost:5177/api/indexrecord/upload";
-
-    private const string fallbackUrl =
-        "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
+    private const string fallbackUrl = "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
 
     public Task Scrape()
     {

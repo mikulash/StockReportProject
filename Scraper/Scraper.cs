@@ -8,6 +8,7 @@ public class Scraper
 {
     private readonly ILogger _logger;
     private const string filename = "ARK_FUNDS";
+    private const string containerEndpoint = "https://stockreport24.blob.core.windows.net/funds";
 
     public Scraper(ILoggerFactory loggerFactory)
     {
@@ -15,8 +16,8 @@ public class Scraper
     }
 
     [Function("Scraper")]
-    // public void Run([TimerTrigger("0 0 2 * * *")] TimerInfo myTimer) // every day at 2am
-    public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer) // every minute for development
+    public void Run([TimerTrigger("0 0 2 * * *")] TimerInfo myTimer) // every day at 2am
+    // public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer) // every minute for development
     {
         var scraperCore = new ScraperCore.ScraperCore();
         var downloadLink = scraperCore.ScrapeDownloadLink();
@@ -36,8 +37,6 @@ public class Scraper
             _logger.LogError("Stream cannot seek to the beginning");
             throw new InvalidOperationException("Stream must be seekable.");
         }
-
-        string containerEndpoint = "https://stockreport24.blob.core.windows.net/funds";
 
         BlobContainerClient containerClient = new BlobContainerClient(new Uri(containerEndpoint),
             new DefaultAzureCredential());
