@@ -31,7 +31,7 @@ const UnsubscribePage: FunctionComponent = () => {
               <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">
                 Unable to unsubscribe
               </h2>
-              <p className="mx-auto mt-8 max-w-2xl font-light text-gray-500 md:mt-12 sm:text-xl dark:text-gray-400">
+              <p className="mx-auto mt-8 mb-8 max-w-2xl font-light text-gray-500 md:mt-12 sm:text-xl dark:text-gray-400">
                 Try again later.
               </p>
               <a
