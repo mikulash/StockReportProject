@@ -27,7 +27,7 @@ const FundsInput: FunctionComponent<FundsInputProps> = ({
   return (
     <div className="my-12">
       <h4 className="text-2xl font-bold dark:text-white mb-8 text-gray-600">
-        Select funds you want to follow
+        Select funds you want to follow and their format
       </h4>
       {fields.map((field, index) => (
         <div
