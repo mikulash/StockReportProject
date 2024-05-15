@@ -23,7 +23,7 @@ const UnsubscribePage: FunctionComponent = () => {
   if (isInvalidId) return <Error404Page />;
 
   return (
-    <section className="bg-white dark:bg-gray-900 h-screen pt-12 mt-24">
+    <section className="bg-white dark:bg-gray-900 h-full min-h-screen pt-24">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md sm:text-center">
           {queryUnsubscribe.isError ? (
