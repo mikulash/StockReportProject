@@ -11,7 +11,6 @@
       <ProjectReference Include="..\GenericBusinessLayer\GenericBusinessLayer.csproj" />
       <ProjectReference Include="..\MailAPI\MailAPI.csproj" />
       <ProjectReference Include="..\MailInfrastructure\MailInfrastructure.csproj" />
-      <ProjectReference Include="..\StockBusinessLayer\StockBusinessLayer.csproj" />
     </ItemGroup>
 
     <ItemGroup>
