@@ -26,10 +26,15 @@ const FundsInput: FunctionComponent<FundsInputProps> = ({
 
   return (
     <div className="my-12">
+      <h4 className="text-2xl font-bold dark:text-white mb-8 text-gray-600">
+        Select funds you want to follow
+      </h4>
       {fields.map((field, index) => (
         <div
           key={field.id}
-          className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm "
+          className={`items-center mx-auto ${
+            index === 0 ? "mb-12" : "mb-3"
+          } space-y-4 max-w-screen-sm px-8 `}
         >
           <FundInput name={`${name}.${index}`} />
           {index > 0 && (
