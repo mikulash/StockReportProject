@@ -15,6 +15,7 @@ var configuration = new ConfigurationBuilder()
     .SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
     .Build();
 
 builder.Services.RegisterDALDependencies(configuration);
@@ -47,11 +48,9 @@ if (Convert.ToBoolean(configuration.GetSection("ApplyMigrations").Value))
     }
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(); }
-
+app.UseSwagger();
+app.UseSwaggerUI();
+    
 app.UseHttpsRedirection();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();

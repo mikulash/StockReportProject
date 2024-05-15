@@ -46,10 +46,8 @@ if (Convert.ToBoolean(configuration.GetSection("ApplyMigrations").Value))
     }
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(); }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
