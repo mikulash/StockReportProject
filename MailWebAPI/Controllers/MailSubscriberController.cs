@@ -61,7 +61,7 @@ public class MailSubscriberController : ControllerBase
         {
             await _subscriberFacade.DeleteByIdAsync(id);
         }
-        catch (NoSuchEntityException<long>)
+        catch (NoSuchEntityException<Guid>)
         {
             // no exception handling (if entity is not found), because of constant status code 204
             // other exceptions will go through exception middleware
