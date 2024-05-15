@@ -8,7 +8,7 @@ using GenericInfrastructure.Query.Filters;
 namespace GenericBusinessLayer.Facades;
 
 public class GenericFacade<TEntity, TKey, TService, TCreateDto, TUpdateDto, TViewDto, TViewAllDto, TFilter> 
-    : IGenericFacade<TEntity, TKey, TService, TCreateDto, TUpdateDto, TViewDto, TViewAllDto, TFilter> 
+    : IGenericFacade<TEntity, TKey, TService, TCreateDto, TUpdateDto, TViewDto, TViewAllDto> 
     where TEntity : BaseEntity<TKey> 
     where TService : IGenericService<TEntity, TKey>
     where TFilter : IFilter<TEntity>

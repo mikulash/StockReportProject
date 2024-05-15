@@ -5,10 +5,9 @@ using GenericInfrastructure.Query.Filters;
 
 namespace GenericBusinessLayer.Facades;
 
-public interface IGenericFacade<TEntity, TKey, TService, TCreateDto, TUpdateDto, TViewDto, TViewAllDto, TFilter> 
+public interface IGenericFacade<TEntity, TKey, TService, TCreateDto, TUpdateDto, TViewDto, TViewAllDto> 
     where TEntity : BaseEntity<TKey>
     where TService : IGenericService<TEntity, TKey>
-    where TFilter : IFilter<TEntity>
 {
     TService Service { get; init; }
     Task<TViewDto> CreateAsync(TCreateDto create);

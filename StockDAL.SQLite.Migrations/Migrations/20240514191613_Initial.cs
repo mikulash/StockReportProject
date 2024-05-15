@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DAL.SQLite.Migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,6 +68,18 @@ namespace DAL.SQLite.Migrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_CUSIP",
+                table: "Companies",
+                column: "CUSIP",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Funds_FundName",
+                table: "Funds",
+                column: "FundName",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_IndexRecords_CompanyId",
