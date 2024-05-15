@@ -9,7 +9,7 @@ const UnsubscribePage: FunctionComponent = () => {
 
   const { id } = useParams();
 
-  const subscriberId = id ? parseInt(id) : undefined;
+  const subscriberId = id ?? undefined;
 
   useEffect(() => {
     setIsInvalidId(false);
