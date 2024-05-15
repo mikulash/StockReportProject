@@ -2,7 +2,6 @@ import { FunctionComponent } from "react";
 import { useFormContext } from "react-hook-form";
 import { useFunds } from "../../api/funds";
 import { FundDetail } from "../../model/fund";
-import Alert from "../feedback/Alert";
 
 interface FundInputProps {
   name: string;
@@ -11,10 +10,7 @@ interface FundInputProps {
 const FundInput: FunctionComponent<FundInputProps> = ({
   name,
 }: FundInputProps) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   const queryGetFunds = useFunds();
 
@@ -39,14 +35,13 @@ const FundInput: FunctionComponent<FundInputProps> = ({
             </option>
           ))}
       </select>
-      {errors && <Alert message={"test"} />}
       <ul className="items-center w-full mt-4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
           <div className="flex items-center ps-3">
             <input
               id={`horizontal-list-radio-${name}-html`}
               type="radio"
-              defaultValue="html"
+              defaultValue="Html"
               defaultChecked
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
               {...register(`${name}.outputType`)}
@@ -64,7 +59,7 @@ const FundInput: FunctionComponent<FundInputProps> = ({
             <input
               id={`horizontal-list-radio-${name}-string`}
               type="radio"
-              defaultValue="string"
+              defaultValue="String"
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
               {...register(`${name}.outputType`)}
             />

@@ -16,6 +16,7 @@ const SubscribtionPage: FunctionComponent = () => {
   const queryPost = useMailSubscriberCreate();
 
   const onSubmit: SubmitHandler<MailSubscriber> = (data) => {
+    console.log(data);
     queryPost.mutate(data);
     if (queryPost.isSuccess) {
       methods.resetField("email");
@@ -46,22 +47,18 @@ const SubscribtionPage: FunctionComponent = () => {
           </FormProvider>
 
           {queryPost.isError && (
-            <div className="py-12 flex justify-center">
-              <Toast
-                onClose={() => queryPost.reset()}
-                type={"danger"}
-                text={"Unable to subscribe."}
-              />
-            </div>
+            <Toast
+              onClose={() => queryPost.reset()}
+              type={"danger"}
+              text={"Unable to subscribe."}
+            />
           )}
           {queryPost.isSuccess && (
-            <div className="py-12 flex justify-center">
-              <Toast
-                onClose={() => queryPost.reset()}
-                type={"success"}
-                text={"Subscribed!"}
-              />
-            </div>
+            <Toast
+              onClose={() => queryPost.reset()}
+              type={"success"}
+              text={"Subscribed!"}
+            />
           )}
         </div>
       </div>

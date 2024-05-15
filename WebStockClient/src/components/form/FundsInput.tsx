@@ -31,7 +31,7 @@ const FundsInput: FunctionComponent<FundsInputProps> = ({
           key={field.id}
           className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm "
         >
-          <FundInput name={`${name}[${index}]`} />
+          <FundInput name={`${name}.${index}`} />
           {index > 0 && (
             <div className="flex justify-end">
               <button

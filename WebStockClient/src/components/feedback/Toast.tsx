@@ -14,7 +14,7 @@ const Toast: FunctionComponent<ToastProps> = ({
   return (
     <div
       id="toast"
-      className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+      className="fixed flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow right-5 bottom-5 dark:text-gray-400 dark:bg-gray-800"
       role="alert"
     >
       {type === "success" ? (

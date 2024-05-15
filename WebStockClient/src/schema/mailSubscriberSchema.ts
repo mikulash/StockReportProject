@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const MailSubscriberPreferenceSchema = z.object({
   fundName: z.string().max(200),
-  outputType: z.enum(["html", "string"]),
+  outputType: z.enum(["Html", "String"]),
 });
 
 export const MailSubscriberSchema = z.object({
