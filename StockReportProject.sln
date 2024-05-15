@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAPI", "MailAPI\MailAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailWebAPI", "MailWebAPI\MailWebAPI.csproj", "{2D1BCBD4-26F3-4D8C-B615-37A503301B51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "EmailSender\EmailSender.csproj", "{442B86A4-8982-4104-A9A5-EC411FDAD296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,10 @@ Global
 		{2D1BCBD4-26F3-4D8C-B615-37A503301B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1BCBD4-26F3-4D8C-B615-37A503301B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1BCBD4-26F3-4D8C-B615-37A503301B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442B86A4-8982-4104-A9A5-EC411FDAD296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442B86A4-8982-4104-A9A5-EC411FDAD296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442B86A4-8982-4104-A9A5-EC411FDAD296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442B86A4-8982-4104-A9A5-EC411FDAD296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{40DD0418-4B54-4FDA-8AE9-15032D001B93} = {9C1F14EE-7833-483A-B448-44B02FC89508}

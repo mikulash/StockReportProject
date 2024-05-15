@@ -1,0 +1,8 @@
+using DiffCalculator.Model;
+
+namespace MailBusinessLayer.Facades.MailFacade;
+
+public interface IMailFacade
+{
+    public Task<String> Send();
+}
