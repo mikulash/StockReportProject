@@ -1,6 +1,0 @@
-﻿services:
-  scrapercore:
-    image: scrapercore
-    build:
-      context: .
-      dockerfile: ScraperCore/Dockerfile

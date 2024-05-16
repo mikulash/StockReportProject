@@ -7,7 +7,7 @@ public class ScraperCore
 {
     private const string url = "https://ark-funds.com/download-fund-materials/";
     private const string filename = "ARK_FUNDS";
-    private const string localDbEndpoint = "http://localhost:5177/api/indexrecord/upload";
+    private const string localDbEndpoint = "http://localhost:8080/api/indexrecord/upload"; // for docker URL
     private const string fallbackUrl = "https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv";
 
     public Task Scrape()
@@ -133,7 +133,9 @@ public class ScraperCore
         var fileContent = new StreamContent(fileStream);
         fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/csv");
         form.Add(fileContent, "file", datedFilename);
-        var response = await client.PostAsync(localDbEndpoint, form);
+        var k = Environment.GetEnvironmentVariable("UPLOAD_ENDPOINT") ?? localDbEndpoint;
+        Console.WriteLine(k);
+        var response = await client.PostAsync(k, form);
 
         if (!response.IsSuccessStatusCode)
         {
